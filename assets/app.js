@@ -93,27 +93,26 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
   }
 
-  // Homepage Latest / Following toggle
+  // Homepage feed toggle — supports any number of tabs/panels
+  // (e.g. Top News / Latest / Following). Pairs [data-feed-tab="x"] with
+  // [data-feed-panel="x"]; defaults to the tab marked [data-default], else the first.
   function initFeedToggle() {
-    const tabs = document.querySelectorAll('[data-feed-tab]');
+    const tabs = [...document.querySelectorAll('[data-feed-tab]')];
     if (!tabs.length) return;
-    const panels = {
-      latest: document.querySelector('[data-feed-panel="latest"]'),
-      following: document.querySelector('[data-feed-panel="following"]'),
-    };
+    const panels = [...document.querySelectorAll('[data-feed-panel]')];
     const setTab = (name) => {
       tabs.forEach((t) => t.classList.toggle('is-active', t.dataset.feedTab === name));
       // Set inline display directly — a `hidden` attribute is overridden by Tailwind
       // display utilities (e.g. `grid`) on the same element, so we can't rely on it.
-      Object.entries(panels).forEach(([k, el]) => {
-        if (!el) return;
-        const show = k === name;
+      panels.forEach((el) => {
+        const show = el.dataset.feedPanel === name;
         el.style.display = show ? '' : 'none';
         el.hidden = !show;
       });
     };
     tabs.forEach((t) => t.addEventListener('click', () => setTab(t.dataset.feedTab)));
-    setTab('latest');
+    const def = tabs.find((t) => 'default' in t.dataset)?.dataset.feedTab || tabs[0].dataset.feedTab;
+    setTab(def);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
