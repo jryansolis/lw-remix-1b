@@ -1,8 +1,8 @@
 # Livewire Remix 1.0
 
-A concept redesign of [Livewire Markets](https://www.livewiremarkets.com) — an editorial, *Atlantic*-inspired direction for an investment-insights publication. Shared team artifact: explore the direction, then riff on your own branch (see [CONTRIBUTING](CONTRIBUTING.md)).
+A concept redesign of [Livewire Markets](https://www.livewiremarkets.com) — an editorial, *Atlantic*-inspired direction for an investment-insights publication. Want to spin off your own version? See [CONTRIBUTING](CONTRIBUTING.md).
 
-**Live preview:** _set after the repo lands in the org — `https://livewiremarkets1.github.io/remix/`_
+**Live preview:** https://jryansolis.github.io/lw-remix-1.0/
 
 ## What's here
 

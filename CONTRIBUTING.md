@@ -1,50 +1,44 @@
-# Contributing — how to riff without overwriting
+# Make your own version
 
-This repo holds one **canonical** design on `main`. To explore your own direction, work on a branch named after you. Nobody can overwrite `main` directly, and everyone's variations live side by side.
+This repo (`jryansolis/lw-remix-1.0`) is the original concept. To riff on it, **make your own copy** — you get a fully independent version with its own URL, and the original is never touched.
 
-## One-time setup
+## Get your own copy (pick one)
+
+**Template** — a clean start, no shared history (recommended for a fresh direction):
+
+1. On the repo page, click **Use this template → Create a new repository** (e.g. `your-username/lw-remix`).
+   - _(Requires the owner to tick **Settings → Template repository** once.)_
+
+**Fork** — keeps a link to the original, so you can pull future updates or propose ideas back:
+
+1. Click **Fork** → creates `your-username/lw-remix-1.0`.
+2. Optional, to pull the original's updates later:
+   ```bash
+   git remote add upstream https://github.com/jryansolis/lw-remix-1.0.git
+   git fetch upstream && git merge upstream/main
+   ```
+
+## Run it
+
+No build step — static HTML + Tailwind (CDN). After cloning your copy:
 
 ```bash
-git clone https://github.com/livewiremarkets1/remix.git
-cd remix
-```
-
-No build step — it's static HTML + Tailwind (CDN). Open `index.html` in a browser, or serve the folder:
-
-```bash
+git clone https://github.com/your-username/<your-repo>.git
+cd <your-repo>
 python3 -m http.server 8080   # then visit http://localhost:8080
 ```
 
-## Start your riff
+Or just open `index.html` in a browser.
 
-```bash
-git checkout main
-git pull
-git checkout -b riff/your-name      # e.g. riff/joseph, riff/sam-mobile
-```
+## Put your version online
 
-Edit freely, commit as you go:
+In **your** repo: **Settings → Pages → Deploy from branch → `main` / root**.
+Your version goes live at `https://your-username.github.io/<your-repo>/` — separate from the original.
 
-```bash
-git add -A
-git commit -m "Try a denser homepage grid"
-git push -u origin riff/your-name
-```
+## What's inside
 
-Your branch is yours. `main` stays untouched.
-
-## Conventions
-
-- **Branch names:** `riff/<name>` for a personal direction, `feat/<short-desc>` for a focused change meant to land on `main`.
-- **No direct commits to `main`** — it's protected. Changes reach `main` only via Pull Request.
-- **Compare ideas:** open a PR from your branch to see the diff and let others react — even if you never intend to merge it.
-- **Versioning:** milestones on `main` are tagged (`v1.0`, `v1.1`), not baked into file or repo names.
-- **Keep it static:** no build tooling, no frameworks — Tailwind via CDN, vanilla JS in `assets/app.js`. Keep it openable with a double-click.
-
-## Want your riff live?
-
-`main` deploys to GitHub Pages automatically. To preview a branch publicly, either open a PR (and use a preview-deploy host like Cloudflare Pages / Vercel if we wire one up later) or just share it by pushing the branch and running it locally.
+Static HTML pages (`index.html`, `topics.html`, `article*.html`, `video.html`, …) + shared interactions in `assets/app.js` (follow buttons, feed toggle, search, auth demo, comments). No frameworks — keep it openable with a double-click. Milestones on the original are tagged (`v1.0`, …).
 
 ## Notes
 
-Concept/demo only. Headshots and the Buy Hold Sell thumbnail are real Livewire assets; other imagery is placeholder stock — confirm licensing before any production use.
+Concept/demo only. Headshots and the Buy Hold Sell thumbnail are real Livewire assets; other imagery is placeholder stock — confirm licensing before any production use. Keep your copy **private** if it still embeds these.
