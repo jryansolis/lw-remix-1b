@@ -1,0 +1,33 @@
+name: Refresh Livewire feed
+
+on:
+  schedule:
+    - cron: '0 20 * * *'   # daily ~6am AEST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # fetch-feed.mjs exits non-zero on HTTP failure or an empty parse,
+      # so a Cloudflare block on runner IPs leaves the committed seed intact.
+      - name: Fetch feed
+        run: node scripts/fetch-feed.mjs
+      - name: Commit if changed
+        run: |
+          git config user.name "feed-bot"
+          git config user.email "actions@github.com"
+          git add data/feed.json
+          if git diff --cached --quiet; then
+            echo "No feed changes."
+          else
+            git commit -m "chore: refresh data/feed.json"
+            git push
+          fi

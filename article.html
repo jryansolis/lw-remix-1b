@@ -7,17 +7,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = { theme: { extend: {
-      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
       colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', mist:'#F2EEE5', gold:'#B88E1E', oxblood:'#7A2E2E' } },
     } } }
   </script>
   <style>
     body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
-    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
-    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3{ font-family:'Besley',serif; font-weight:500; }
     .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
     .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
     .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
@@ -26,9 +26,9 @@
     .story:hover .imgz img{ transform:scale(1.04); }
     .rule{ border-color:#E4DFD4; }
     /* premium longform */
-    .prose-body{ font-family:'Newsreader',serif; }
+    .prose-body{ font-family:'Literata',serif; }
     .prose-body p{ font-size:1.3rem; line-height:1.78; color:#231f18; margin-bottom:1.6rem; letter-spacing:.002em; }
-    .prose-body p:first-of-type::first-letter{ float:left; font-family:'Fraunces',serif; font-weight:600; font-size:5rem; line-height:.76; padding:.4rem .55rem 0 0; color:#16130E; }
+    .prose-body p:first-of-type::first-letter{ float:left; font-family:'Besley',serif; font-weight:600; font-size:5rem; line-height:.76; padding:.4rem .55rem 0 0; color:#16130E; }
     .prose-body a{ color:#7A2E2E; text-decoration:underline; text-underline-offset:2px; }
     .prose-body h2{ font-size:1.9rem; font-weight:500; letter-spacing:-.015em; line-height:1.12; margin:2.6rem 0 1rem; }
     .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
@@ -53,7 +53,7 @@
   <header class="bg-lw-paper border-b border-lw-ink">
     <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
       <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
-      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="income-series.html" class="hover:text-lw-gold">Income&nbsp;Series</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
       <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
     </div>
   </header>
@@ -69,7 +69,7 @@
   <!-- Title block -->
   <div class="max-w-[760px] mx-auto px-5 pt-10 text-center">
     <div class="ts mb-4"><a href="topics.html" class="hover:text-lw-gold" style="color:#B88E1E">WEALTH</a> · <a href="topics.html" class="hover:text-lw-gold" style="color:#B88E1E">TAXATION</a></div>
-    <h1 class="text-[2.3rem] md:text-[3.4rem] leading-[1.04] font-500" style="letter-spacing:-.02em">"A real sting in the tail" — the rules of investing have been rewritten</h1>
+    <h1 class="text-[2.3rem] md:text-[3.4rem] leading-[1.04] font-500" style="letter-spacing:-.01em">"A real sting in the tail" — the rules of investing have been rewritten</h1>
     <p class="ff-b text-xl md:text-2xl text-lw-sub leading-snug mt-5 max-w-2xl mx-auto" style="font-style:italic">Three major tax reforms are about to reshape how Australians build wealth. Here are the five charts that matter.</p>
     <div class="w-10 h-px bg-lw-gold mx-auto my-6"></div>
     <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 ff-b text-[15px]">
@@ -284,6 +284,9 @@
     </div>
   </footer>
 
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

@@ -260,31 +260,31 @@
     .lwx-search{width:100%;max-width:620px;background:#FBFAF6;border:1px solid #E4DFD4;box-shadow:0 40px 90px -30px rgba(13,11,8,.5);transform:translateY(-8px);transition:transform .18s ease}
     .lwx-backdrop.show .lwx-search{transform:translateY(0)}
     .lwx-search-in{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #E4DFD4}
-    .lwx-search-in input{flex:1;border:0;background:transparent;outline:none;font-family:'Newsreader',serif;font-size:1.25rem;color:#16130E}
+    .lwx-search-in input{flex:1;border:0;background:transparent;outline:none;font-family:'Literata',serif;font-size:1.25rem;color:#16130E}
     .lwx-search-in input::placeholder{color:#A89F8E}
     .lwx-esc{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #E4DFD4;padding:3px 7px;color:#6B6358}
     .lwx-results{max-height:52vh;overflow-y:auto}
     .lwx-grp{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B88E1E;padding:14px 18px 6px}
     .lwx-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 18px;cursor:pointer;text-decoration:none}
-    .lwx-row .lwx-t{font-family:'Fraunces',serif;font-size:1.02rem;color:#16130E;line-height:1.2}
+    .lwx-row .lwx-t{font-family:'Besley',serif;font-size:1.02rem;color:#16130E;line-height:1.2}
     .lwx-row .lwx-k{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8C8474;flex-shrink:0}
     .lwx-row.act,.lwx-row:hover{background:#F2EEE5}
-    .lwx-empty{padding:26px 18px;font-family:'Newsreader',serif;color:#6B6358}
+    .lwx-empty{padding:26px 18px;font-family:'Literata',serif;color:#6B6358}
     .lwx-foot{display:flex;gap:18px;padding:11px 18px;border-top:1px solid #E4DFD4;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#8C8474}
     .lwx-foot kbd{border:1px solid #E4DFD4;padding:1px 5px;margin-right:3px;font-family:inherit}
     .lwx-modal{width:100%;max-width:420px;background:#FBFAF6;border:1px solid #E4DFD4;box-shadow:0 40px 90px -30px rgba(13,11,8,.5);padding:34px 30px;position:relative;transform:translateY(-8px);transition:transform .18s ease;text-align:center}
     .lwx-backdrop.show .lwx-modal{transform:translateY(0)}
     .lwx-x{position:absolute;top:14px;right:16px;color:#8C8474;font-size:18px;line-height:1}
-    .lwx-modal h2{font-family:'Fraunces',serif;font-weight:500;font-size:1.7rem;line-height:1.1;margin:14px 0 8px}
-    .lwx-modal .lwx-sub{font-family:'Newsreader',serif;color:#6B6358;font-size:1rem;margin-bottom:20px}
-    .lwx-modal input{width:100%;border:1px solid #16130E;background:transparent;padding:12px 14px;font-family:'Newsreader',serif;font-size:1rem;outline:none;margin-bottom:10px}
+    .lwx-modal h2{font-family:'Besley',serif;font-weight:500;font-size:1.7rem;line-height:1.1;margin:14px 0 8px}
+    .lwx-modal .lwx-sub{font-family:'Literata',serif;color:#6B6358;font-size:1rem;margin-bottom:20px}
+    .lwx-modal input{width:100%;border:1px solid #16130E;background:transparent;padding:12px 14px;font-family:'Literata',serif;font-size:1rem;outline:none;margin-bottom:10px}
     .lwx-modal input:focus{border-color:#B88E1E}
     .lwx-btn{display:block;width:100%;padding:12px;font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid #16130E}
     .lwx-btn-solid{background:#16130E;color:#FBFAF6}.lwx-btn-solid:hover{background:#B88E1E;border-color:#B88E1E;color:#16130E}
     .lwx-btn-ghost{background:transparent;color:#16130E;margin-top:8px}.lwx-btn-ghost:hover{background:#F2EEE5}
     .lwx-or{display:flex;align-items:center;gap:10px;color:#A89F8E;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin:16px 0}
     .lwx-or::before,.lwx-or::after{content:'';height:1px;flex:1;background:#E4DFD4}
-    .lwx-fine{font-family:'Newsreader',serif;font-size:.9rem;color:#6B6358;margin-top:16px}
+    .lwx-fine{font-family:'Literata',serif;font-size:.9rem;color:#6B6358;margin-top:16px}
     .lwx-fine a{color:#7A2E2E;text-decoration:underline;cursor:pointer}
     .lwx-avatar{width:34px;height:34px;border-radius:9999px;background:linear-gradient(135deg,#374662,#19202D);color:#E0A82E;display:grid;place-items:center;font-family:'Spline Sans Mono',monospace;font-weight:700;font-size:12px;cursor:pointer}
     /* comments */
@@ -354,18 +354,38 @@
     { t: 'Jun Bei Liu', k: 'TenCap', u: 'author.html', g: 'Contributors' },
   ];
   let searchActive = -1, searchRows = [];
+  // merge the enriched content index (assets/data/index.js + RSS) with the
+  // static topics/contributors/series entries; fall back to SEARCH_INDEX alone
+  function searchItems() {
+    if (!window.LW_DATA) return SEARCH_INDEX;
+    const groupFor = (it) => it.type === 'video' ? 'Videos' : it.type === 'podcast' ? 'Podcasts' : it.type === 'report' ? 'Special Reports' : 'Articles';
+    const content = window.LW_DATA.map((it) => ({
+      t: it.title,
+      k: (it.live ? '● ' : '') + ((it.topics && it.topics[0]) || it.author || ''),
+      u: it.url, g: groupFor(it),
+      x: ((it.themes || []).join(' ') + ' ' + (it.tickers || []).join(' ') + ' ' + (it.author || ''))
+    }));
+    const navItems = SEARCH_INDEX.filter((x) => x.g === 'Topics' || x.g === 'Contributors' || x.g === 'Series');
+    return content.concat(navItems);
+  }
   function renderSearch(q) {
     const box = document.getElementById('lw-search-results'); if (!box) return;
     const term = q.trim().toLowerCase();
-    const items = term ? SEARCH_INDEX.filter((x) => (x.t + ' ' + x.k + ' ' + x.g).toLowerCase().includes(term)) : SEARCH_INDEX.slice(0, 8);
+    const all = searchItems();
+    const items = term ? all.filter((x) => (x.t + ' ' + x.k + ' ' + x.g + ' ' + (x.x || '')).toLowerCase().includes(term)) : all.slice(0, 8);
     box.innerHTML = '';
     searchRows = [];
-    if (!items.length) { box.innerHTML = `<div class="lwx-empty">No results for “${q}”. Try a topic, writer, or show.</div>`; return; }
+    // scannable ask → pin a "run as scan" row first (Enter runs the scan)
+    if (term && window.lwIsScannable && window.lwIsScannable(term)) {
+      const scanRow = elFrom(`<a class="lwx-row" href="scans.html?q=${encodeURIComponent(q.trim())}" style="border-left:2px solid #B88E1E"><span class="lwx-t">⌁ Scan the wire for “${q.trim()}”</span><span class="lwx-k">Curated digest</span></a>`);
+      searchRows.push(scanRow); box.appendChild(scanRow);
+    }
+    if (!items.length && !searchRows.length) { box.innerHTML = `<div class="lwx-empty">No results for “${q}”. Try a topic, writer, or show.</div>`; return; }
     const groups = {};
     items.forEach((x) => { (groups[x.g] = groups[x.g] || []).push(x); });
     Object.keys(groups).forEach((g) => {
       box.appendChild(elFrom(`<div class="lwx-grp">${g}</div>`));
-      groups[g].forEach((x) => {
+      groups[g].slice(0, 6).forEach((x) => {
         const a = elFrom(`<a class="lwx-row" href="${x.u}"><span class="lwx-t">${x.t}</span><span class="lwx-k">${x.k}</span></a>`);
         searchRows.push(a); box.appendChild(a);
       });
@@ -450,11 +470,54 @@
     });
   }
 
+  // ---- Pinned scans (saved questions; sign-in gated like follows) ----
+  const PINS_KEY = 'lw_pinned_scans';
+  function pins() { try { return JSON.parse(localStorage.getItem(PINS_KEY)) || []; } catch (e) { return []; } }
+  function savePins(p) { localStorage.setItem(PINS_KEY, JSON.stringify(p)); }
+  function paintPinButtons() {
+    document.querySelectorAll('[data-pin-scan]').forEach((b) => {
+      const label = b.getAttribute('data-pin-scan');
+      const on = auth.signedIn && pins().some((p) => p.label === label);
+      b.textContent = on ? '✓ Pinned to Following' : '+ Pin scan';
+      b.classList.toggle('is-following', on);
+    });
+  }
+  function initPinButtons() {
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-pin-scan]'); if (!b) return;
+      e.preventDefault();
+      const label = b.getAttribute('data-pin-scan');
+      const query = b.getAttribute('data-pin-query') || label;
+      const toggle = () => {
+        let p = pins();
+        if (p.some((x) => x.label === label)) p = p.filter((x) => x.label !== label);
+        else p.push({ label, query });
+        savePins(p); paintPinButtons(); renderFollowingPanel();
+      };
+      if (!auth.signedIn) { openSignin('Sign in to pin scans — they re-run in your Following feed.', toggle); return; }
+      toggle();
+    });
+    paintPinButtons();
+  }
+  function pinnedChipsHtml() {
+    const p = pins();
+    if (!p.length) return '';
+    return `<div class="border-b rule pb-5 mb-2">
+      <div class="ff-m text-[10px] font-600 tracking-[.18em] uppercase mb-3" style="color:#8C8474">Your pinned scans</div>
+      <div class="flex flex-wrap gap-2">${p.map((x) => `<a class="scan-chip" href="scans.html?q=${encodeURIComponent(x.query)}">⌁ ${x.label}</a>`).join('')}</div>
+    </div>`;
+  }
+
   // ---- Following panel (homepage): teaser when signed-out ----
   function renderFollowingPanel() {
     const panel = document.querySelector('[data-feed-panel="following"]'); if (!panel) return;
     if (panel.__orig == null) panel.__orig = panel.innerHTML;
-    if (auth.signedIn) { if (panel.innerHTML !== panel.__orig) panel.innerHTML = panel.__orig; document.querySelectorAll('[data-follow]').forEach(paintButton); initFollowButtons(); return; }
+    if (auth.signedIn) {
+      if (panel.innerHTML !== panel.__orig) panel.innerHTML = panel.__orig;
+      const chips = pinnedChipsHtml();
+      if (chips) panel.insertAdjacentHTML('afterbegin', `<div class="pt-6">${chips}</div>`);
+      document.querySelectorAll('[data-follow]').forEach(paintButton); initFollowButtons(); return;
+    }
     panel.innerHTML = `<div class="max-w-2xl mx-auto text-center py-10">
       <div class="kicker" style="color:#B88E1E">Your Livewire</div>
       <h2 class="ff-d text-3xl md:text-4xl font-500 mt-2" style="letter-spacing:-.02em">Follow the minds you trust.</h2>
@@ -525,6 +588,12 @@
         </div></div></div>`);
   }
 
+  // exposed for the special-report gate (and any future member-gated surface)
+  window.lwOpenSignin = function (cb) {
+    if (auth.signedIn) { if (cb) cb(); return; }
+    openSignin('Unlock member content with a free account.', cb);
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     injectGlobals();
     renderAuthUI();
@@ -537,10 +606,12 @@
     initVideoPreviews();
     renderFollowingPanel();
     initComments();
+    initPinButtons();
     document.querySelectorAll('[data-following-count]').forEach((el) => { el.textContent = auth.signedIn ? following.size : 0; });
     onAuthChange(renderAuthUI);
     onAuthChange(renderFollowingPanel);
     onAuthChange(renderComposer);
+    onAuthChange(paintPinButtons);
     onAuthChange(() => { document.querySelectorAll('[data-follow]').forEach(paintButton); document.querySelectorAll('[data-following-count]').forEach((el) => { el.textContent = auth.signedIn ? following.size : 0; }); });
   });
 })();

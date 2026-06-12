@@ -7,28 +7,28 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = { theme: { extend: {
-      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
       colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', oxblood:'#7A2E2E' } },
     } } }
   </script>
   <style>
     body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
-    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
-    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3{ font-family:'Besley',serif; font-weight:500; }
     .kicker{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
     .byl{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:#16130E; }
     .cred{ font-family:'Spline Sans Mono',monospace; font-size:9.5px; letter-spacing:.03em; color:#A89F8E; }
     .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
     .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-    .secttl{ font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+    .secttl{ font-family:'Besley',serif; font-size:1.05rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
     .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
     .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s cubic-bezier(.2,.7,.2,1); display:block; width:100%; height:100%; object-fit:cover; }
     .story:hover .imgz img{ transform:scale(1.04); }
     .rule{ border-color:#E4DFD4; }
-    .feed-tab{ font-family:'Fraunces',serif; font-weight:500; color:#B7AE9E; padding:8px 2px; position:relative; cursor:pointer; font-style:italic; }
+    .feed-tab{ font-family:'Besley',serif; font-weight:500; color:#B7AE9E; padding:8px 2px; position:relative; cursor:pointer; font-style:italic; }
     .feed-tab.is-active{ color:#16130E; }
     .feed-tab.is-active::after{ content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:#B88E1E; }
     .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
@@ -42,7 +42,14 @@
     .avatar{ object-fit:cover; background:#EEE9DF; }
     .play span{ width:52px; height:52px; border-radius:9999px; background:rgba(22,19,14,.78); display:grid; place-items:center; transition:transform .2s, background .2s; }
     .story:hover .play span{ transform:scale(1.08); background:#7A2E2E; }
-    .num{ font-family:'Fraunces',serif; font-style:italic; color:#B88E1E; }
+    .num{ font-family:'Besley',serif; font-style:italic; color:#B88E1E; }
+    .srcmark{ font-family:'Spline Sans Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#A89F8E; }
+    .scan-chip{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid #16130E; padding:7px 12px; display:inline-block; transition:all .15s; color:#16130E; }
+    .scan-chip:hover{ background:#16130E; color:#FBFAF6; }
+    .scan-input{ font-family:'Literata',serif; font-style:italic; font-size:1.05rem; background:transparent; border:0; border-bottom:2px solid #16130E; outline:none; padding:9px 2px; width:100%; color:#16130E; }
+    .scan-input::placeholder{ color:#B7AE9E; }
+    .report-card{ border:1px solid #7A2E2E; background:#F2EEE5; }
+    .lockg{ display:inline-block; vertical-align:-1px; }
   </style>
 </head>
 <body class="text-lw-ink font-body">
@@ -54,7 +61,7 @@
   <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
     <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
       <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
-      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="text-lw-gold">Home</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="income-series.html" class="hover:text-lw-gold">Income&nbsp;Series</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
       <div class="flex items-center gap-4">
         <button aria-label="Search" class="hover:text-lw-gold"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.6" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></button>
         <a href="#" class="hidden sm:inline-flex items-center border border-lw-ink px-4 h-9 navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
@@ -85,23 +92,34 @@
     <!-- ============================ TOP NEWS (curated home) ============================ -->
     <section data-feed-panel="top">
 
-      <!-- HERO ZONE: 3 columns -->
+      <!-- Z1: Markets Live band (rendered by assets/markets-live.js) -->
+      <div data-markets-live class="border-b border-lw-ink"></div>
+
+      <!-- Z2 HERO ZONE: 3 columns -->
       <div class="grid grid-cols-1 lg:grid-cols-[260px_1fr_300px] gap-8 py-7 border-b border-lw-ink">
-        <!-- left: two stacked -->
-        <div class="space-y-6 lg:divide-y rule">
-          <article class="story group">
+        <!-- left: one imaged + three text -->
+        <div class="lg:divide-y rule">
+          <article class="story group pb-4">
             <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/asx.jpg" alt=""></a>
             <p class="cred mb-1.5">Source: ASX / Livewire</p>
             <a href="topics.html" class="kicker">Small Caps</a>
-            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-xl font-500 leading-[1.12]">Top 6 ASX takeover picks for 2026 — including one 10-bagger</h3></a>
+            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-xl leading-[1.12]">Top 6 ASX takeover picks for 2026 — including one 10-bagger</h3></a>
             <div class="byl mt-2">Ben Richards</div>
           </article>
-          <article class="story group lg:pt-6">
-            <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/energy.jpg" alt=""></a>
-            <p class="cred mb-1.5">Illustration: Livewire</p>
+          <article class="story group py-4">
             <a href="topics.html" class="kicker">Resources</a>
-            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-xl font-500 leading-[1.12]">Western reindustrialisation and the next resource boom</h3></a>
-            <div class="byl mt-2">Kerry Sun</div>
+            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[17px] leading-[1.18]">Western reindustrialisation and the next resource boom</h3></a>
+            <div class="byl mt-1.5">Kerry Sun</div>
+          </article>
+          <article class="story group py-4">
+            <a href="topics.html" class="kicker">Markets</a>
+            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[17px] leading-[1.18]">The bull case nobody wants to make</h3></a>
+            <div class="byl mt-1.5">Chris Conway</div>
+          </article>
+          <article class="story group pt-4">
+            <a href="topics.html" class="kicker">Income</a>
+            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[17px] leading-[1.18]">Bonds are back as the portfolio's shock absorber</h3></a>
+            <div class="byl mt-1.5">Anne Milne</div>
           </article>
         </div>
 
@@ -115,127 +133,200 @@
           <div class="flex items-center justify-center gap-2.5 mt-3.5"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-7 h-7 rounded-full"><span class="byl">Vishal Teckchandani &amp; Sara Allen</span></div>
         </article>
 
-        <!-- right: list + promo -->
+        <!-- right: dense six-row list -->
         <div>
           <div class="divide-y rule">
-            <article class="story group flex gap-3 pb-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Equities</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] font-500 leading-[1.15]">Where to catch the investment waves in 2026</h3></a><div class="byl mt-1.5">Steve Johnson</div></div>
-              <a href="article.html" class="imgz w-16 h-16 flex-shrink-0"><img src="assets/img/equities.jpg" alt=""></a>
+            <article class="story group flex gap-3 pb-3.5 items-start">
+              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Equities</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">Where to catch the investment waves in 2026</h3></a><div class="byl mt-1.5">Steve Johnson</div></div>
+              <a href="article.html" class="imgz w-12 h-12 flex-shrink-0"><img src="assets/img/equities.jpg" alt=""></a>
             </article>
-            <article class="story group flex gap-3 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] font-500 leading-[1.15]">Retiring in 2026? Four smart moves to protect your lifestyle</h3></a><div class="byl mt-1.5">Aaron Minney</div></div>
-              <a href="article.html" class="imgz w-16 h-16 flex-shrink-0"><img src="assets/img/retirement.jpg" alt=""></a>
+            <article class="story group py-3.5">
+              <a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">Retiring in 2026? Four smart moves to protect your lifestyle</h3></a><div class="byl mt-1.5">Aaron Minney</div>
             </article>
-            <article class="story group flex gap-3 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Markets</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] font-500 leading-[1.15]">2025 turned out pretty good — but what about 2026?</h3></a><div class="byl mt-1.5">Shane Oliver</div></div>
-              <a href="article.html" class="imgz w-16 h-16 flex-shrink-0"><img src="assets/img/markets.jpg" alt=""></a>
+            <article class="story group flex gap-3 py-3.5 items-start">
+              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Markets</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">2025 turned out pretty good — but what about 2026?</h3></a><div class="byl mt-1.5">Shane Oliver</div></div>
+              <a href="article.html" class="imgz w-12 h-12 flex-shrink-0"><img src="assets/img/markets.jpg" alt=""></a>
             </article>
-            <article class="story group flex gap-3 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Income</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] font-500 leading-[1.15]">The ultimate investing guide for 2026</h3></a><div class="byl mt-1.5">Livewire Exclusive</div></div>
-              <a href="article.html" class="imgz w-16 h-16 flex-shrink-0"><img src="assets/img/inflation.jpg" alt=""></a>
+            <article class="story group py-3.5">
+              <a href="topics.html" class="kicker">Income</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">The ultimate investing guide for 2026</h3></a><div class="byl mt-1.5">Livewire Exclusive</div>
             </article>
-          </div>
-          <div class="border border-lw-ink p-4 mt-4">
-            <div class="ff-b text-[15px] leading-snug text-lw-sub mb-3">Test your market knowledge with the Livewire <em>Markets Quiz</em> — a new one every Friday.</div>
-            <button class="follow-btn w-full py-2.5 bg-lw-ink text-lw-paper hover:bg-lw-gold transition-colors">Play</button>
+            <article class="story group flex gap-3 py-3.5 items-start">
+              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Property</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">The property data that should worry investors</h3></a><div class="byl mt-1.5">Vishal Teckchandani</div></div>
+              <a href="article.html" class="imgz w-12 h-12 flex-shrink-0"><img src="assets/img/property-vish.jpg" alt=""></a>
+            </article>
+            <article class="story group pt-3.5">
+              <a href="topics.html" class="kicker">Shares</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">CSL vs ResMed: the healthcare heavyweight bout</h3></a><div class="byl mt-1.5">Tom Stelzer</div>
+            </article>
           </div>
         </div>
       </div>
 
-      <!-- 4-COL GRID — row 1 -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 lg:divide-x rule border-b rule">
-        <article class="story group p-5 lg:first:pl-0">
-          <a href="article-video.html" class="imgz block aspect-[16/10] mb-2.5 relative" data-preview="8pnxQ22Zsck"><img src="assets/img/video-banks.jpg" alt=""><span class="play absolute inset-0 grid place-items-center"><span><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>
-          <p class="cred mb-1.5">Buy Hold Sell · Livewire</p>
-          <a href="topics.html" class="kicker">Video</a>
-          <a href="article-video.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">Is it time to ditch the banks? 7 ASX financials to watch</h3></a>
-          <p class="ff-b text-[14px] text-lw-muted leading-snug mt-1.5">Two managers call buy, hold or sell on the majors.</p>
-          <div class="byl mt-2">Vishal Teckchandani</div>
-        </article>
-        <article class="story group p-5">
-          <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/etf.jpg" alt=""></a>
-          <p class="cred mb-1.5">Source: Getty</p>
-          <a href="topics.html" class="kicker">Exchange Traded Funds</a>
-          <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">The most consistent ASX ETFs for growth and income in 2026</h3></a>
-          <p class="ff-b text-[14px] text-lw-muted leading-snug mt-1.5">Ranking the steadiest performers on the Sortino ratio.</p>
-          <div class="byl mt-2">Carl Capolingua</div>
-        </article>
-        <article class="story group p-5">
-          <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/predictions.jpg" alt=""></a>
-          <p class="cred mb-1.5">Illustration: Livewire</p>
-          <a href="topics.html" class="kicker">Growth</a>
-          <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">5 shocking predictions for 2026 and beyond</h3></a>
-          <p class="ff-b text-[14px] text-lw-muted leading-snug mt-1.5">Five experts on the disruptions few are pricing in.</p>
-          <div class="byl mt-2">Anna Dadic</div>
-        </article>
-        <article class="story group p-5 lg:last:pr-0">
-          <a href="article-feature.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/gale.jpg" alt=""></a>
-          <p class="cred mb-1.5">Photograph: Livewire</p>
-          <a href="topics.html" class="kicker">The Feature</a>
-          <a href="article-feature.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">Into the gale: positioning for a market few see coming</h3></a>
-          <p class="ff-b text-[14px] text-lw-muted leading-snug mt-1.5">A Livewire long read on Australia's contrarians.</p>
-          <div class="byl mt-2">Chris Conway</div>
-        </article>
+      <!-- Z3 THE WIRE: anchor card + three text stacks -->
+      <div class="border-b rule">
+        <div class="pt-3 pb-1 flex items-center gap-2"><span class="w-2 h-2 bg-lw-gold"></span><h2 class="secttl text-sm">The Wire</h2></div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 lg:divide-x rule">
+          <article class="story group py-4 lg:pr-5">
+            <a href="article-video.html" class="imgz block aspect-[16/10] mb-2.5 relative" data-preview="8pnxQ22Zsck"><img src="assets/img/video-banks.jpg" alt=""><span class="play absolute inset-0 grid place-items-center"><span><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>
+            <p class="cred mb-1.5">Buy Hold Sell · Livewire</p>
+            <a href="topics.html" class="kicker">▶ Video</a>
+            <a href="article-video.html" class="block mt-1"><h3 class="hl ff-d text-lg leading-[1.13]">Is it time to ditch the banks? 7 ASX financials to watch</h3></a>
+            <p class="ff-b text-[14px] text-lw-muted leading-snug mt-1.5">Two managers call buy, hold or sell on the majors.</p>
+            <div class="byl mt-2">Vishal Teckchandani</div>
+          </article>
+          <div class="divide-y rule lg:px-5">
+            <article class="story group py-4">
+              <a href="topics.html" class="kicker">Exchange Traded Funds</a>
+              <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">The most consistent ASX ETFs for growth and income in 2026</h3></a>
+              <div class="byl mt-1.5">Carl Capolingua</div>
+            </article>
+            <article class="story group py-4">
+              <a href="topics.html" class="kicker">Shares</a>
+              <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">The tech stocks Marcus Marshall refuses to sell</h3></a>
+              <div class="byl mt-1.5">Marcus Marshall</div>
+            </article>
+            <article class="story group py-4">
+              <a href="topics.html" class="kicker">Markets</a>
+              <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">Diana Mousina: the RBA's next move is not what markets price</h3></a>
+              <div class="byl mt-1.5">Diana Mousina</div>
+            </article>
+          </div>
+          <div class="divide-y rule lg:px-5">
+            <article class="story group py-4">
+              <a href="topics.html" class="kicker">Growth</a>
+              <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">5 shocking predictions for 2026 and beyond</h3></a>
+              <div class="byl mt-1.5">Anna Dadic</div>
+            </article>
+            <article class="story group py-4">
+              <a href="topics.html" class="kicker">Small Caps</a>
+              <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">Why this fundie is taking a contrarian view on a clear recovery candidate</h3></a>
+              <div class="byl mt-1.5">Steve Johnson</div>
+            </article>
+            <article class="story group py-4">
+              <a href="topics.html" class="kicker">Markets</a>
+              <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">Jun Bei Liu: the China re-rate is real this time</h3></a>
+              <div class="byl mt-1.5">Jun Bei Liu</div>
+            </article>
+          </div>
+          <div class="lg:pl-5 py-4 space-y-4">
+            <!-- the one framed object on the page: locked Special Report -->
+            <a href="article-report.html" class="report-card block p-4 group">
+              <span class="kicker" style="color:#7A2E2E"><svg class="lockg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7A2E2E" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg> Special Report</span>
+              <h3 class="ff-d text-[17px] leading-[1.2] mt-1.5 group-hover:text-lw-oxblood transition-colors">The Memory Supercycle: who really wins the HBM build-out</h3>
+              <p class="ff-b italic text-[13px] text-lw-muted mt-2">25 min · Research-grade · Members</p>
+              <span class="follow-btn inline-block mt-2.5 px-3.5 py-1.5 border border-lw-oxblood text-lw-oxblood group-hover:bg-lw-oxblood group-hover:text-lw-paper transition-colors">Unlock →</span>
+            </a>
+            <div class="divide-y rule border-t rule">
+              <article class="story group py-4">
+                <a href="topics.html" class="kicker">The Feature</a>
+                <a href="article-feature.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">Into the gale: positioning for a market few see coming</h3></a>
+                <div class="byl mt-1.5">Chris Conway</div>
+              </article>
+              <article class="story group py-4">
+                <a href="topics.html" class="kicker">Shares · AI</a>
+                <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[16px] leading-[1.2]">Reece Birtles: AI infrastructure is the new toll road</h3></a>
+                <div class="byl mt-1.5">Reece Birtles</div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- 4-COL GRID — row 2 (contributor voices) -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 lg:divide-x rule border-b border-lw-ink">
-        <article class="story group p-5 lg:first:pl-0">
-          <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/armina-ai.jpg" alt=""></a>
-          <p class="cred mb-1.5">Photograph: Livewire</p>
-          <a href="topics.html" class="kicker">Growth · AI</a>
-          <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">Armina Rosenberg on riding the AI chip supercycle</h3></a>
-          <div class="byl mt-2">Armina Rosenberg</div>
-        </article>
-        <article class="story group p-5">
-          <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/junbei-sims.jpg" alt=""></a>
-          <p class="cred mb-1.5">The One That Got Away · Livewire</p>
-          <a href="topics.html" class="kicker">Shares</a>
-          <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">Jun Bei Liu on the trade she wishes she'd held</h3></a>
-          <div class="byl mt-2">Jun Bei Liu</div>
-        </article>
-        <article class="story group p-5">
-          <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/uranium-keller.jpg" alt=""></a>
-          <p class="cred mb-1.5">Photograph: Livewire</p>
-          <a href="topics.html" class="kicker">Small Caps</a>
-          <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">Guy Keller on the uranium bull market's second leg</h3></a>
-          <div class="byl mt-2">Guy Keller</div>
-        </article>
-        <article class="story group p-5 lg:last:pr-0">
-          <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/bmo-bull.jpg" alt=""></a>
-          <p class="cred mb-1.5">Market Wire · Livewire</p>
-          <a href="topics.html" class="kicker">Markets</a>
-          <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-lg font-500 leading-[1.13]">Fred Demers on the bull case for bonds in 2026</h3></a>
-          <div class="byl mt-2">Hans Lee</div>
-        </article>
+      <!-- Z4 THE BRIEFING: 4×4 all-text, mixed sources -->
+      <div class="border-b border-lw-ink pb-2">
+        <div class="pt-3 pb-1 flex items-center justify-between"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-lw-gold"></span><h2 class="secttl text-sm">The Briefing</h2></div><span class="ts hidden sm:inline">Livewire · Market Index · around the web</span></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x rule">
+          <div class="divide-y rule lg:pr-5">
+            <article class="story group py-3"><a href="topics.html" class="kicker">Growth · AI</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">When the AI music stops — what is the playbook?</h3></a><div class="byl mt-1">Armina Rosenberg</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Small Caps</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Guy Keller on the uranium bull market's second leg</h3></a><div class="byl mt-1">Guy Keller</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Shares</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">CSL vs ResMed: the numbers that decide it</h3></a><div class="byl mt-1">Tom Stelzer</div></article>
+            <article class="story group py-3"><a href="#" class="kicker" style="color:#A89F8E">Data</a><a href="#" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">The 10 most shorted stocks on the ASX this week</h3></a><div class="mt-1 flex items-center gap-2"><span class="srcmark">Market Index</span></div></article>
+          </div>
+          <div class="divide-y rule lg:px-5">
+            <article class="story group py-3"><a href="topics.html" class="kicker">Shares</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Bank dividends: the payout party is ending — slowly</h3></a><div class="byl mt-1">Carl Capolingua</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Markets</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Why this commodities veteran is backing gold over copper</h3></a><div class="byl mt-1">Daniel Goldberg</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">ETFs</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Will Taylor's ETF playbook: VOLT and the thematic wave</h3></a><div class="byl mt-1">Will Taylor</div></article>
+            <article class="story group py-3"><a href="#" class="kicker" style="color:#A89F8E">Commodities</a><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Gold tops $4,200 as central-bank buying hits quarterly record</h3></a><div class="mt-1 flex items-center gap-2"><span class="srcmark">↗ Bloomberg</span></div></article>
+          </div>
+          <div class="divide-y rule lg:px-5">
+            <article class="story group py-3"><a href="topics.html" class="kicker">Shares · Global</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Three global stocks Australia can't replicate</h3></a><div class="byl mt-1">Andrew Finegan</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Wealth</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">How I'd invest $100k today: a three-bucket plan</h3></a><div class="byl mt-1">Jessica Wielandt</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Shares · Energy</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">The energy transition trade nobody owns yet</h3></a><div class="byl mt-1">Aaisha Shaikh</div></article>
+            <article class="story group py-3"><a href="#" class="kicker" style="color:#A89F8E">Income</a><a href="#" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Dividend calendar: every ex-date and payout for June</h3></a><div class="mt-1 flex items-center gap-2"><span class="srcmark">Market Index</span></div></article>
+          </div>
+          <div class="divide-y rule lg:pl-5">
+            <article class="story group py-3"><a href="topics.html" class="kicker">🎙 Podcast</a><a href="article-video.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Rules of Investing: Chris Watling's recession scorecard</h3></a><div class="byl mt-1">James Marlay</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Property</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">The property data that should worry investors</h3></a><div class="byl mt-1">Vishal Teckchandani</div></article>
+            <article class="story group py-3"><a href="topics.html" class="kicker">Small Caps · Global</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Global small caps: hunting where the analysts aren't</h3></a><div class="byl mt-1">Maria Bertoli</div></article>
+            <article class="story group py-3"><a href="#" class="kicker" style="color:#A89F8E">Macro</a><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22] mt-0.5">Fed officials split on September cut as dot plot tightens</h3></a><div class="mt-1 flex items-center gap-2"><span class="srcmark">↗ Reuters</span></div></article>
+          </div>
+        </div>
       </div>
 
-      <!-- RECOMMENDED + ARCHIVE -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 pt-9">
-        <section class="lg:pr-12 lg:border-r rule">
-          <h2 class="secttl border-b border-lw-ink pb-2 mb-1">Recommended for You</h2>
+      <!-- Z5 SCAN SHELF: the one tinted band -->
+      <div class="my-9 -mx-5 px-5" style="background:#F2EEE5;border-top:1px solid #E4DFD4;border-bottom:1px solid #E4DFD4">
+        <div class="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 lg:gap-12 py-8">
+          <div>
+            <span class="kicker">⌁ Scan the wire</span>
+            <h2 class="text-[1.6rem] leading-[1.1] mt-2" style="letter-spacing:-.01em">Ask for anything the wire knows</h2>
+            <form class="mt-4" onsubmit="event.preventDefault();var v=this.querySelector('input').value.trim();if(v)location.href='scans.html?q='+encodeURIComponent(v);">
+              <input class="scan-input" type="text" placeholder="&ldquo;memory manufacturers&rdquo;, &ldquo;gold&rdquo;, &ldquo;top tech ASX&rdquo;&hellip;" autocomplete="off">
+            </form>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              <a class="scan-chip" href="scans.html?scan=top-tech-asx">⌁ Top Tech ASX</a>
+              <a class="scan-chip" href="scans.html?scan=gold">⌁ Gold</a>
+              <a class="scan-chip" href="scans.html?scan=memory">⌁ Memory</a>
+              <a class="scan-chip" href="scans.html?scan=dividend-income">⌁ Dividends</a>
+              <a class="scan-chip" href="scans.html?scan=uranium">⌁ Uranium</a>
+              <a class="scan-chip" href="scans.html?scan=ai-supercycle">⌁ AI</a>
+              <a class="scan-chip" href="scans.html?scan=takeover-targets">⌁ Takeovers</a>
+              <a class="scan-chip" href="scans.html?scan=retire-on-income">⌁ Retire on income</a>
+            </div>
+          </div>
+          <div data-scan-shelf class="lg:border-l rule lg:pl-12">
+            <div class="ts mb-1">Today's scan · <a href="scans.html?scan=dividend-income" class="hover:text-lw-oxblood" style="color:#B88E1E">DIVIDEND INCOME</a></div>
+            <div data-scan-shelf-digest class="divide-y rule"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Z6 RECOMMENDED / ARCHIVE / AROUND THE WEB -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-10">
+        <section class="lg:pr-10 lg:border-r rule">
+          <h2 class="secttl border-b border-lw-ink pb-2 mb-1 text-sm">Recommended for You</h2>
           <div class="divide-y rule">
-            <article class="story group flex gap-4 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block"><h3 class="hl ff-d text-lg font-500 leading-[1.15]">Adam Dawes' masterclass on investing for a wealthy retirement</h3></a><p class="ff-b text-[14px] text-lw-muted leading-snug mt-1">Cashflow, private credit and the income mindset.</p><div class="byl mt-1.5">Vishal Teckchandani</div></div>
-              <a href="article.html" class="imgz w-28 h-20 flex-shrink-0"><img src="assets/img/retirement.jpg" alt=""></a>
+            <article class="story group flex gap-3 py-3.5 items-start">
+              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">Adam Dawes' masterclass on investing for a wealthy retirement</h3></a><div class="byl mt-1.5">Vishal Teckchandani</div></div>
+              <a href="article.html" class="imgz w-16 h-12 flex-shrink-0"><img src="assets/img/retirement.jpg" alt=""></a>
             </article>
-            <article class="story group flex gap-4 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Income</a><a href="article.html" class="block"><h3 class="hl ff-d text-lg font-500 leading-[1.15]">6 ETF ideas for growth, above-market income and lower volatility</h3></a><p class="ff-b text-[14px] text-lw-muted leading-snug mt-1">Balancing risk and return across the cycle.</p><div class="byl mt-1.5">Carl Capolingua</div></div>
-              <a href="article.html" class="imgz w-28 h-20 flex-shrink-0"><img src="assets/img/etf.jpg" alt=""></a>
+            <article class="story group py-3.5"><a href="topics.html" class="kicker">Income</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">6 ETF ideas for growth, above-market income and lower volatility</h3></a><div class="byl mt-1.5">Carl Capolingua</div></article>
+            <article class="story group flex gap-3 py-3.5 items-start">
+              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Income</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">Co-lending explained: private credit goes mainstream</h3></a><div class="byl mt-1.5">Gianpaolo Pellegrini</div></div>
+              <a href="article-video.html" class="imgz w-16 h-12 flex-shrink-0"><img src="assets/img/video-colending.jpg" alt=""></a>
             </article>
+            <article class="story group py-3.5"><a href="topics.html" class="kicker">Wealth</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">The fine print fund managers hope you skip</h3></a><div class="byl mt-1.5">James Gerrish</div></article>
+          </div>
+        </section>
+        <section class="lg:pr-10 lg:border-r rule">
+          <h2 class="secttl border-b border-lw-ink pb-2 mb-1 text-sm">From the Archive</h2>
+          <div class="divide-y rule">
+            <article class="story group py-3.5"><a href="topics.html" class="kicker">2019</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">The 10 golden rules of investing that never go out of style</h3></a><div class="byl mt-1.5">James Marlay</div></article>
+            <article class="story group py-3.5"><a href="topics.html" class="kicker">2021</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">How the great compounders quietly built generational wealth</h3></a><div class="byl mt-1.5">Roger Montgomery</div></article>
+            <article class="story group py-3.5"><a href="topics.html" class="kicker">2023</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">What the 2023 bank panic taught Australian income investors</h3></a><div class="byl mt-1.5">Shane Oliver</div></article>
+            <article class="story group py-3.5"><a href="topics.html" class="kicker">2024</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">The small-cap washout that minted the next decade's winners</h3></a><div class="byl mt-1.5">Steve Johnson</div></article>
           </div>
         </section>
         <section>
-          <h2 class="secttl border-b border-lw-ink pb-2 mb-1">From the Archive</h2>
+          <h2 class="secttl border-b border-lw-ink pb-2 mb-1 text-sm">Around the Web</h2>
           <div class="divide-y rule">
-            <article class="story group flex gap-4 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">2019</a><a href="article.html" class="block"><h3 class="hl ff-d text-lg font-500 leading-[1.15]">The 10 golden rules of investing that never go out of style</h3></a><p class="ff-b text-[14px] text-lw-muted leading-snug mt-1">Timeless lessons from a decade of Livewire.</p><div class="byl mt-1.5">James Marlay</div></div>
-              <a href="article.html" class="imgz w-28 h-20 flex-shrink-0"><img src="assets/img/inflation.jpg" alt=""></a>
-            </article>
-            <article class="story group flex gap-4 py-4 items-start">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">2021</a><a href="article.html" class="block"><h3 class="hl ff-d text-lg font-500 leading-[1.15]">How the great compounders quietly built generational wealth</h3></a><p class="ff-b text-[14px] text-lw-muted leading-snug mt-1">Revisiting the businesses that just kept winning.</p><div class="byl mt-1.5">Roger Montgomery</div></div>
-              <a href="article.html" class="imgz w-28 h-20 flex-shrink-0"><img src="assets/img/energy.jpg" alt=""></a>
-            </article>
+            <article class="story group py-3.5"><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">SK Hynix sells out 2027 HBM capacity as AI demand compounds</h3></a><div class="mt-1.5"><span class="srcmark">↗ Reuters</span></div></article>
+            <article class="story group py-3.5"><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">Kazatomprom guides uranium production lower for third straight year</h3></a><div class="mt-1.5"><span class="srcmark">↗ FT</span></div></article>
+            <article class="story group py-3.5"><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">Berkshire's cash pile passes $400b as Buffett waits</h3></a><div class="mt-1.5"><span class="srcmark">↗ Bloomberg</span></div></article>
+            <article class="story group py-3.5"><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">Japan's wage spiral is finally real, says BOJ board</h3></a><div class="mt-1.5"><span class="srcmark">↗ Nikkei</span></div></article>
+            <article class="story group py-3.5"><a href="#" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.2]">Private credit's quiet march into super portfolios</h3></a><div class="mt-1.5"><span class="srcmark">↗ AFR</span></div></article>
+          </div>
+          <div class="border border-lw-ink p-4 mt-4">
+            <div class="ff-b text-[14px] leading-snug text-lw-sub mb-3">Test your market knowledge with the Livewire <em>Markets Quiz</em> — a new one every Friday.</div>
+            <button class="follow-btn w-full py-2 bg-lw-ink text-lw-paper hover:bg-lw-gold transition-colors">Play</button>
           </div>
         </section>
       </div>
@@ -261,22 +352,31 @@
         <!-- latest list -->
         <section class="lg:px-10 lg:border-x rule">
           <div class="flex items-baseline justify-between border-b border-lw-ink pb-2 mb-1"><h2 class="secttl">Latest</h2><a href="#" class="kicker hover:text-lw-oxblood">See all →</a></div>
-          <div class="divide-y rule">
+          <div class="divide-y rule" data-latest-list>
             <article class="story group flex gap-4 py-4 items-start">
               <a href="article.html" class="imgz w-20 h-16 flex-shrink-0"><img src="assets/img/asx.jpg" alt=""></a>
-              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] font-500 leading-[1.18]">Is the ASX 200 finally too expensive to chase?</h3></a><div class="byl mt-1.5">Hans Lee <span class="text-lw-muted">· 7:00 AM ET</span></div></div>
+              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">Is the ASX 200 finally too expensive to chase?</h3></a><div class="byl mt-1.5">Hans Lee <span class="text-lw-muted">· 7:00 AM</span></div></div>
             </article>
             <article class="story group flex gap-4 py-4 items-start">
               <a href="article.html" class="imgz w-20 h-16 flex-shrink-0"><img src="assets/img/etf.jpg" alt=""></a>
-              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] font-500 leading-[1.18]">The five ETFs that quietly doubled investors' money</h3></a><div class="byl mt-1.5">Tom Stelzer <span class="text-lw-muted">· 7:00 AM ET</span></div></div>
+              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">The five ETFs that quietly doubled investors' money</h3></a><div class="byl mt-1.5">Tom Stelzer <span class="text-lw-muted">· 7:00 AM</span></div></div>
             </article>
             <article class="story group flex gap-4 py-4 items-start">
               <a href="article.html" class="imgz w-20 h-16 flex-shrink-0"><img src="assets/img/property.jpg" alt=""></a>
-              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] font-500 leading-[1.18]">Where the smart money is buying property in 2026</h3></a><div class="byl mt-1.5">Paul Miron <span class="text-lw-muted">· 6:30 AM ET</span></div></div>
+              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">Where the smart money is buying property in 2026</h3></a><div class="byl mt-1.5">Paul Miron <span class="text-lw-muted">· 6:30 AM</span></div></div>
             </article>
             <article class="story group flex gap-4 py-4 items-start">
               <a href="article.html" class="imgz w-20 h-16 flex-shrink-0"><img src="assets/img/markets.jpg" alt=""></a>
-              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] font-500 leading-[1.18]">Three charts that explain the 2026 melt-up</h3></a><div class="byl mt-1.5">David Thornton <span class="text-lw-muted">· 6:00 AM ET</span></div></div>
+              <div class="flex-1 min-w-0"><a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">Three charts that explain the 2026 melt-up</h3></a><div class="byl mt-1.5">David Thornton <span class="text-lw-muted">· 6:00 AM</span></div></div>
+            </article>
+            <article class="story group py-4">
+              <a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">ASX reporting season: the beats, the misses, the guidance games</h3></a><div class="byl mt-1.5">Kerry Sun <span class="text-lw-muted">· 5:40 AM</span></div>
+            </article>
+            <article class="story group py-4">
+              <a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">Now it's through the 'Valley of Death', this tech company is on the up</h3></a><div class="byl mt-1.5">Lucas Goode <span class="text-lw-muted">· 5:15 AM</span></div>
+            </article>
+            <article class="story group py-4">
+              <a href="article.html" class="block"><h3 class="hl ff-d text-[17px] leading-[1.18]">Quality screens that filtered out the blow-ups</h3></a><div class="byl mt-1.5">Vihari Ross <span class="text-lw-muted">· 4:50 AM</span></div>
             </article>
           </div>
         </section>
@@ -298,7 +398,7 @@
     <section data-feed-panel="latest" hidden>
       <div class="max-w-[800px] mx-auto py-8">
         <div class="flex items-center justify-between mb-7">
-          <div class="ts flex items-center gap-2" style="color:#16130E"><span class="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style="background:#C0392B"></span>LIVE · THURSDAY 5 JUNE 2026</div>
+          <div class="ts flex items-center gap-2" style="color:#16130E"><span class="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style="background:#C0392B"></span>LIVE · <span data-live-date>TODAY</span></div>
           <span class="ts">ALL TIMES AEST</span>
         </div>
 
@@ -416,6 +516,26 @@
     </div>
   </footer>
 
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/markets-live.js"></script>
+  <script src="assets/feed.js"></script>
+  <script>
+  // Z5 scan shelf: render today's featured digest from the engine
+  (function(){
+    function boot(){
+      var mount = document.querySelector('[data-scan-shelf-digest]');
+      if (!mount || !window.lwScan) return;
+      var items = window.lwScan('best dividend income stocks').results.filter(function(it){ return !it.locked; }).slice(0,5);
+      mount.innerHTML = items.map(function(it, i){
+        var esc = function(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); };
+        if (i === 0 && it.image) return '<div class="story group flex gap-4 pb-3 items-start"><a href="'+it.url+'" class="imgz w-24 h-16 flex-shrink-0"><img src="'+it.image+'" alt="" loading="lazy"></a><div class="min-w-0"><a href="'+it.url+'" class="block"><h3 class="hl ff-d text-[17px] leading-[1.2]">'+esc(it.title)+'</h3></a><div class="byl mt-1.5">'+esc(it.author)+'</div></div></div>';
+        return '<div class="story group py-2.5"><a href="'+it.url+'" class="block"><h3 class="hl ff-d text-[14.5px] leading-[1.22]">'+esc(it.title)+'</h3></a><div class="ts mt-0.5">'+esc(it.author)+'</div></div>';
+      }).join('');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  })();
+  </script>
   <script src="assets/app.js"></script>
 </body>
 </html>

@@ -7,17 +7,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = { theme: { extend: {
-      fontFamily: { display:['Fraunces','Georgia','serif'], body:['Newsreader','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
       colors: { lw: { paper:'#FBFAF6', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', oxblood:'#7A2E2E' } },
     } } }
   </script>
   <style>
     body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
-    .ff-d{ font-family:'Fraunces',serif; } .ff-b{ font-family:'Newsreader',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
-    h1,h2,h3{ font-family:'Fraunces',serif; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3{ font-family:'Besley',serif; font-weight:500; }
     .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; display:inline-block; }
     .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; }
     .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
@@ -31,12 +31,12 @@
     .scroll-cue{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:3; color:rgba(255,255,255,.7); animation:bob 2s ease-in-out infinite; }
     @keyframes bob{ 0%,100%{ transform:translate(-50%,0) } 50%{ transform:translate(-50%,7px) } }
     /* longform */
-    .prose{ font-family:'Newsreader',serif; }
+    .prose{ font-family:'Literata',serif; }
     .prose p{ font-size:1.32rem; line-height:1.74; color:#26211A; margin-bottom:1.6rem; }
-    .prose p.lead::first-letter{ float:left; font-family:'Fraunces',serif; font-weight:600; font-size:5.4rem; line-height:.74; padding:.4rem .55rem 0 0; color:#7A2E2E; }
+    .prose p.lead::first-letter{ float:left; font-family:'Besley',serif; font-weight:600; font-size:5.4rem; line-height:.74; padding:.4rem .55rem 0 0; color:#7A2E2E; }
     .fullbleed{ width:100%; }
     .fullbleed img{ width:100%; display:block; object-fit:cover; }
-    .bigquote{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem); line-height:1.12; letter-spacing:-.02em; color:#16130E; }
+    .bigquote{ font-family:'Besley',serif; font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem); line-height:1.12; letter-spacing:-.01em; color:#16130E; }
     .divider{ display:flex; align-items:center; justify-content:center; gap:14px; color:#B88E1E; margin:3.5rem 0; }
     .divider::before,.divider::after{ content:''; height:1px; width:64px; background:#E4DFD4; }
     .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
@@ -63,7 +63,7 @@
     <img src="assets/img/gale.jpg" alt="A yacht sailing into a gathering storm">
     <div class="hero-inner">
       <div class="kicker mb-5" style="color:#E7C25A">The Feature · Markets</div>
-      <h1 class="text-white font-500 leading-[1.02] max-w-4xl" style="font-family:'Fraunces',serif; font-size:clamp(2.4rem,6.5vw,5rem); letter-spacing:-.02em">Into the gale</h1>
+      <h1 class="text-white font-500 leading-[1.02] max-w-4xl" style="font-family:'Besley',serif; font-size:clamp(2.4rem,6.5vw,5rem); letter-spacing:-.01em">Into the gale</h1>
       <p class="ff-b text-white/85 italic mt-5 max-w-xl" style="font-size:clamp(1.05rem,2.4vw,1.4rem)">How Australia's contrarians are positioning for a market few see coming</p>
       <div class="ts mt-6" style="color:rgba(255,255,255,.7)">BY CHRIS CONWAY · 14 MIN READ · MAY 2026</div>
     </div>
@@ -147,6 +147,9 @@
     // reading progress bar
     (function(){ const bar=document.getElementById('bar'); const upd=()=>{ const h=document.documentElement.scrollHeight-innerHeight; bar.style.width=(h>0?(scrollY/h*100):0)+'%'; }; addEventListener('scroll',upd,{passive:true}); upd(); })();
   </script>
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

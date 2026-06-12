@@ -1,6 +1,6 @@
 # Make your own version
 
-This repo (`jryansolis/lw-remix-1.0`) is the original concept. To riff on it, **make your own copy** — you get a fully independent version with its own URL, and the original is never touched.
+This repo (`jryansolis/lw-remix-1b`) is the original concept. To riff on it, **make your own copy** — you get a fully independent version with its own URL, and the original is never touched.
 
 ## Get your own copy (pick one)
 
@@ -11,10 +11,10 @@ This repo (`jryansolis/lw-remix-1.0`) is the original concept. To riff on it, **
 
 **Fork** — keeps a link to the original, so you can pull future updates or propose ideas back:
 
-1. Click **Fork** → creates `your-username/lw-remix-1.0`.
+1. Click **Fork** → creates `your-username/lw-remix-1b`.
 2. Optional, to pull the original's updates later:
    ```bash
-   git remote add upstream https://github.com/jryansolis/lw-remix-1.0.git
+   git remote add upstream https://github.com/jryansolis/lw-remix-1b.git
    git fetch upstream && git merge upstream/main
    ```
 

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Memory Supercycle: who really wins the HBM build-out | Livewire Special Report</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', mist:'#F2EEE5', gold:'#B88E1E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3{ font-family:'Besley',serif; font-weight:500; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .rule{ border-color:#E4DFD4; }
+    .cred{ font-family:'Spline Sans Mono',monospace; font-size:9.5px; letter-spacing:.03em; color:#A89F8E; }
+    .prose-body{ font-family:'Literata',serif; }
+    .prose-body p{ font-size:1.3rem; line-height:1.78; color:#231f18; margin-bottom:1.6rem; letter-spacing:.002em; }
+    .prose-body p:first-of-type::first-letter{ float:left; font-family:'Besley',serif; font-weight:600; font-size:5rem; line-height:.76; padding:.4rem .55rem 0 0; color:#16130E; }
+    .prose-body h2{ font-size:1.9rem; letter-spacing:-.01em; line-height:1.12; margin:2.6rem 0 1rem; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ display:block; width:100%; height:100%; object-fit:cover; }
+    .gate-fade{ height:220px; margin-top:-220px; position:relative; background:linear-gradient(to bottom, rgba(251,250,246,0), #FBFAF6 88%); }
+    .toc-row{ display:flex; gap:14px; align-items:baseline; padding:9px 0; border-top:1px solid #E4DFD4; }
+    .lockg{ display:inline-block; vertical-align:-1px; }
+    [data-gated]{ display:none; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink">
+    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <!-- Title block -->
+  <div class="max-w-[760px] mx-auto px-5 pt-12 text-center">
+    <div class="ff-m text-[11px] font-600 tracking-[.2em] uppercase" style="color:#7A2E2E">
+      <svg class="lockg mr-1" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7A2E2E" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+      Livewire Special Report <span data-member-mark hidden style="color:#B88E1E">· Member access</span>
+    </div>
+    <h1 class="text-[2.3rem] md:text-[3.2rem] leading-[1.05] mt-4" style="letter-spacing:-.01em">The Memory Supercycle: who really wins the HBM build-out</h1>
+    <p class="ff-b text-xl md:text-2xl text-lw-sub leading-snug mt-5 max-w-2xl mx-auto" style="font-style:italic">DRAM economics, the high-bandwidth-memory oligopoly, and the ASX-adjacent ways to own the squeeze. A research-grade map of the trade of the decade.</p>
+    <div class="w-10 h-px mx-auto my-6" style="background:#7A2E2E"></div>
+    <div class="ff-b text-[15px] text-lw-muted">By <span class="font-600 text-lw-ink">Livewire Research</span> · 12 June 2026 · 25 min read · Data appendix included</div>
+  </div>
+
+  <!-- Hero -->
+  <div class="max-w-[980px] mx-auto px-5 mt-9">
+    <div class="imgz aspect-[21/9]"><img src="assets/img/armina-ai.jpg" alt="Stacked memory dies on a fabrication line"></div>
+    <p class="cred mt-2">Photo illustration: Livewire · Source: Getty</p>
+  </div>
+
+  <!-- Prose (free preview) -->
+  <div class="max-w-[680px] mx-auto px-5 mt-10">
+    <div class="prose-body">
+      <p>Every supercycle begins as a shortage nobody believes. In 1999 it was fibre. In 2007 it was iron ore. In 2026 it is high-bandwidth memory — the stacked DRAM that feeds every accelerator in every data centre now being poured, raised and energised across the world's grids. The AI build-out gets the headlines; the memory squeeze pays the dividends.</p>
+      <p>The arithmetic is brutal and simple. An AI accelerator carries six to eight HBM stacks. Each stack consumes roughly three times the wafer area of the commodity DRAM it displaced — and yields worse. Every point of share the AI complex takes from conventional memory removes supply the rest of the economy still needs. Three companies control effectively all of it.</p>
+      <p>That oligopoly — SK Hynix, Samsung and Micron — has spent two decades destroying its own pricing power with ill-timed capacity races. The discipline this cycle is different, and the reason is structural: HBM is sold on multi-year contracts, qualified part-by-part into each accelerator generation. Switching costs have arrived in a commodity industry. The result is the most interesting margin story in global hardware — and almost nobody on the ASX is positioned for it.</p>
+    </div>
+
+    <!-- Gate -->
+    <div id="gate">
+      <div class="gate-fade"></div>
+      <div class="border-t-2 px-7 py-8 text-center" style="border-color:#7A2E2E;background:#F2EEE5;border-bottom:1px solid #E4DFD4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7A2E2E" stroke-width="2" class="mx-auto"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        <h2 class="text-2xl mt-3">This is a Livewire Special Report</h2>
+        <p class="ff-b italic text-[16px] text-lw-sub mt-2 max-w-md mx-auto">The remaining 22 minutes cover what the headlines can't:</p>
+        <ul class="ff-b text-[15.5px] text-lw-sub mt-4 space-y-2 max-w-md mx-auto text-left list-none">
+          <li class="flex gap-2.5"><span style="color:#7A2E2E">—</span> The HBM cost curves: who makes money at every point of the cycle, modelled</li>
+          <li class="flex gap-2.5"><span style="color:#7A2E2E">—</span> Six listed ways to own the squeeze — including the two ASX-adjacent plays</li>
+          <li class="flex gap-2.5"><span style="color:#7A2E2E">—</span> The data appendix: contract pricing, capex and wafer-start tables, sourced</li>
+        </ul>
+        <button id="unlock-btn" class="follow-btn mt-6 px-8 py-3 text-lw-paper" style="background:#7A2E2E">Unlock this report</button>
+        <div class="mt-3"><button id="toc-toggle" class="ts underline underline-offset-2 hover:text-lw-ink" style="color:#6B6358">See the table of contents</button></div>
+        <div id="toc" class="max-w-md mx-auto mt-4 text-left" hidden>
+          <div class="toc-row"><span class="num ff-d italic text-lw-gold">1</span><span class="ff-b text-[15px]">The shortage nobody believes — how we got here</span></div>
+          <div class="toc-row"><span class="num ff-d italic text-lw-gold">2</span><span class="ff-b text-[15px]">Oligopoly economics: contracts, qualification, discipline</span></div>
+          <div class="toc-row"><span class="num ff-d italic text-lw-gold">3</span><span class="ff-b text-[15px]">The cost-curve model (interactive tables)</span></div>
+          <div class="toc-row"><span class="num ff-d italic text-lw-gold">4</span><span class="ff-b text-[15px]">Six ways in: from Micron to the ASX-adjacent plays</span></div>
+          <div class="toc-row"><span class="num ff-d italic text-lw-gold">5</span><span class="ff-b text-[15px]">Risks: the three signals this cycle is ending</span></div>
+          <div class="toc-row" style="border-bottom:1px solid #E4DFD4"><span class="num ff-d italic text-lw-gold">6</span><span class="ff-b text-[15px]">Data appendix</span></div>
+        </div>
+        <p class="ts mt-6 max-w-md mx-auto" style="color:#8C8474">Special reports are for members. Everything else on Livewire — every wire, video and scan — stays free.</p>
+      </div>
+    </div>
+
+    <!-- Gated body (revealed for members) -->
+    <div data-gated class="prose-body mt-2">
+      <h2>1 · The shortage nobody believes</h2>
+      <p>Memory has been a value trap so reliably and for so long that the muscle memory of an entire generation of analysts says sell the first up-quarter. That reflex is the opportunity. The qualification moat around HBM4 means 2027 supply is already spoken for — sold out before the fabs that will make it are finished.</p>
+      <h2>2 · Oligopoly economics</h2>
+      <p>Three suppliers, two real process roadmaps, one customer that matters. We model the contract structures and show why the marginal wafer now earns triple what it did in the last cycle peak — and why the discipline holds even if AI capex growth halves.</p>
+      <h2>3 · Six ways to own the squeeze</h2>
+      <p>From the obvious (Micron) to the overlooked (the test-equipment chain, the substrate makers, and the two ASX-adjacent exposures most portfolios already touch without knowing it). Position sizes, entry logic and the exit signals, laid out.</p>
+      <p class="ff-b italic text-lw-muted">— The full data appendix follows in the member edition. This demo report ends here.</p>
+    </div>
+  </div>
+
+  <footer class="bg-lw-ink mt-16">
+    <div class="max-w-[1240px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9" onerror="this.style.display='none'">
+      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="scans.html" class="hover:text-white">Scans</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="video.html" class="hover:text-white">Video</a></div>
+      <p class="ts" style="color:rgba(251,250,246,.45)">Concept demo. General information only, not financial advice.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
+  <script>
+  (function(){
+    function unlocked(){ return localStorage.getItem('lw_premium') === '1'; }
+    function reveal(animated){
+      var gate = document.getElementById('gate');
+      var body = document.querySelector('[data-gated]');
+      var mark = document.querySelector('[data-member-mark]');
+      if (mark) mark.hidden = false;
+      if (animated && gate){
+        gate.style.transition = 'opacity .45s'; gate.style.opacity = '0';
+        setTimeout(function(){ gate.remove(); body.style.display = 'block'; }, 450);
+      } else { if (gate) gate.remove(); body.style.display = 'block'; }
+    }
+    function boot(){
+      if (unlocked()) { reveal(false); return; }
+      document.getElementById('toc-toggle').addEventListener('click', function(){
+        var t = document.getElementById('toc'); t.hidden = !t.hidden;
+        this.textContent = t.hidden ? 'See the table of contents' : 'Hide the table of contents';
+      });
+      document.getElementById('unlock-btn').addEventListener('click', function(){
+        var grant = function(){ localStorage.setItem('lw_premium','1'); reveal(true); };
+        if (window.lwOpenSignin) window.lwOpenSignin(grant); else grant();
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  })();
+  </script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

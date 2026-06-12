@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan the wire | Livewire</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', mist:'#F2EEE5', gold:'#B88E1E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3{ font-family:'Besley',serif; font-weight:500; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .byl{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:#16130E; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s cubic-bezier(.2,.7,.2,1); display:block; width:100%; height:100%; object-fit:cover; }
+    .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; }
+    .follow-pill:hover{ background:#16130E; color:#FBFAF6; }
+    .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+    .scan-input{ font-family:'Literata',serif; font-style:italic; font-size:1.15rem; background:transparent; border:0; border-bottom:2px solid #16130E; outline:none; padding:10px 2px; width:100%; color:#16130E; }
+    .scan-input::placeholder{ color:#B7AE9E; }
+    .scan-chip{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid #16130E; padding:7px 12px; display:inline-block; transition:all .15s; color:#16130E; }
+    .scan-chip:hover{ background:#16130E; color:#FBFAF6; }
+    .srcmark{ font-family:'Spline Sans Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#A89F8E; }
+    .lockg{ display:inline-block; vertical-align:-1px; }
+    .mono-avatar{ border-radius:9999px; background:linear-gradient(135deg,#374662,#19202D); color:#E0A82E; display:grid; place-items:center; font-family:'Spline Sans Mono',monospace; font-weight:700; }
+    .secttl{ font-family:'Besley',serif; font-size:1.05rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <!-- Utility strip -->
+  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><div class="flex items-center gap-3"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><span class="hidden sm:inline">AUD/USD 0.661</span><span class="hidden md:inline">GOLD $4,180</span></div><div class="flex items-center gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <!-- Masthead -->
+  <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
+    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <div class="flex items-center gap-4">
+        <button aria-label="Search" class="hover:text-lw-gold"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.6" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></button>
+        <a href="#" class="hidden sm:inline-flex items-center border border-lw-ink px-4 h-9 navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1240px] mx-auto px-5">
+
+    <!-- Ask bar (always present; pre-filled in results state) -->
+    <div class="max-w-[760px] mx-auto pt-10 pb-2 text-center" id="scan-head">
+      <div class="kicker mb-3">⌁ Scan the wire</div>
+      <h1 id="scan-title" class="text-[2.1rem] md:text-[2.9rem] leading-[1.05]" style="letter-spacing:-.01em">Ask for anything the wire knows</h1>
+      <p id="scan-sub" class="ff-b italic text-lg text-lw-muted mt-3">Tickers, themes, sectors, hunches — Livewire curates the best of what it has.</p>
+      <form id="scan-form" class="mt-7 max-w-[560px] mx-auto">
+        <input id="scan-q" class="scan-input text-center" type="text" placeholder="&ldquo;best of what livewire has on uranium&rdquo;" autocomplete="off">
+        <div class="ts mt-3" style="color:#A89F8E">Press <span class="ff-m font-600 text-lw-ink">↵</span> to scan</div>
+      </form>
+    </div>
+
+    <!-- HUB: pre-mixed scans -->
+    <section id="scan-hub" class="py-10">
+      <div class="border-t-2 border-lw-ink pt-3 mb-6 flex items-baseline justify-between">
+        <h2 class="secttl ff-d text-[1.05rem] uppercase" style="letter-spacing:.02em">Pre-mixed scans</h2>
+        <span class="ts hidden sm:inline">Curated asks, refreshed with every new wire</span>
+      </div>
+      <div id="hub-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px" style="background:#E4DFD4"></div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="scan-results" class="py-8" hidden></section>
+
+  </main>
+
+  <footer class="bg-lw-ink mt-16">
+    <div class="max-w-[1240px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9" onerror="this.style.display='none'">
+      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="scans.html" class="hover:text-white">Scans</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="income-series.html" class="hover:text-white">Income Series</a><a href="video.html" class="hover:text-white">Video</a></div>
+      <p class="ts" style="color:rgba(251,250,246,.45)">Concept demo. General information only.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
+  <script>
+  (function(){
+    'use strict';
+    var HEADSHOTS = ['vishal-teckchandani','carl-capolingua','steve-johnson','roger-montgomery','shane-oliver','sara-allen','aaron-minney','ben-richards','anna-dadic','james-marlay','chris-conway','hans-lee','kerry-sun','tom-stelzer','david-thornton','paul-miron'];
+    var LOCK = '<svg class="lockg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7A2E2E" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>';
+    function esc(s){ return String(s||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    function slug(name){ return name.toLowerCase().replace(/[^a-z]+/g,'-').replace(/^-|-$/g,''); }
+    function avatar(name, px){
+      var s = slug(name);
+      if (HEADSHOTS.indexOf(s) !== -1) return '<img src="assets/img/contributors/'+s+'.jpg" alt="'+esc(name)+'" class="avatar rounded-full" style="width:'+px+'px;height:'+px+'px">';
+      var init = name.split(' ').map(function(w){return w[0];}).slice(0,2).join('').toUpperCase();
+      return '<span class="mono-avatar" style="width:'+px+'px;height:'+px+'px;font-size:'+Math.round(px*0.32)+'px">'+init+'</span>';
+    }
+    function kickerFor(it){
+      var k = (it.topics&&it.topics[0]) || 'Markets';
+      if (it.type==='video') k = '▶ Video · '+k;
+      if (it.type==='podcast') k = '🎙 Podcast · '+k;
+      if (it.type==='report') k = 'Special Report';
+      return k;
+    }
+    function lockMark(it){ return it.locked ? LOCK+' ' : ''; }
+    function srcMark(it){
+      if (it.source==='marketindex') return '<span class="srcmark">Market Index</span>';
+      if (it.source==='web') return '<span class="srcmark">↗ '+esc(it.author)+'</span>';
+      return '';
+    }
+    function row(it, thumb){
+      var img = (thumb && it.image) ? '<div class="imgz w-[88px] h-[62px] flex-shrink-0"><img src="'+it.image+'" alt="" loading="lazy"></div>' : '';
+      return '<div class="story group flex gap-4 py-4 items-start">'+img+
+        '<div class="min-w-0"><span class="kicker'+(it.type==='report'?'" style="color:#7A2E2E':'')+'">'+lockMark(it)+esc(kickerFor(it))+'</span>'+
+        '<a href="'+it.url+'"'+(it.source==='web'?' target="_blank" rel="noopener"':'')+' class="block"><h3 class="hl ff-d text-[17px] leading-[1.22] mt-1">'+esc(it.title)+'</h3></a>'+
+        '<div class="mt-1.5 flex items-center gap-2"><span class="byl">'+esc(it.author)+'</span>'+srcMark(it)+'</div></div></div>';
+    }
+    function textRow(it){
+      return '<div class="story group py-3"><span class="kicker'+(it.type==='report'?'" style="color:#7A2E2E':'')+'">'+lockMark(it)+esc(kickerFor(it))+'</span>'+
+        '<a href="'+it.url+'"'+(it.source==='web'?' target="_blank" rel="noopener"':'')+' class="block"><h3 class="hl ff-d text-[15.5px] leading-[1.22] mt-1">'+esc(it.title)+'</h3></a>'+
+        '<div class="mt-1 flex items-center gap-2"><span class="ts">'+esc(it.author)+'</span>'+srcMark(it)+'</div></div>';
+    }
+
+    // ---------- hub ----------
+    function renderHub(){
+      var grid = document.getElementById('hub-grid');
+      grid.innerHTML = window.LW_SCANS.map(function(s){
+        var top = window.lwScan(s.query).results.slice(0,3);
+        return '<a href="scans.html?scan='+s.slug+'" class="block bg-lw-paper hover:bg-white transition-colors p-5 group">'+
+          '<span class="scan-chip group-hover:bg-lw-ink group-hover:text-lw-paper">⌁ '+esc(s.label)+'</span>'+
+          '<p class="ff-b italic text-[15px] text-lw-sub mt-3 leading-snug">'+esc(s.promise)+'</p>'+
+          '<div class="mt-4 pt-3 border-t rule space-y-2">'+ top.map(function(it){ return '<p class="ff-d text-[13.5px] leading-[1.25] text-lw-ink">'+lockMark(it)+esc(it.title)+'</p>'; }).join('') +'</div></a>';
+      }).join('');
+    }
+
+    // ---------- results digest ----------
+    function renderResults(query, scanDef){
+      var out = window.lwScan(query);
+      var items = out.results;
+      var box = document.getElementById('scan-results');
+      var hub = document.getElementById('scan-hub');
+      document.getElementById('scan-q').value = scanDef ? scanDef.label : query;
+      document.getElementById('scan-title').textContent = scanDef ? scanDef.label : '“'+query+'”';
+      document.getElementById('scan-sub').textContent = items.length
+        ? 'The best of the wire on this, curated just now — '+items.length+' pieces found.'
+        : 'Nothing strong enough on the wire yet — try a theme, ticker or sector.';
+      document.title = (scanDef ? scanDef.label : query) + ' — Scan | Livewire';
+      hub.style.display = 'none'; box.hidden = false; box.style.display = 'block';
+      if (!items.length){
+        box.innerHTML = '<div class="text-center py-14 border-t-2 border-lw-ink"><p class="ff-b italic text-lg text-lw-muted">Try one of the pre-mixed scans instead:</p><div class="mt-5 flex flex-wrap gap-2 justify-center">'+
+          window.LW_SCANS.map(function(s){ return '<a class="scan-chip" href="scans.html?scan='+s.slug+'">⌁ '+esc(s.label)+'</a>'; }).join('')+'</div></div>';
+        return;
+      }
+      var lead = null, li = -1;
+      for (var i=0;i<items.length;i++){ if (items[i].image && !items[i].locked){ lead = items[i]; li = i; break; } }
+      var rest = items.filter(function(_,i){ return i!==li; });
+      var watch = null, wi = -1;
+      for (var j=0;j<rest.length;j++){ if (rest[j].type==='video'||rest[j].type==='podcast'){ watch = rest[j]; wi = j; break; } }
+      if (wi !== -1) rest = rest.filter(function(_,i){ return i!==wi; });
+      var locals = rest.filter(function(it){ return it.source==='livewire'; });
+      var external = rest.filter(function(it){ return it.source!=='livewire'; });
+      var supporting = locals.slice(0,4);
+      var more = locals.slice(4,12);
+      var authors = []; var seen = {};
+      items.forEach(function(it){ if (it.source==='livewire' && it.author!=='Livewire Research' && !seen[it.author]){ seen[it.author]=1; authors.push(it.author); } });
+      authors = authors.slice(0,5);
+      var topicSeen = {}; var topicPills = [];
+      items.forEach(function(it){ (it.topics||[]).forEach(function(t){ if(!topicSeen[t]){ topicSeen[t]=1; topicPills.push(t); } }); });
+
+      var html = '';
+      // lead + supporting
+      html += '<div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 border-t-2 border-lw-ink pt-7">';
+      if (lead){
+        html += '<div class="story group"><div class="imgz aspect-[16/9]"><img src="'+lead.image+'" alt=""></div>'+
+          '<span class="kicker mt-4">'+esc(kickerFor(lead))+'</span>'+
+          '<a href="'+lead.url+'" class="block"><h2 class="hl text-[1.7rem] md:text-[2.1rem] leading-[1.08] mt-1" style="letter-spacing:-.01em">'+esc(lead.title)+'</h2></a>'+
+          '<p class="ff-b text-[16.5px] text-lw-sub leading-snug mt-2.5">'+esc(lead.dek)+'</p>'+
+          '<div class="mt-3 flex items-center gap-2.5">'+avatar(lead.author,26)+'<span class="byl">'+esc(lead.author)+'</span></div></div>';
+      }
+      html += '<div class="divide-y rule lg:border-l rule lg:pl-10">'+ supporting.map(function(it){ return row(it, true); }).join('') +'</div></div>';
+      // watch
+      if (watch){
+        html += '<div class="mt-10 bg-lw-ink"><div class="grid md:grid-cols-[300px_1fr] gap-0 items-stretch">'+
+          '<div class="imgz aspect-[16/9] md:aspect-auto relative"><img src="'+(watch.image||'assets/img/markets.jpg')+'" alt="">'+
+          '<div class="absolute inset-0 grid place-items-center"><span style="width:52px;height:52px;border-radius:9999px;background:rgba(224,168,46,.92);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="#16130E"><path d="M8 5v14l11-7z"/></svg></span></div></div>'+
+          '<div class="p-6 md:p-8 flex flex-col justify-center"><span class="kicker" style="color:#E0A82E">'+esc(kickerFor(watch))+'</span>'+
+          '<a href="'+watch.url+'" class="block"><h3 class="text-xl md:text-2xl leading-[1.15] mt-1.5" style="color:#FBFAF6">'+esc(watch.title)+'</h3></a>'+
+          '<p class="ff-b italic text-[15px] mt-2" style="color:rgba(251,250,246,.65)">'+esc(watch.dek)+'</p>'+
+          '<span class="byl mt-3" style="color:rgba(251,250,246,.8)">'+esc(watch.author)+'</span></div></div></div>';
+      }
+      // more on this
+      if (more.length){
+        html += '<div class="mt-10"><div class="border-t-2 border-lw-ink pt-3 mb-2 flex items-center gap-2"><span class="w-2 h-2 bg-lw-gold"></span><h4 class="ff-d font-600 uppercase tracking-wide text-sm" style="letter-spacing:.04em">More on this</h4></div>'+
+          '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 divide-y sm:divide-y-0 rule">'+ more.map(textRow).join('') +'</div></div>';
+      }
+      // voices
+      if (authors.length){
+        html += '<div class="mt-10"><div class="border-t-2 border-lw-ink pt-3 mb-4 flex items-center gap-2"><span class="w-2 h-2 bg-lw-gold"></span><h4 class="ff-d font-600 uppercase tracking-wide text-sm" style="letter-spacing:.04em">Voices on this theme</h4></div>'+
+          '<div class="flex flex-wrap gap-x-8 gap-y-4">'+ authors.map(function(a){
+            return '<div class="flex items-center gap-3">'+avatar(a,40)+'<div><div class="ff-d font-600 text-[15px] leading-tight">'+esc(a)+'</div>'+
+              '<button class="follow-btn follow-pill px-3 py-1 mt-1" data-follow="author:'+esc(a)+'"><span data-follow-label>Follow</span></button></div></div>';
+          }).join('') +'</div></div>';
+      }
+      // from the network / web
+      if (external.length){
+        html += '<div class="mt-10"><div class="border-t-2 border-lw-ink pt-3 mb-2 flex items-center gap-2"><span class="w-2 h-2" style="background:#A89F8E"></span><h4 class="ff-d font-600 uppercase tracking-wide text-sm" style="letter-spacing:.04em">From Market Index &amp; around the web</h4></div>'+
+          '<div class="grid sm:grid-cols-3 gap-x-8 divide-y sm:divide-y-0 rule">'+ external.slice(0,6).map(textRow).join('') +'</div></div>';
+      }
+      // footer: pills + pin + related
+      html += '<div class="mt-12 border-t border-lw-ink pt-6 flex flex-wrap items-center gap-3">'+
+        '<span class="ts">Filed under</span>'+ topicPills.slice(0,4).map(function(t){ return '<a href="topics.html" class="scan-chip">'+esc(t)+'</a>'; }).join('')+
+        '<span class="flex-1"></span>'+
+        '<button class="follow-btn follow-pill px-4 py-2" data-pin-scan="'+esc(scanDef?scanDef.label:query)+'" data-pin-query="'+esc(query)+'">+ Pin scan</button></div>';
+      html += '<div class="mt-6 flex flex-wrap gap-2"><span class="ts mr-1">Related scans:</span>'+
+        window.LW_SCANS.filter(function(s){ return !scanDef || s.slug!==scanDef.slug; }).slice(0,4).map(function(s){ return '<a class="scan-chip" href="scans.html?scan='+s.slug+'">⌁ '+esc(s.label)+'</a>'; }).join('')+'</div>';
+      box.innerHTML = html;
+    }
+
+    // ---------- boot ----------
+    function boot(){
+      renderHub();
+      var p = new URLSearchParams(location.search);
+      var scanSlug = p.get('scan'); var q = p.get('q');
+      if (scanSlug){
+        var def = window.LW_SCANS.filter(function(s){ return s.slug===scanSlug; })[0];
+        if (def) { renderResults(def.query, def); }
+      } else if (q){ renderResults(q, null); }
+      document.getElementById('scan-form').addEventListener('submit', function(e){
+        e.preventDefault();
+        var v = document.getElementById('scan-q').value.trim();
+        if (v) location.href = 'scans.html?q='+encodeURIComponent(v);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  })();
+  </script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
