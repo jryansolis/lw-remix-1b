@@ -91,6 +91,24 @@
         '<div class="byl mt-2">' + esc(it.author) + (it.readMins ? ' · ' + it.readMins + ' min' : '') + '</div></article>';
     }).join('');
   }
+  function bhsCard(it) {
+    var img = it.image
+      ? '<a href="' + reader(it._i) + '" class="imgz block aspect-[16/10] mb-2.5 relative"><img src="' + esc(it.image) + '" alt="" loading="lazy" onerror="var z=this.closest(\'.imgz\'); if(z) z.style.background=\'#EEE9DF\'; this.remove()"><span class="play absolute inset-0 grid place-items-center"><span><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>'
+      : '';
+    return '<article class="story group">' + img + '<span class="kicker">▶ Buy Hold Sell</span>' +
+      '<a href="' + reader(it._i) + '" class="block mt-1"><h3 class="hl ff-d text-lg leading-[1.13]">' + esc(it.title) + '</h3></a>' +
+      '<div class="byl mt-2">' + esc(it.author) + (it.readMins ? ' · ' + it.readMins + ' min' : '') + '</div></article>';
+  }
+  // buy-hold-sell.html landing: replace the demo grid with ALL real BHS wires
+  function renderBhsLanding(items) {
+    var mount = document.querySelector('[data-bhs-wires]');
+    if (!mount) return;
+    var vids = items.filter(function (it) { return it.type === 'video'; });
+    if (!vids.length) return; // keep the curated demo episodes
+    mount.innerHTML = vids.map(bhsCard).join('');
+  }
+
+  window.lwAvatar = avatar;
   function renderContribActive(items) {
     var mount = document.querySelector('[data-contrib-active]');
     if (!mount) return;
@@ -193,6 +211,7 @@
         fillWires(items);
         fillTopicSections(items);
         renderVideoWires(items);
+        renderBhsLanding(items);
         renderContribActive(items);
         renderLatestList(items);
         renderLatestTab(items);

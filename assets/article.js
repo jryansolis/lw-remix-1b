@@ -132,7 +132,7 @@
   }
 
   var CURRENT = null;
-  function render(o) { CURRENT = o; paintCommon(o); renderBody(o); if (window.lwRewire) window.lwRewire(); try { window.scrollTo(0, 0); } catch (e) {} }
+  function render(o) { CURRENT = o; paintCommon(o); renderBody(o); if (window.lwRewire) window.lwRewire(); try { document.dispatchEvent(new CustomEvent("lw:article", { detail: { author: o.author } })); } catch (e) {} try { window.scrollTo(0, 0); } catch (e) {} }
 
   function boot() {
     var id = new URLSearchParams(location.search).get('id');

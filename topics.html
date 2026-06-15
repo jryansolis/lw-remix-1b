@@ -41,7 +41,7 @@
   <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
     <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
       <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
-      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="#" class="hover:text-lw-gold">Funds</a></nav>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="funds.html" class="hover:text-lw-gold">Funds</a></nav>
       <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
     </div>
   </header>
@@ -68,6 +68,10 @@
         <a class="scan-chip" href="scans.html?scan=ai-supercycle">&#8907; AI</a>
         <a class="scan-chip" href="scans.html?scan=takeover-targets">&#8907; Takeovers</a>
         <a class="scan-chip" href="scans.html?scan=retire-on-income">&#8907; Retire on income</a>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-1.5">
+        <span class="ts mr-1">&#9646; Funds behind these ideas:</span>
+        <span data-funds-strip class="flex flex-wrap gap-1.5"></span>
       </div>
     </section>
 
@@ -325,6 +329,8 @@
   <script src="assets/scan-engine.js"></script>
   <script src="assets/markets-live.js"></script>
   <script src="assets/feed.js"></script>
+  <script src="assets/data/funds.js"></script>
+  <script src="assets/funds.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funds | Livewire Markets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', goldbright:'#E0A82E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3,h4{ font-family:'Besley',serif; font-weight:500; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .byl{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:#16130E; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .scan-chip{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid #16130E; padding:7px 12px; display:inline-block; transition:all .15s; color:#16130E; cursor:pointer; }
+    .scan-chip:hover, .scan-chip.is-on{ background:#16130E; color:#FBFAF6; }
+    .series-hero{ position:relative; background:#0D0B08; overflow:hidden; }
+    .series-hero .bgimg{ position:absolute; right:0; top:0; bottom:0; width:50%; object-fit:cover; opacity:.4; }
+    .series-hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D0B08 42%, rgba(13,11,8,.5) 62%, rgba(13,11,8,.15)); }
+    @media (max-width:1023px){ .series-hero .bgimg{ width:100%; opacity:.2; } .series-hero::after{ background:linear-gradient(180deg, rgba(13,11,8,.5), #0D0B08 78%);} }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
+    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="funds.html" class="text-lw-gold">Funds</a></nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="series-hero">
+    <img src="assets/img/portfolio-panel.jpg" alt="" class="bgimg">
+    <div class="relative z-10 max-w-[1240px] mx-auto px-5 py-14 md:py-18">
+      <div class="max-w-xl">
+        <div class="kicker mb-3" style="color:#E0A82E">Where ideas meet capital</div>
+        <h1 class="ff-d font-600 leading-none mb-4" style="font-size:clamp(2.6rem,6vw,4rem); color:#fff">Funds</h1>
+        <p class="ff-b text-lg leading-relaxed" style="color:rgba(251,250,246,.78)">The strategies behind the wires. Every fund here is run by a Livewire contributor — read their thinking, then see the vehicle that puts it to work.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-[1240px] mx-auto px-5 py-10">
+    <div class="flex flex-wrap items-center gap-2 mb-7" data-funds-filters></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-funds-grid>
+      <p class="ff-b italic text-lw-muted">Loading funds…</p>
+    </div>
+    <p class="ts mt-8" style="color:#A89F8E">Concept · indicative only. Fund names, managers and figures are illustrative and not investment advice.</p>
+  </main>
+
+  <footer class="bg-lw-ink mt-12">
+    <div class="max-w-[1240px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9" onerror="this.style.display='none'">
+      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="scans.html" class="hover:text-white">Scans</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="video.html" class="hover:text-white">Video</a></div>
+      <p class="ts" style="color:rgba(251,250,246,.45)">Concept demo. General information only, not financial advice.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data/funds.js"></script>
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
+  <script src="assets/funds.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Hold Sell | Livewire Markets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', goldbright:'#E0A82E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3,h4{ font-family:'Besley',serif; font-weight:500; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .byl{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:#16130E; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .secttl{ font-family:'Besley',serif; font-size:1.05rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s; display:block; width:100%; height:100%; object-fit:cover; } .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+    .play span{ width:48px; height:48px; border-radius:9999px; background:rgba(22,19,14,.78); display:grid; place-items:center; transition:transform .2s, background .2s; }
+    .story:hover .play span{ transform:scale(1.08); background:#7A2E2E; }
+    .num{ font-family:'Besley',serif; font-style:italic; color:#B88E1E; }
+    .verdict{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.1em; padding:2px 7px; border:1px solid; display:inline-block; }
+    .v-buy{ color:#2F7D52; border-color:#2F7D52; } .v-hold{ color:#B88E1E; border-color:#B88E1E; } .v-sell{ color:#A23B33; border-color:#A23B33; }
+    .yt{ position:relative; padding-top:56.25%; background:#000; } .yt iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .series-hero{ position:relative; background:#0D0B08; overflow:hidden; }
+    .series-hero .bgimg{ position:absolute; right:0; top:0; bottom:0; width:55%; object-fit:cover; opacity:.5; }
+    .series-hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D0B08 38%, rgba(13,11,8,.55) 60%, rgba(13,11,8,.2)); }
+    @media (max-width:1023px){ .series-hero .bgimg{ width:100%; opacity:.25; } .series-hero::after{ background:linear-gradient(180deg, rgba(13,11,8,.5), #0D0B08 78%);} }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><div class="flex gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
+    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="text-lw-gold">Video</a><a href="funds.html" class="hover:text-lw-gold">Funds</a></nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <!-- Series hero -->
+  <section class="series-hero">
+    <img src="assets/img/bhs-marshall.jpg" alt="" class="bgimg">
+    <div class="relative z-10 max-w-[1240px] mx-auto px-5 py-16 md:py-20">
+      <div class="ts mb-5" style="color:rgba(251,250,246,.5)"><a href="video.html" class="hover:text-white">VIDEO</a> <span class="mx-1">›</span> SHOW</div>
+      <div class="max-w-xl">
+        <h1 class="leading-none mb-4"><span class="ff-d font-600 italic" style="font-size:clamp(2.4rem,6vw,4rem); color:#E0A82E">Buy Hold Sell</span></h1>
+        <div class="kicker mb-4" style="color:#E0A82E">▶ Livewire's flagship video series · New episodes Fridays</div>
+        <p class="ff-b text-lg leading-relaxed mb-7" style="color:rgba(251,250,246,.78)">Two fund managers. Five stocks. One verdict each — buy, hold or sell. Livewire's most-watched series puts the experts on the spot, every week, on the names that matter.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#latest" class="inline-flex items-center gap-2 bg-lw-gold text-lw-ink follow-btn navlink px-6 h-11 hover:bg-goldbright transition-colors" style="font-weight:700">Watch the latest →</a>
+          <button class="follow-btn follow-pill navlink px-6 h-11" style="border-color:rgba(251,250,246,.4);color:#fff" data-follow="topic:Buy Hold Sell"><span data-follow-label>Follow the show</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Player -->
+  <section class="bg-[#0D0B08] border-b border-lw-ink">
+    <div class="max-w-[1100px] mx-auto px-5 py-8">
+      <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLnaSJPapN1XSTgxqTYQJRTtDDSXGn84HV&rel=0" title="Buy Hold Sell playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <p class="ts mt-3" style="color:rgba(251,250,246,.5)">The full Buy Hold Sell playlist · Livewire on YouTube</p>
+    </div>
+  </section>
+
+  <main class="max-w-[1240px] mx-auto px-5 py-10">
+
+    <!-- Latest episodes (real RSS BHS wires, with curated fallback) -->
+    <section id="latest" class="mb-12">
+      <div class="flex items-center gap-3 mb-6"><span class="w-2 h-2 rounded-full inline-block animate-pulse" style="background:#C0392B"></span><span class="secttl">Latest episodes</span><span class="flex-1 border-t rule"></span></div>
+      <div data-bhs-wires class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- fallback demo episode (replaced by real BHS wires when present) -->
+        <article class="story group">
+          <a href="article-video.html" class="imgz block aspect-[16/10] mb-2.5 relative" data-preview="8pnxQ22Zsck"><img src="assets/img/video-banks.jpg" alt=""><span class="play absolute inset-0 grid place-items-center"><span><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>
+          <span class="kicker">▶ Buy Hold Sell</span>
+          <a href="article-video.html" class="block mt-1"><h3 class="hl ff-d text-lg leading-[1.13]">Is it time to ditch the banks? 7 ASX financials to watch</h3></a>
+          <div class="byl mt-2">Vishal Teckchandani</div>
+        </article>
+        <article class="story group">
+          <a href="article-video.html" class="imgz block aspect-[16/10] mb-2.5 relative" data-preview="8pnxQ22Zsck"><img src="assets/img/bhs-marshall.jpg" alt=""><span class="play absolute inset-0 grid place-items-center"><span><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>
+          <span class="kicker">▶ Buy Hold Sell</span>
+          <a href="article-video.html" class="block mt-1"><h3 class="hl ff-d text-lg leading-[1.13]">5 founder-led compounders with cult followings</h3></a>
+          <div class="byl mt-2">Vishal Teckchandani</div>
+        </article>
+        <article class="story group">
+          <a href="article-video.html" class="imgz block aspect-[16/10] mb-2.5 relative" data-preview="8pnxQ22Zsck"><img src="assets/img/junbei-sims.jpg" alt=""><span class="play absolute inset-0 grid place-items-center"><span><svg class="w-5 h-5" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span></a>
+          <span class="kicker">▶ Buy Hold Sell</span>
+          <a href="article-video.html" class="block mt-1"><h3 class="hl ff-d text-lg leading-[1.13]">Three small caps the market has left behind</h3></a>
+          <div class="byl mt-2">Vishal Teckchandani</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- How it works + about -->
+    <section class="grid lg:grid-cols-[1fr_320px] gap-10 border-t-2 border-lw-ink pt-10">
+      <div>
+        <h2 class="text-3xl font-600 leading-tight mb-4">How the verdict works</h2>
+        <p class="ff-b text-lg text-lw-sub leading-relaxed mb-4">Each episode, two managers face the same five stocks and must commit — out loud, on camera — to a single call on each:</p>
+        <div class="flex flex-wrap gap-3 mb-6">
+          <span class="verdict v-buy">● BUY</span><span class="ff-b text-[15px] text-lw-muted">conviction it outperforms from here</span>
+        </div>
+        <div class="flex flex-wrap gap-3 mb-6">
+          <span class="verdict v-hold">● HOLD</span><span class="ff-b text-[15px] text-lw-muted">happy to own it, not adding</span>
+        </div>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <span class="verdict v-sell">● SELL</span><span class="ff-b text-[15px] text-lw-muted">the risk/reward no longer stacks up</span>
+        </div>
+        <p class="ff-b text-lg text-lw-sub leading-relaxed">No hedging, no "it depends" — that discipline is exactly why it's become the most-watched thing Livewire makes. Every episode is also written up as a wire, so you can read the calls and revisit the reasoning any time.</p>
+      </div>
+      <aside>
+        <div class="bg-lw-ink text-lw-paper p-6">
+          <div class="kicker mb-3" style="color:#E0A82E">The series</div>
+          <div class="space-y-3 ts" style="text-transform:none;letter-spacing:0;color:rgba(251,250,246,.8);font-size:13px">
+            <div class="flex justify-between border-b pb-2" style="border-color:rgba(251,250,246,.15)"><span>New episodes</span><span class="ff-d not-italic" style="color:#fff">Every Friday</span></div>
+            <div class="flex justify-between border-b pb-2" style="border-color:rgba(251,250,246,.15)"><span>Format</span><span class="ff-d not-italic" style="color:#fff">~12 minutes</span></div>
+            <div class="flex justify-between border-b pb-2" style="border-color:rgba(251,250,246,.15)"><span>Episodes</span><span class="ff-d not-italic" style="color:#fff">300+</span></div>
+            <div class="flex justify-between"><span>Watch on</span><span class="ff-d not-italic" style="color:#fff">YouTube · Web</span></div>
+          </div>
+          <a href="video.html" class="follow-btn navlink mt-5 w-full text-center py-2.5 bg-lw-gold text-lw-ink hover:bg-goldbright transition-colors block">All Livewire shows →</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="bg-lw-ink mt-12">
+    <div class="max-w-[1240px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9" onerror="this.style.display='none'">
+      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="scans.html" class="hover:text-white">Scans</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="video.html" class="hover:text-white">Video</a></div>
+      <p class="ts" style="color:rgba(251,250,246,.45)">Concept demo. General information only, not financial advice.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
