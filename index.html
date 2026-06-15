@@ -533,7 +533,9 @@
         return '<div class="story group py-2.5"><a href="'+it.url+'" class="block"><h3 class="hl ff-d text-[14.5px] leading-[1.22]">'+esc(it.title)+'</h3></a><div class="ts mt-0.5">'+esc(it.author)+'</div></div>';
       }).join('');
     }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+    // wait for the RSS feed to fold into LW_DATA so the shelf shows real wires
+    function start(){ if (window.LW_FEED_READY && window.LW_FEED_READY.then){ var done=false,g=function(){if(done)return;done=true;boot();}; window.LW_FEED_READY.then(g,g); setTimeout(g,2500);} else boot(); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
   })();
   </script>
   <script src="assets/app.js"></script>
