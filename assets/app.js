@@ -22,7 +22,7 @@
   let pendingAction = null;
   const authListeners = [];
   const onAuthChange = (fn) => authListeners.push(fn);
-  function setSignedIn(v) { auth.signedIn = v; saveAuth(); authListeners.forEach((f) => { try { f(); } catch (_) {} }); }
+  function setSignedIn(v) { auth.signedIn = v; saveAuth(); authListeners.forEach((f) => { try { f(); } catch (_) {} }); try { document.dispatchEvent(new CustomEvent('lw:auth', { detail: { signedIn: v } })); } catch (_) {} }
 
   // follow state only "counts" while signed in (signed-out shows everything as Follow)
   const isFollowing = (key) => auth.signedIn && following.has(key);
@@ -592,6 +592,12 @@
   window.lwOpenSignin = function (cb) {
     if (auth.signedIn) { if (cb) cb(); return; }
     openSignin('Unlock member content with a free account.', cb);
+  };
+  // re-wire follow buttons + popovers in content injected after load (article.js)
+  window.lwRewire = function () {
+    initFollowButtons();
+    try { initPopovers(); } catch (e) {}
+    document.querySelectorAll('[data-follow]').forEach(paintButton);
   };
 
   document.addEventListener('DOMContentLoaded', () => {

@@ -28,7 +28,7 @@
     /* premium longform */
     .prose-body{ font-family:'Literata',serif; }
     .prose-body p{ font-size:1.3rem; line-height:1.78; color:#231f18; margin-bottom:1.6rem; letter-spacing:.002em; }
-    .prose-body p:first-of-type::first-letter{ float:left; font-family:'Besley',serif; font-weight:600; font-size:5rem; line-height:.76; padding:.4rem .55rem 0 0; color:#16130E; }
+    .prose-body > p:first-child::first-letter{ float:left; font-family:'Besley',serif; font-weight:600; font-size:3.7rem; line-height:.82; padding:.36rem .5rem 0 0; margin-top:.12rem; color:#16130E; }
     .prose-body a{ color:#7A2E2E; text-decoration:underline; text-underline-offset:2px; }
     .prose-body h2{ font-size:1.9rem; font-weight:500; letter-spacing:-.015em; line-height:1.12; margin:2.6rem 0 1rem; }
     .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
@@ -68,11 +68,11 @@
 
   <!-- Title block -->
   <div class="max-w-[760px] mx-auto px-5 pt-10 text-center">
-    <div class="ts mb-4"><a href="topics.html" class="hover:text-lw-gold" style="color:#B88E1E">WEALTH</a> · <a href="topics.html" class="hover:text-lw-gold" style="color:#B88E1E">TAXATION</a></div>
-    <h1 class="text-[2.3rem] md:text-[3.4rem] leading-[1.04] font-500" style="letter-spacing:-.01em">"A real sting in the tail" — the rules of investing have been rewritten</h1>
-    <p class="ff-b text-xl md:text-2xl text-lw-sub leading-snug mt-5 max-w-2xl mx-auto" style="font-style:italic">Three major tax reforms are about to reshape how Australians build wealth. Here are the five charts that matter.</p>
+    <div class="ts mb-4" data-art-kicker><a href="topics.html" class="hover:text-lw-gold" style="color:#B88E1E">WEALTH</a> · <a href="topics.html" class="hover:text-lw-gold" style="color:#B88E1E">TAXATION</a></div>
+    <h1 class="text-[2.3rem] md:text-[3.4rem] leading-[1.04] font-500" style="letter-spacing:-.01em" data-art-title>"A real sting in the tail" — the rules of investing have been rewritten</h1>
+    <p class="ff-b text-xl md:text-2xl text-lw-sub leading-snug mt-5 max-w-2xl mx-auto" style="font-style:italic" data-art-standfirst>Three major tax reforms are about to reshape how Australians build wealth. Here are the five charts that matter.</p>
     <div class="w-10 h-px bg-lw-gold mx-auto my-6"></div>
-    <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 ff-b text-[15px]">
+    <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 ff-b text-[15px]" data-art-byline>
       <span class="text-lw-muted">By</span>
       <span class="author-tag inline-flex items-center">
         <button data-popover-trigger class="inline-flex items-center gap-2 font-600 hover:text-lw-oxblood"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-7 h-7 rounded-full">Vishal Teckchandani</button>
@@ -103,8 +103,8 @@
 
   <!-- Hero -->
   <figure class="max-w-[1020px] mx-auto px-5 my-9">
-    <div class="imgz aspect-[16/9]"><img src="assets/img/tax.jpg" alt="Tax reforms"></div>
-    <figcaption class="ts mt-3 text-center">Budget 2026 reshapes capital gains, negative gearing, and discretionary trusts. <span style="color:#A89F8E">Illustration: Livewire</span></figcaption>
+    <div class="imgz aspect-[16/9]"><img src="assets/img/tax.jpg" alt="Tax reforms" data-art-hero></div>
+    <figcaption class="ts mt-3 text-center" data-art-herocap>Budget 2026 reshapes capital gains, negative gearing, and discretionary trusts. <span style="color:#A89F8E">Illustration: Livewire</span></figcaption>
   </figure>
 
   <!-- 3-column reading layout -->
@@ -112,10 +112,10 @@
 
     <!-- LEFT rail: author + share -->
     <aside class="read-rail hidden lg:block">
-      <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-14 h-14 rounded-full mb-2">
-      <div class="ff-d font-600 text-base leading-tight">Vishal Teckchandani</div>
-      <div class="ts mb-3" style="text-transform:none;letter-spacing:0">Lead Investment Writer</div>
-      <button class="follow-btn follow-solid w-full py-2 mb-2" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
+      <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-14 h-14 rounded-full mb-2" data-art-rail-avatar>
+      <div class="ff-d font-600 text-base leading-tight" data-art-rail-name>Vishal Teckchandani</div>
+      <div class="ts mb-3" style="text-transform:none;letter-spacing:0" data-art-rail-role>Lead Investment Writer</div>
+      <button class="follow-btn follow-solid w-full py-2 mb-2" data-art-rail-follow data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
       <button class="follow-btn follow-pill w-full py-2">Contact</button>
       <div class="border-t rule mt-5 pt-4">
         <div class="ts mb-2">Share</div>
@@ -133,7 +133,7 @@
 
     <!-- CENTER prose -->
     <article>
-      <div class="prose-body">
+      <div class="prose-body" data-art-body>
         <p>The Labor Government argues these changes restore fairness by ensuring investors "only pay tax on their real capital gain." But the modifications will fundamentally reshape how Australians build wealth — and the implications extend far beyond property.</p>
         <h2>1. Capital gains tax: the end of the 50% discount</h2>
         <p>The centrepiece reform replaces the longstanding 50% CGT discount with an inflation indexation method. Under the new regime, your cost base is adjusted for inflation using the Consumer Price Index — meaning you only pay tax on the real capital gain, not the nominal one.</p>
@@ -161,15 +161,15 @@
       </div>
 
       <!-- tags -->
-      <div class="flex flex-wrap items-center gap-2 mt-10 pt-6 border-t rule">
+      <div class="flex flex-wrap items-center gap-2 mt-10 pt-6 border-t rule" data-art-tags>
         <span class="ts mr-1">FILED UNDER</span>
-        <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Taxation">Taxation +</button>
-        <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Property">Property +</button>
-        <button class="follow-btn follow-pill px-3 py-1.5" data-follow="topic:Wealth">Wealth +</button>
+        <a href="topics.html" class="follow-btn follow-pill px-3 py-1.5">Taxation</a>
+        <a href="topics.html" class="follow-btn follow-pill px-3 py-1.5">Property</a>
+        <a href="topics.html" class="follow-btn follow-pill px-3 py-1.5">Wealth</a>
       </div>
 
       <!-- author cards -->
-      <div class="mt-8 space-y-4">
+      <div class="mt-8 space-y-4" data-art-authorcards>
         <div class="border border-lw-line bg-white p-5 flex items-start gap-4">
           <img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-14 h-14 rounded-full flex-shrink-0">
           <div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-3 mb-1"><a href="author.html" class="ff-d font-600 text-lg hover:text-lw-oxblood">Vishal Teckchandani</a><button class="follow-btn follow-pill px-4 py-1.5" data-compact data-follow="author:Vishal Teckchandani">Follow</button></div><p class="ff-b text-[15px] text-lw-muted leading-snug">Lead Investment Writer & Presenter. 15+ years covering markets and property, with a focus on ETFs and personal finance.</p></div>
@@ -287,6 +287,7 @@
   <script src="assets/data/index.js"></script>
   <script src="assets/scan-engine.js"></script>
   <script src="assets/feed.js"></script>
+  <script src="assets/article.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>
