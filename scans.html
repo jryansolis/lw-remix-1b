@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scan the wire | Livewire</title>
+  <title>Scans | Livewire</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,8 +62,8 @@
 
     <!-- Ask bar (always present; pre-filled in results state) -->
     <div class="max-w-[760px] mx-auto pt-10 pb-2 text-center" id="scan-head">
-      <div class="kicker mb-3">⌁ Scan the wire</div>
-      <h1 id="scan-title" class="text-[2.1rem] md:text-[2.9rem] leading-[1.05]" style="letter-spacing:-.01em">Ask for anything the wire knows</h1>
+      <div class="kicker mb-3">⌁ Scans</div>
+      <h1 id="scan-title" class="text-[2.1rem] md:text-[2.9rem] leading-[1.05]" style="letter-spacing:-.01em">Ask, and we'll read every wire</h1>
       <p id="scan-sub" class="ff-b italic text-lg text-lw-muted mt-3">Tickers, themes, sectors, hunches — Livewire curates the best of what it has.</p>
       <form id="scan-form" class="mt-7 max-w-[560px] mx-auto">
         <input id="scan-q" class="scan-input text-center" type="text" placeholder="&ldquo;best of what livewire has on uranium&rdquo;" autocomplete="off">
@@ -156,8 +156,8 @@
       document.getElementById('scan-q').value = scanDef ? scanDef.label : query;
       document.getElementById('scan-title').textContent = scanDef ? scanDef.label : '“'+query+'”';
       document.getElementById('scan-sub').textContent = items.length
-        ? 'The best of the wire on this, curated just now — '+items.length+' pieces found.'
-        : 'Nothing strong enough on the wire yet — try a theme, ticker or sector.';
+        ? 'The best of Livewire on this, curated just now — '+items.length+' pieces found.'
+        : 'Nothing strong enough across the wires yet — try a theme, ticker or sector.';
       document.title = (scanDef ? scanDef.label : query) + ' — Scan | Livewire';
       hub.style.display = 'none'; box.hidden = false; box.style.display = 'block';
       if (!items.length){

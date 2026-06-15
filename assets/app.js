@@ -377,7 +377,7 @@
     searchRows = [];
     // scannable ask → pin a "run as scan" row first (Enter runs the scan)
     if (term && window.lwIsScannable && window.lwIsScannable(term)) {
-      const scanRow = elFrom(`<a class="lwx-row" href="scans.html?q=${encodeURIComponent(q.trim())}" style="border-left:2px solid #B88E1E"><span class="lwx-t">⌁ Scan the wire for “${q.trim()}”</span><span class="lwx-k">Curated digest</span></a>`);
+      const scanRow = elFrom(`<a class="lwx-row" href="scans.html?q=${encodeURIComponent(q.trim())}" style="border-left:2px solid #B88E1E"><span class="lwx-t">⌁ Scan every wire for “${q.trim()}”</span><span class="lwx-k">Curated digest</span></a>`);
       searchRows.push(scanRow); box.appendChild(scanRow);
     }
     if (!items.length && !searchRows.length) { box.innerHTML = `<div class="lwx-empty">No results for “${q}”. Try a topic, writer, or show.</div>`; return; }

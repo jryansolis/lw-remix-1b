@@ -86,7 +86,7 @@
       var topic = m.getAttribute('data-topic-fresh');
       var rows = items.filter(function (it) { return it.topics[0] === topic; }).slice(0, 3);
       if (!rows.length) { m.remove(); return; }
-      m.innerHTML = '<div class="flex items-center gap-2 pt-4 mt-2 border-t rule"><span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#B88E1E"></span><span class="ff-m text-[10px] font-600 tracking-[.18em] uppercase" style="color:#8C8474">Fresh from the wire</span></div>' +
+      m.innerHTML = '<div class="flex items-center gap-2 pt-4 mt-2 border-t rule"><span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#B88E1E"></span><span class="ff-m text-[10px] font-600 tracking-[.18em] uppercase" style="color:#8C8474">Latest wires</span></div>' +
         '<div class="divide-y rule">' + rows.map(function (it) {
           return '<div class="story group py-2.5 flex items-baseline gap-3"><span class="ts flex-shrink-0" style="color:#B88E1E">' + relTime(it.pubDate) + '</span>' +
             '<div class="min-w-0"><a href="' + it.url + '" target="_blank" rel="noopener" class="block"><h3 class="hl ff-d text-[15px] leading-[1.22]">' + esc(it.title) + '</h3></a>' +
