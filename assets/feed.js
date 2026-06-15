@@ -140,7 +140,7 @@
         source: 'livewire', live: true,
         author: it.author || 'Livewire', topics: [topic],
         themes: (it.categories || []).map(function (c) { return c.toLowerCase(); }),
-        tickers: it.tickers || [], sectors: [],
+        tickers: it.tickers || [], sectors: [], body: it.body || '',
         image: it.image || '', pubDate: it.pubDate, locked: false, pop: 60
       };
     });

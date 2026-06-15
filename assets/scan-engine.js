@@ -23,6 +23,8 @@
     technology: ['tech', 'software', 'saas'],
     software: ['tech', 'saas', 'technology'],
     ai: ['artificial intelligence', 'chips', 'semiconductors', 'data centres', 'machine learning'],
+    artificial: ['ai'],
+    intelligence: ['ai'],
     bank: ['banks', 'financials', 'cba', 'lenders'],
     banks: ['bank', 'financials', 'lenders', 'dividend'],
     retirement: ['retire', 'super', 'superannuation', 'annuities', 'pension', 'income'],
@@ -122,25 +124,44 @@
     return { terms: terms, tickers: tickers };
   }
 
-  function scoreItem(item, ex, flags) {
+  // word-boundary match for short tokens (so "ai" ≠ "chairman"), substring for longer
+  function has(hay, term) {
+    if (!hay) return false;
+    if (term.length <= 3) { return new RegExp('\\b' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b').test(hay); }
+    return hay.indexOf(term) !== -1;
+  }
+  function scoreItem(item, ex, flags, phrase) {
     var s = 0;
-    var hay = {
-      title: (item.title + ' ' + (item.dek || '')).toLowerCase(),
-      themes: (item.themes || []).join(' ').toLowerCase(),
-      meta: ((item.topics || []).join(' ') + ' ' + (item.sectors || []).join(' ') + ' ' + (item.author || '')).toLowerCase()
-    };
-    (item.tickers || []).forEach(function (tk) { if (ex.tickers[tk.toLowerCase()]) s += 5; });
+    var title = (item.title || '').toLowerCase();
+    var dek = (item.dek || '').toLowerCase();
+    var themes = (item.themes || []).join(' ').toLowerCase();
+    var meta = ((item.topics || []).join(' ') + ' ' + (item.sectors || []).join(' ') + ' ' + (item.author || '')).toLowerCase();
+    var tickstr = (item.tickers || []).join(' ').toLowerCase();
+    var body = item.body ? item.body.replace(/<[^>]+>/g, ' ').toLowerCase() : '';
+    // ticker match (company name / code → its themes flagged in expand)
+    (item.tickers || []).forEach(function (tk) { if (ex.tickers[tk.toLowerCase()]) s += 6; });
+    // per expanded term: score the strongest field it appears in (title wins)
     Object.keys(ex.terms).forEach(function (term) {
-      var w = ex.terms[term] === 'theme' ? 1 : 0;
-      if (hay.themes.indexOf(term) !== -1) s += 3;
-      else if (hay.meta.indexOf(term) !== -1) s += 2;
-      if (hay.title.indexOf(term) !== -1) s += (w ? 2 : 2);
+      if (term.length < 2) return;
+      if (has(title, term)) s += 4;            // a title hit alone clears the bar
+      else if (has(themes, term)) s += 3;
+      else if (has(dek, term)) s += 2.5;
+      else if (has(tickstr, term)) s += 2.5;
+      else if (has(meta, term)) s += 2;
+      else if (has(body, term)) s += 1.5;      // full-text over the wire body
     });
-    if (flags.asxOnly && flags.wantStocks && !(item.tickers || []).some(function (t) { return t.indexOf('ASX:') === 0; })) s = s * 0.4;
-    if (flags.boostPop) s += (item.pop || 0) / 50;
-    // recency decay: full weight this week, fades over ~6 weeks
+    if (!s) return 0;
+    // exact multi-word phrase bonus
+    if (phrase && phrase.indexOf(' ') !== -1) {
+      if (title.indexOf(phrase) !== -1) s += 6;
+      else if ((dek + ' ' + body).indexOf(phrase) !== -1) s += 3;
+    }
+    if (flags.asxOnly && flags.wantStocks && !(item.tickers || []).some(function (t) { return t.indexOf('ASX:') === 0; })) s *= 0.6;
+    if (flags.boostPop) s += (item.pop || 0) / 40;
+    if (item.live) s += 1.2;                    // gentle freshness nudge (not a filter)
+    // recency as a small ADDITIVE bonus — never drags a real match below the cut
     var age = (Date.now() - new Date(item.pubDate).getTime()) / 864e5;
-    s *= Math.max(0.55, 1 - age / 100);
+    s += Math.max(0, 2 - age / 14);
     return s;
   }
 
@@ -151,12 +172,12 @@
       asxOnly: INTENT.asxOnly.test(q),
       wantStocks: INTENT.wantStocks.test(q)
     };
-    var cleaned = q.replace(INTENT.strip, ' ');
+    var cleaned = q.replace(INTENT.strip, ' ').replace(/\s+/g, ' ').trim();
     var tokens = tokenize(cleaned);
     if (!tokens.length) return { query: query, flags: flags, results: [] };
     var ex = expand(tokens, ' ' + cleaned + ' ');
     var scored = (window.LW_DATA || []).map(function (item) {
-      return { item: item, score: scoreItem(item, ex, flags) };
+      return { item: item, score: scoreItem(item, ex, flags, cleaned) };
     }).filter(function (r) { return r.score >= 3; });
     scored.sort(function (a, b) { return b.score - a.score; });
     return { query: query, flags: flags, entities: ex, results: scored.map(function (r) { return r.item; }) };
