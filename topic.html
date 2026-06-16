@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic | Livewire Markets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', mist:'#F2EEE5', gold:'#B88E1E', goldbright:'#E0A82E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <script src="assets/theme.js"></script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3,h4{ font-family:'Besley',serif; font-weight:500; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .byl{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:#16130E; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .secttl{ font-family:'Besley',serif; font-size:1.05rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s; display:block; width:100%; height:100%; object-fit:cover; } .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; } .follow-pill:hover{ background:#16130E; color:#FBFAF6; } .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    .avatar{ object-fit:cover; background:#EEE9DF; }
+    .scan-chip{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid #16130E; padding:7px 12px; display:inline-block; transition:all .15s; color:#16130E; }
+    .scan-chip:hover{ background:#16130E; color:#FBFAF6; }
+    /* Beat hero — Figma banner on the right, dark wash + title on the left */
+    .beat-hero{ position:relative; background:#0D0B08; overflow:hidden; min-height:300px; }
+    .beat-hero .bgimg{ position:absolute; right:0; top:0; bottom:0; width:62%; object-fit:cover; object-position:center; }
+    .beat-hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D0B08 34%, rgba(13,11,8,.65) 52%, rgba(13,11,8,0) 72%); }
+    @media (max-width:1023px){ .beat-hero .bgimg{ width:100%; opacity:.5; } .beat-hero::after{ background:linear-gradient(180deg, rgba(13,11,8,.35), #0D0B08 82%);} }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><div class="flex items-center gap-3"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><span class="hidden sm:inline">AUD/USD 0.661</span></div><div class="flex items-center gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+
+  <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
+    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
+      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
+      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="hover:text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="funds.html" class="hover:text-lw-gold">Funds</a></nav>
+      <a href="#" class="border border-lw-ink px-4 h-9 flex items-center navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
+    </div>
+  </header>
+
+  <!-- Beat hero (filled by topic.js) -->
+  <section class="beat-hero" data-beat-hero>
+    <img class="bgimg" data-beat-img src="" alt="">
+    <div class="relative z-10 max-w-[1240px] mx-auto px-5 py-14 md:py-20">
+      <div class="ts mb-4" style="color:rgba(251,250,246,.55)"><a href="topics.html" class="hover:text-white">TOPICS</a> <span class="mx-1">›</span> <span data-beat-crumb>—</span></div>
+      <div class="max-w-xl">
+        <h1 class="ff-d font-600 leading-none mb-4" style="font-size:clamp(2.6rem,6vw,4.2rem); color:#fff" data-beat-name>—</h1>
+        <p class="ff-b text-lg leading-relaxed mb-7" style="color:rgba(251,250,246,.8)" data-beat-blurb></p>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="follow-btn navlink px-6 h-11 bg-lw-gold text-lw-ink hover:bg-goldbright transition-colors" data-beat-follow data-follow="topic:—"><span data-follow-label>Follow</span></button>
+          <a href="scans.html" class="follow-btn navlink px-6 h-11 inline-flex items-center" style="border:1px solid rgba(251,250,246,.4);color:#fff">⌁ Run a scan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subtopic chips -->
+  <div class="border-b border-lw-ink bg-lw-paper">
+    <div class="max-w-[1240px] mx-auto px-5 py-3 flex flex-wrap items-center gap-2" data-beat-subs></div>
+  </div>
+
+  <main class="max-w-[1240px] mx-auto px-5 py-9">
+    <div class="grid lg:grid-cols-[minmax(0,1fr)_300px] gap-10">
+      <div data-beat-main><p class="ff-b italic text-lw-muted">Loading…</p></div>
+      <aside class="lg:border-l rule lg:pl-8" data-beat-rail></aside>
+    </div>
+  </main>
+
+  <footer class="bg-lw-ink mt-8">
+    <div class="max-w-[1240px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9" onerror="this.style.display='none'">
+      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="scans.html" class="hover:text-white">Scans</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="video.html" class="hover:text-white">Video</a><a href="funds.html" class="hover:text-white">Funds</a></div>
+      <p class="ts" style="color:rgba(251,250,246,.45)">Concept demo. General information only.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data/topics.js"></script>
+  <script src="assets/data/index.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
+  <script src="assets/topic.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

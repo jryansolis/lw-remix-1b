@@ -42,7 +42,8 @@
   }
 
   function toggleFollow(key) {
-    if (following.has(key)) following.delete(key); else following.add(key);
+    const had = following.has(key);
+    if (had) following.delete(key); else following.add(key);
     saveFollowing(following);
     // repaint every button bound to this key
     document.querySelectorAll(`[data-follow="${cssEscape(key)}"]`).forEach(paintButton);
@@ -50,8 +51,36 @@
     document.querySelectorAll('[data-following-count]').forEach((el) => {
       el.textContent = following.size;
     });
+    if (!had) followToast(key);
     return following.has(key);
   }
+
+  // Feedback when you follow: what happened + what to expect.
+  function followToast(key) {
+    const isTopic = key.indexOf('topic:') === 0;
+    const name = key.replace(/^(topic|author):/, '');
+    const msg = isTopic
+      ? '<strong>Following ' + name + '</strong><br>New ' + name + ' wires will land in your <b>Following</b> feed and daily email digest.'
+      : '<strong>Following ' + name + '</strong><br>You’ll see ' + name + '’s latest wires in your <b>Following</b> feed and daily digest.';
+    showToast(msg, isTopic ? ('topic.html?t=' + topicSlug(name)) : 'index.html');
+  }
+  function topicSlug(name) { return String(name).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, ''); }
+  let toastTimer = null;
+  function showToast(html, href) {
+    let t = document.getElementById('lw-toast');
+    if (!t) {
+      t = document.createElement('div'); t.id = 'lw-toast';
+      t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(12px);z-index:130;max-width:min(92vw,440px);background:#16130E;color:#FBFAF6;border:1px solid #B88E1E;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 24px 50px -18px rgba(0,0,0,.5);opacity:0;transition:opacity .2s,transform .2s;font-family:Literata,serif;font-size:14px;line-height:1.4';
+      document.body.appendChild(t);
+    }
+    t.innerHTML = '<span style="color:#E0A82E;flex-shrink:0;font-size:16px">✓</span><div style="flex:1">' + html +
+      ' <a href="' + href + '" style="color:#E0A82E;text-decoration:underline;white-space:nowrap">View →</a></div>' +
+      '<button data-toast-x style="color:rgba(251,250,246,.6);flex-shrink:0;font-family:monospace">✕</button>';
+    requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateX(-50%) translateY(0)'; });
+    clearTimeout(toastTimer); toastTimer = setTimeout(hideToast, 5200);
+    t.querySelector('[data-toast-x]').onclick = hideToast;
+  }
+  function hideToast() { const t = document.getElementById('lw-toast'); if (!t) return; t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(12px)'; }
 
   function cssEscape(s) { return s.replace(/"/g, '\\"'); }
 
@@ -72,6 +101,7 @@
             following.add(key); saveFollowing(following);
             document.querySelectorAll(`[data-follow="${cssEscape(key)}"]`).forEach(paintButton);
             document.querySelectorAll('[data-following-count]').forEach((el) => { el.textContent = following.size; });
+            followToast(key);
           });
           return;
         }
@@ -600,9 +630,39 @@
     document.querySelectorAll('[data-follow]').forEach(paintButton);
   };
 
+  // ZDNet-style topics mega-menu: hover "Topics" → dropdown of beats + subtopics
+  const TOPICS_NAV = [
+    { slug: 'shares', name: 'Shares', subs: ['ASX 200', 'Banks', 'Resources', 'Healthcare', 'Global equities'] },
+    { slug: 'income', name: 'Income', subs: ['Dividends', 'Bonds', 'Private credit', 'Franking', 'Yield'] },
+    { slug: 'growth', name: 'Growth', subs: ['Technology', 'AI', 'Thematics', 'Founders', 'Disruption'] },
+    { slug: 'etfs', name: 'ETFs', subs: ['Core', 'Thematic', 'Income ETFs', 'Global', 'Active ETFs'] },
+    { slug: 'retirement', name: 'Retirement', subs: ['Superannuation', 'Pensions', 'Annuities', 'Drawdown', 'SMSF'] },
+    { slug: 'wealth', name: 'Wealth', subs: ['Tax & estate', 'Strategy', 'Behaviour', 'Education', 'Advice'] },
+    { slug: 'smallcaps', name: 'Small Caps', subs: ['Emerging', 'Takeovers', 'Microcaps', 'Founder-led', 'Resources'] },
+    { slug: 'property', name: 'Property', subs: ['Residential', 'REITs', 'Property credit', 'Commercial', 'Housing data'] }
+  ];
+  function initTopicsMenu() {
+    const header = document.querySelector('header'); if (!header) return;
+    const link = [...header.querySelectorAll('nav a')].find((a) => /topics\.html$/.test(a.getAttribute('href') || ''));
+    if (!link || link.__megawired) return; link.__megawired = true;
+    header.style.position = header.style.position || 'relative';
+    const panel = elFrom('<div class="lw-mega" style="position:absolute;left:0;right:0;top:100%;z-index:60;background:var(--lw-paper,#FBFAF6);border-bottom:1px solid #16130E;box-shadow:0 30px 50px -24px rgba(22,19,14,.4);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s,transform .16s"></div>');
+    panel.classList.add('bg-lw-paper');
+    panel.innerHTML = '<div class="max-w-[1240px] mx-auto px-5 py-7 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-7">' +
+      TOPICS_NAV.map((t) => '<div><a href="topic.html?t=' + t.slug + '" class="ff-d font-600 text-[17px] leading-tight hover:text-lw-oxblood block mb-2">' + t.name + '</a>' +
+        '<div class="flex flex-col gap-1.5">' + t.subs.map((s) => '<a href="scans.html?q=' + encodeURIComponent(t.name + ' ' + s) + '" class="ff-b text-[13.5px] text-lw-muted hover:text-lw-ink leading-snug">' + s + '</a>').join('') + '</div></div>').join('') +
+      '</div><div class="border-t rule"><div class="max-w-[1240px] mx-auto px-5 py-3 flex items-center justify-between"><a href="topics.html" class="navlink text-[11px] hover:text-lw-gold">All topics →</a><a href="scans.html" class="navlink text-[11px] hover:text-lw-gold" style="color:#B88E1E">⌁ Run a scan</a></div></div>';
+    header.appendChild(panel);
+    let over = false, t;
+    const show = () => { clearTimeout(t); panel.style.opacity = '1'; panel.style.visibility = 'visible'; panel.style.transform = 'translateY(0)'; };
+    const hide = () => { t = setTimeout(() => { if (!over) { panel.style.opacity = '0'; panel.style.visibility = 'hidden'; panel.style.transform = 'translateY(-6px)'; } }, 120); };
+    [link, panel].forEach((el) => { el.addEventListener('mouseenter', () => { over = true; show(); }); el.addEventListener('mouseleave', () => { over = false; hide(); }); });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     injectGlobals();
     renderAuthUI();
+    initTopicsMenu();
     initAuthActions();
     initSearch();
     initSignin();

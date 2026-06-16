@@ -51,21 +51,37 @@
     if (location.hash) { var el = document.getElementById(location.hash.slice(1)); if (el) { el.scrollIntoView({ block: 'center' }); el.style.outline = '2px solid #B88E1E'; } }
   }
 
-  // article reader: "Fund in focus" when the author manages a fund
+  // article reader: a de-emphasized "Fund in focus" side widget in the right
+  // read-rail, shown when the wire's author manages a fund. Falls back to a
+  // block after the author cards if the page has no rail mount.
   function fundInFocus(author) {
     var f = byManager(author); if (!f) return;
-    var anchor = document.querySelector('[data-art-authorcards]'); if (!anchor) return;
     if (document.getElementById('lw-fund-focus')) return;
+    var rail = document.querySelector('[data-fund-rail]');
     var box = document.createElement('div');
     box.id = 'lw-fund-focus';
-    box.className = 'mt-6 border border-lw-ink';
-    box.innerHTML = '<div class="px-5 pt-4 pb-1 flex items-center gap-2"><span class="ff-m text-[10px] font-700 tracking-[.14em] uppercase" style="color:#B88E1E">▦ Fund in focus</span></div>' +
-      '<a href="funds.html#' + f.slug + '" class="story group block px-5 pb-5">' +
-      '<div class="flex items-center justify-between mb-1"><span class="ff-m text-[10px] font-700 tracking-[.12em] uppercase px-2 py-1" style="color:#fff;background:' + typeColor(f.type) + '">' + esc(f.type) + '</span><span class="ts">' + esc(f.assetClass) + '</span></div>' +
-      '<h3 class="ff-d text-xl leading-[1.15] hl mt-2">' + esc(f.name) + '</h3>' +
-      '<p class="ff-b text-[15px] text-lw-sub leading-snug mt-1.5">' + esc(f.strategy) + '</p>' +
-      '<div class="ts mt-3" style="color:#B88E1E">Managed by ' + esc(f.manager) + ' · ' + esc(f.firm) + ' · View fund →</div></a>';
-    anchor.insertAdjacentElement('afterend', box);
+    if (rail) {
+      // compact rail widget — quiet, not a full-width module
+      box.className = 'mt-9';
+      box.innerHTML = '<div class="border-t-2 border-lw-ink pt-3 mb-3 flex items-center gap-2"><span class="w-2 h-2" style="background:#B88E1E"></span><h4 class="ff-d font-600 uppercase tracking-wide text-sm" style="letter-spacing:.04em">Fund in focus</h4></div>' +
+        '<a href="funds.html#' + f.slug + '" class="story group block border border-lw-line hover:border-lw-ink transition-colors p-4">' +
+        '<div class="flex items-center justify-between mb-2"><span class="ff-m text-[9.5px] font-700 tracking-[.12em] uppercase px-2 py-0.5" style="color:#fff;background:' + typeColor(f.type) + '">' + esc(f.type) + '</span><span class="ts" style="font-size:10px">' + esc(f.assetClass) + '</span></div>' +
+        '<h3 class="ff-d text-[17px] leading-[1.18] hl">' + esc(f.name) + '</h3>' +
+        '<p class="ff-b text-[13.5px] text-lw-sub leading-snug mt-1.5">' + esc(f.strategy) + '</p>' +
+        '<div class="ts mt-3" style="color:#B88E1E;font-size:10px">By ' + esc(f.manager) + ' · View fund →</div></a>' +
+        '<p class="ts mt-2" style="font-size:9.5px;color:#9C9484">Concept · indicative</p>';
+      rail.appendChild(box);
+    } else {
+      var anchor = document.querySelector('[data-art-authorcards]'); if (!anchor) return;
+      box.className = 'mt-6 border border-lw-ink';
+      box.innerHTML = '<div class="px-5 pt-4 pb-1 flex items-center gap-2"><span class="ff-m text-[10px] font-700 tracking-[.14em] uppercase" style="color:#B88E1E">▦ Fund in focus</span></div>' +
+        '<a href="funds.html#' + f.slug + '" class="story group block px-5 pb-5">' +
+        '<div class="flex items-center justify-between mb-1"><span class="ff-m text-[10px] font-700 tracking-[.12em] uppercase px-2 py-1" style="color:#fff;background:' + typeColor(f.type) + '">' + esc(f.type) + '</span><span class="ts">' + esc(f.assetClass) + '</span></div>' +
+        '<h3 class="ff-d text-xl leading-[1.15] hl mt-2">' + esc(f.name) + '</h3>' +
+        '<p class="ff-b text-[15px] text-lw-sub leading-snug mt-1.5">' + esc(f.strategy) + '</p>' +
+        '<div class="ts mt-3" style="color:#B88E1E">Managed by ' + esc(f.manager) + ' · ' + esc(f.firm) + ' · View fund →</div></a>';
+      anchor.insertAdjacentElement('afterend', box);
+    }
   }
 
   // home: "Funds in Focus" — 3 real fund cards
