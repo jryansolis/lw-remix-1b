@@ -1,6 +1,160 @@
 {
- "fetched": "2026-06-16T22:08:50.475Z",
+ "fetched": "2026-06-17T21:58:50.344Z",
  "items": [
+  {
+   "title": "This ETF income portfolio beat the ASX 200 and delivered a higher yield",
+   "url": "https://www.livewiremarkets.com/wires/this-etf-income-portfolio-beat-the-asx-200-and-delivered-a-higher-yield",
+   "author": "Vishal Teckchandani",
+   "topic": "Equities",
+   "tickers": [
+    "ASX:ZYAU",
+    "ASX:ZYUS",
+    "ASX:AYLD",
+    "ASX:USTB",
+    "ASX:BANK",
+    "ASX:GRPA"
+   ],
+   "categories": [
+    "dividends",
+    "etfs",
+    "high yield"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNzBMRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1c0bc9abac36d9cf8c5f827d3039ec2ac62e1a9a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Income-26_Marc-Jocum-ETF-provider_primary.jpg",
+   "dek": "Last year, as part of Livewire's Income Series, we challenged ETF providers to build diversified income portfolios using only funds from their own range.\nGlobal X responded with a portfolio yielding approximately 7%, combining high-dividend...",
+   "pubDate": "2026-06-17T20:00:16.000Z"
+  },
+  {
+   "title": "Is an ASX 200 index fund actually as safe as you think?",
+   "url": "https://www.livewiremarkets.com/wires/is-an-asx-200-index-fund-actually-as-safe-as-you-think",
+   "author": "Anna Dadic",
+   "topic": "Exchange Traded Funds (ETFs)",
+   "tickers": [
+    "ASX:AQTY"
+   ],
+   "categories": [
+    "asx 200",
+    "australian etfs",
+    "quality"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGtKRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--bc5f5421fe8e613683ee8a6e12f4c5d0c043444d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/ETF-ASX-AQTY_Cameron-McCormack-Vaneck_primary.jpg",
+   "dek": "This interview was filmed 3rd June 2026.\nMany Australians who invest in the sharemarket are told the same thing: buy an ASX 200 index fund, keep costs low, and let it compound. It's hard...",
+   "pubDate": "2026-06-17T20:00:14.000Z"
+  },
+  {
+   "title": "Buying back an ASX tech stock and avoiding CBA: Inside Elston's Aussie large cap fund",
+   "url": "https://www.livewiremarkets.com/wires/buying-back-an-asx-tech-stock-and-avoiding-cba-inside-elston-s-aussie-large-cap-fund",
+   "author": "Tom Stelzer",
+   "topic": "Equities",
+   "tickers": [
+    "ASX:BSL",
+    "ASX:CGF",
+    "ASX:CBA",
+    "ASX:XRO"
+   ],
+   "categories": [
+    "australian large caps",
+    "australian stocks"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMVlORHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8c3e10a99d288db184957588b9f80bc3a51b5a3d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/inside-the-portfolio-Bruce-Williams_primary.jpg",
+   "dek": "Ever wanted a deeper insight into how fund managers are seeing markets, and the first-hand thinking behind what they've been adding and removing from their portfolios?\nIn this new series, Inside the Portfolio, we're looking...",
+   "pubDate": "2026-06-17T20:00:13.000Z"
+  },
+  {
+   "title": "Why Fidelity’s Asia focus is power tools over processors",
+   "url": "https://www.livewiremarkets.com/wires/why-fidelity-s-asia-focus-is-power-tools-over-processors",
+   "author": "Anna Dadic",
+   "topic": "Markets",
+   "tickers": [
+    "ASX:FASI"
+   ],
+   "categories": [
+    "AI",
+    "China",
+    "asia",
+    "india"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNzhKRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--17fcb2c224800c54c9c28e2f61a235d6bc4ac420/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Video-Gary-Monaghan-Tech-Bite_primary.jpg",
+   "dek": "This interview was filmed 3rd June, 2026.\nMuch like their US counterpart, Asian markets are heavily concentrated on the biggest names in the tech game.\nThey may not be Nvidia or Alphabet but, as...",
+   "pubDate": "2026-06-17T20:00:11.000Z"
+  },
+  {
+   "title": "The passive premium: bottom-up valuation analysis of the ASX 200 index",
+   "url": "https://www.livewiremarkets.com/wires/the-passive-premium-bottom-up-valuation-analysis-of-the-asx-200-index",
+   "author": "Ryan Lim",
+   "topic": "Equities",
+   "tickers": [],
+   "categories": [
+    "Active vs Passive",
+    "Index bubble",
+    "alpha insights",
+    "asx 200",
+    "intrinsic value"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeUlPRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--bd693951fcfad7ab386f7af64227d296c612f82d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/pascal-bernardon-8Qsj2VgdVJQ-unsplash.jpg",
+   "dek": "Be, or not to be. \nWhen embarking on their investment journey, many retail investors nowadays, are confronted by two choices - Passive, or Active. Regardless of choice, an investor is expected to adopt a set...",
+   "pubDate": "2026-06-17T05:34:09.000Z"
+  },
+  {
+   "title": "Gold has surged over five years. Is it still worth holding?",
+   "url": "https://www.livewiremarkets.com/wires/gold-has-surged-over-five-years-is-it-still-worth-holding",
+   "author": "Sara Allen",
+   "topic": "Alternatives",
+   "tickers": [
+    "ASX:EVN",
+    "ASX:LSX",
+    "ASX:NST",
+    "ASX:GDX",
+    "ASX:GOLD",
+    "ASX:MNRS",
+    "ASX:PMGOLD",
+    "ASX:QAU",
+    "ASX:NUGG",
+    "ASX:NEM",
+    "ASX:GLDN",
+    "ASX:GGP",
+    "ASX:LGF"
+   ],
+   "categories": [
+    "gold"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd1lPRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a76b8cf44f066af9319482efe2b886e3e3d0a812/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Gold.jpg",
+   "dek": "Gold does not usually generate the same excitement as artificial intelligence stocks, high-growth technology names or the latest market darling.\nIt produces no income. It has no earnings growth. It does not buy back stock....",
+   "pubDate": "2026-06-17T01:53:31.000Z"
+  },
+  {
+   "title": "Spooked by rising rates and tariffs, private credit draws investors’ eyes",
+   "url": "https://www.livewiremarkets.com/wires/spooked-by-rising-rates-and-tariffs-private-credit-draws-investors-eyes-2026-03-17",
+   "author": "Alan Greenstein",
+   "topic": "Investment Theme",
+   "tickers": [],
+   "categories": [
+    "Private Credit",
+    "investing in defensive assets",
+    "market uncertainty",
+    "raising interest rates",
+    "safe haven assets"
+   ],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNE9iRGc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5b9a480ec97b8329015acb025c681d7f4135236a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Screenshot%202026-03-17%20at%204.02.37%E2%80%AFpm.png",
+   "dek": "‘Turbulent’ is how many investors define the month that was.Locally, the Reserve Bank of Australia (RBA) passed on a rate rise due to stubborn and accelerated inflation, while, globally, Trump surprised with 15 per cent...",
+   "pubDate": "2026-06-17T00:00:30.000Z"
+  },
+  {
+   "title": "The 20 income stocks and funds Livewire readers rely on most",
+   "url": "https://www.livewiremarkets.com/wires/the-20-income-stocks-and-funds-livewire-readers-rely-on-most",
+   "author": "Patrick Poke",
+   "topic": "Income Series",
+   "tickers": [
+    "ASX:BHP",
+    "ASX:CBA",
+    "ASX:TLS",
+    "ASX:VAS",
+    "ASX:VHY"
+   ],
+   "categories": [],
+   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOG9ORHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c880fac5cc9877ef1e4bcb7321b1a1594d6e88b8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Income26-Readers-top-stock-picks_primary.jpg",
+   "dek": "The landscape for income investing has changed. Some term deposits are offering rates in the mid-5% range, while a diversified portfolio of high-grade Australian bonds can now offer a yield around the same level. For...",
+   "pubDate": "2026-06-16T22:37:54.000Z"
+  },
   {
    "title": "Why the new tax regime could spark a revival in AREITs",
    "url": "https://www.livewiremarkets.com/wires/why-the-new-tax-regime-could-spark-a-revival-in-areits",
@@ -54,159 +208,6 @@
    "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNndNRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5c39e132215751299c0bc3de0c7b9a6b28241897/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/b6f4f736-a6a7-4ffd-b7b2-1fc6639a9ebd.png",
    "dek": "For years, investors have heard warnings about looming commodity shortages. Most have come and gone without triggering the sustained rally many expected.\nBell Potter believes this time may be different.\nIn a recent strategy note...",
    "pubDate": "2026-06-16T20:00:13.000Z"
-  },
-  {
-   "title": "Why the CBD prime office crunch is a buying opportunity",
-   "url": "https://www.livewiremarkets.com/wires/why-the-cbd-prime-office-crunch-is-a-buying-opportunity",
-   "author": "Anna Dadic",
-   "topic": "Property",
-   "tickers": [],
-   "categories": [
-    "Centuria Capital",
-    "commercial property",
-    "property",
-    "property investmemt"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMjBGRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--26a53d6e2aadbbdc409a04e1050e69be69697545/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Stuart-Wilton-Centuria-Capital_primary.jpg",
-   "dek": "This interview was filmed 25th May, 2026. Ask most retail investors whether commercial office is worth touching and you'll get a polite 'no'. Headline vacancy rates are at cyclical peaks, the rate environment has been...",
-   "pubDate": "2026-06-16T20:00:12.000Z"
-  },
-  {
-   "title": "Who wins the income battle: bonds, private credit or equities?",
-   "url": "https://www.livewiremarkets.com/wires/who-wins-the-income-battle-bonds-private-credit-or-equities",
-   "author": "Chris Conway",
-   "topic": "Income Series",
-   "tickers": [],
-   "categories": [
-    "INCOME SERIES",
-    "australian income investing",
-    "income investing",
-    "income opportunities"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOFFNRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7a5cd6a8bb1ccb5b7990f7e0c5c32d1abde15c5a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Income26_Panel-Andrew-Lockhart-Matt-Haupt-Adam-Bowe_primary.jpg",
-   "dek": "Please note, this interview was recorded Tuesday 19 May, 2026\nOne of the privileges of my role is interviewing dozens of income managers every year. One of the challenges is that they're all convinced...",
-   "pubDate": "2026-06-16T20:00:11.000Z"
-  },
-  {
-   "title": "Is ASX tech back? Here's 7 stocks rated a Strong Buy (with two that could double)",
-   "url": "https://www.livewiremarkets.com/wires/is-asx-tech-back-here-s-7-stocks-rated-a-strong-buy-with-two-that-could-double",
-   "author": "Tom Stelzer",
-   "topic": "Equities",
-   "tickers": [
-    "ASX:CAT",
-    "ASX:HUB",
-    "ASX:PME",
-    "ASX:TNE",
-    "ASX:WTC",
-    "ASX:XRO",
-    "ASX:360",
-    "ASX:ATEC"
-   ],
-   "categories": [
-    "Australian teCH",
-    "tech stocks"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOElNRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c1ab1e6f26c788365ef2b0819934268842b8cf97/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/ASXTechRecovery_Primary.png",
-   "dek": "Investors are always on the lookout for signals to validate their thesis, and there's not better than seeing it actually play it on the charts. \nAfter months in the red, I’m now proud to say...",
-   "pubDate": "2026-06-16T20:00:08.000Z"
-  },
-  {
-   "title": "This ETF income portfolio delivered 7.8% and beat its yield target. Here's how",
-   "url": "https://www.livewiremarkets.com/wires/this-etf-income-portfolio-delivered-7-8-and-beat-its-yield-target-here-s-how",
-   "author": "Vishal Teckchandani",
-   "topic": "Income Series",
-   "tickers": [
-    "ASX:HVST",
-    "ASX:INCM",
-    "ASX:HCRD",
-    "ASX:ROYL",
-    "ASX:HYLD",
-    "ASX:ECRD"
-   ],
-   "categories": [
-    "dividends",
-    "etfs",
-    "franking credits"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNjhLRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e73b4740a75cb652cca5f54b91cf7850e7a7e89d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Income-26_Cameron-Gleeson-ETF-provider_primary.jpg",
-   "dek": "A year ago, as part of Livewire's Income Series, we challenged ETF providers to build a diversified income portfolio using funds they've listed on the ASX.\nThe brief was straightforward: generate attractive income without taking...",
-   "pubDate": "2026-06-16T00:25:51.000Z"
-  },
-  {
-   "title": "What happens when a crisis changes an industry? | Kevin Bertoli",
-   "url": "https://www.livewiremarkets.com/wires/what-happens-when-a-crisis-changes-an-industry-kevin-bertoli",
-   "author": "Murdoch Gatti",
-   "topic": "Asset Allocation",
-   "tickers": [
-    "ASX:PGF",
-    "NASDAQ:BAC",
-    "NASDAQ:FCX",
-    "NASDAQ:SNY",
-    "NASDAQ:TECK",
-    "NYSE:RPRX",
-    "NYSE:WYNN"
-   ],
-   "categories": [
-    "Contrarian Value Investing",
-    "European banks",
-    "PM Capital Global Companies Fund",
-    "global equities",
-    "pm capital global opportunities fund"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMDRNRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--28e6f62eba9886ff3e750c0efd68bb5fd59f1135/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Livewire%20Ken%20Bertoli%20(1920%20x%201080%20px).jpg",
-   "dek": "Kevin Bertoli joins Murdoch Gatti on The Rate Of Change to discuss how PM Capital identifies opportunity when markets are focused on fear, uncertainty and short-term noise, and why major crises can create some...",
-   "pubDate": "2026-06-15T23:12:38.000Z"
-  },
-  {
-   "title": "3 pieces of investing wisdom that need to be chucked out (and 1 that should stay)",
-   "url": "https://www.livewiremarkets.com/wires/3-pieces-of-investing-wisdom-that-need-to-be-chucked-out-and-1-that-should-stay",
-   "author": "Keith Ford",
-   "topic": "Wealth",
-   "tickers": [],
-   "categories": [
-    "investing rules",
-    "investment advice",
-    "performance"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMndMRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--da6db6ab03384e3b5c11aedf5a1893ac1188424c/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Investing-Wisdom-Chucked-Out_primary%20(1).jpg",
-   "dek": "Investing is often guided by long-held ideas and maxims, but clinging to outdated cliches can hinder rather than help your financial success.This wire critically analyses some of the foundational investment beliefs that experts believe are...",
-   "pubDate": "2026-06-15T20:00:17.000Z"
-  },
-  {
-   "title": "An ASX rare earths miner that did 17,000% - the stock that got away",
-   "url": "https://www.livewiremarkets.com/wires/an-asx-rare-earths-miner-that-did-17-000-the-stock-that-got-away",
-   "author": "Tom Stelzer",
-   "topic": "Equities",
-   "tickers": [
-    "ASX:LYC"
-   ],
-   "categories": [
-    "australian miners",
-    "mining stocks",
-    "rare earths"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMmtNRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--bca02848df9ae93b260e7f49f371cb8f7d7d4544/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Investment-That-Got-Away_Henry-Jennings-Lynas_primary2.jpg",
-   "dek": "Even the world's greatest investors have their fair share of misses, but what's important is what you learn as a result.\nBut it takes a brave investor to share those stories, and an even braver...",
-   "pubDate": "2026-06-15T20:00:16.000Z"
-  },
-  {
-   "title": "Dividends matter, but two other yield drivers are often overlooked",
-   "url": "https://www.livewiremarkets.com/wires/dividends-matter-but-two-other-yield-drivers-are-often-overlooked",
-   "author": "Chris Conway",
-   "topic": "Income Series",
-   "tickers": [
-    "NASDAQ:CSCO",
-    "NYSE:SMG"
-   ],
-   "categories": [
-    "Dividend Stocks",
-    "epoch",
-    "global income",
-    "income stocks"
-   ],
-   "image": "https://www.livewiremarkets.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBelVBRHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6818aff8241c8d4e13e4512c970ddeffb66f22ab/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWdBRGFRSUFBZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--7df8bc9cf0dc4ad716c1689b663c1c6209f11e62/Income26-Kera-van-valen_primary.jpg",
-   "dek": "If you ask most investors where they look for yield, the answers tend to be predictable. Banks, utilities, infrastructure and perhaps a handful of defensive consumer stocks would likely top the list.\nYet according to...",
-   "pubDate": "2026-06-15T20:00:14.000Z"
   }
  ]
 }
