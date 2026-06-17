@@ -96,70 +96,15 @@
       <!-- Z1: Markets Live band (rendered by assets/markets-live.js) -->
       <div data-markets-live class="border-b border-lw-ink"></div>
 
-      <!-- Z2 HERO ZONE: 3 columns -->
-      <div class="grid grid-cols-1 lg:grid-cols-[260px_1fr_300px] gap-8 py-7 border-b border-lw-ink">
-        <!-- left: one imaged + three text -->
-        <div class="lg:divide-y rule">
-          <article class="story group pb-4" data-wire="1">
-            <a href="article.html" class="imgz block aspect-[16/10] mb-2.5"><img src="assets/img/asx.jpg" alt=""></a>
-            <p class="cred mb-1.5">Source: ASX / Livewire</p>
-            <a href="topics.html" class="kicker">Small Caps</a>
-            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-xl leading-[1.12]">Top 6 ASX takeover picks for 2026 — including one 10-bagger</h3></a>
-            <div class="byl mt-2">Ben Richards</div>
-          </article>
-          <article class="story group py-4" data-wire="2">
-            <a href="topics.html" class="kicker">Resources</a>
-            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[17px] leading-[1.18]">Western reindustrialisation and the next resource boom</h3></a>
-            <div class="byl mt-1.5">Kerry Sun</div>
-          </article>
-          <article class="story group py-4" data-wire="3">
-            <a href="topics.html" class="kicker">Markets</a>
-            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[17px] leading-[1.18]">The bull case nobody wants to make</h3></a>
-            <div class="byl mt-1.5">Chris Conway</div>
-          </article>
-          <article class="story group pt-4" data-wire="4">
-            <a href="topics.html" class="kicker">Income</a>
-            <a href="article.html" class="block mt-1"><h3 class="hl ff-d text-[17px] leading-[1.18]">Bonds are back as the portfolio's shock absorber</h3></a>
-            <div class="byl mt-1.5">Anne Milne</div>
-          </article>
+      <!-- Z2 HERO: ZDNet-style 80/20 — a dense headline list + one giant text lead -->
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,300px)_1fr] gap-0 lg:gap-10 border-b border-lw-ink">
+        <!-- 20%: "/ Today" — headline-only, no images -->
+        <div class="lg:border-r rule lg:pr-8 py-7">
+          <div class="flex items-baseline gap-1.5 mb-2 border-b-2 border-lw-ink pb-2"><span class="ff-d text-2xl font-700" style="color:#B88E1E">/</span><h2 class="ff-d text-2xl font-700 leading-none">Today</h2></div>
+          <div class="divide-y rule" data-home-today><p class="ff-b italic text-lw-muted py-6 text-[14px]">Loading…</p></div>
         </div>
-
-        <!-- center: big lead -->
-        <article class="story group lg:px-8 lg:border-x rule" data-wire="0">
-          <a href="article.html" class="imgz block aspect-[3/2] mb-3"><img src="assets/img/tax.jpg" alt=""></a>
-          <p class="cred mb-2">Illustration by Livewire · Source: Getty</p>
-          <a href="topics.html" class="kicker">Wealth · Budget 2026</a>
-          <a href="article.html" class="block mt-1.5 text-center"><h1 class="hl ff-d text-[2rem] md:text-[2.7rem] leading-[1.05] font-500" style="letter-spacing:-.015em">"A real sting in the tail" — the rules of investing have been rewritten</h1></a>
-          <p class="ff-b text-lg text-lw-sub leading-snug mt-3 text-center max-w-xl mx-auto" data-wire-dek>Three major tax reforms are about to reshape how Australians build wealth. Here are the five charts that matter.</p>
-          <div class="flex items-center justify-center gap-2.5 mt-3.5"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-7 h-7 rounded-full"><span class="byl">Vishal Teckchandani &amp; Sara Allen</span></div>
-        </article>
-
-        <!-- right: dense six-row list -->
-        <div>
-          <div class="divide-y rule">
-            <article class="story group flex gap-3 pb-3.5 items-start" data-wire="5">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Equities</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">Where to catch the investment waves in 2026</h3></a><div class="byl mt-1.5">Steve Johnson</div></div>
-              <a href="article.html" class="imgz w-12 h-12 flex-shrink-0"><img src="assets/img/equities.jpg" alt=""></a>
-            </article>
-            <article class="story group py-3.5" data-wire="6">
-              <a href="topics.html" class="kicker">Retirement</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">Retiring in 2026? Four smart moves to protect your lifestyle</h3></a><div class="byl mt-1.5">Aaron Minney</div>
-            </article>
-            <article class="story group flex gap-3 py-3.5 items-start" data-wire="7">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Markets</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">2025 turned out pretty good — but what about 2026?</h3></a><div class="byl mt-1.5">Shane Oliver</div></div>
-              <a href="article.html" class="imgz w-12 h-12 flex-shrink-0"><img src="assets/img/markets.jpg" alt=""></a>
-            </article>
-            <article class="story group py-3.5" data-wire="8">
-              <a href="topics.html" class="kicker">Income</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">The ultimate investing guide for 2026</h3></a><div class="byl mt-1.5">Livewire Exclusive</div>
-            </article>
-            <article class="story group flex gap-3 py-3.5 items-start" data-wire="9">
-              <div class="flex-1 min-w-0"><a href="topics.html" class="kicker">Property</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">The property data that should worry investors</h3></a><div class="byl mt-1.5">Vishal Teckchandani</div></div>
-              <a href="article.html" class="imgz w-12 h-12 flex-shrink-0"><img src="assets/img/property-vish.jpg" alt=""></a>
-            </article>
-            <article class="story group pt-3.5">
-              <a href="topics.html" class="kicker">Shares</a><a href="article.html" class="block"><h3 class="hl ff-d text-[15px] leading-[1.18]">CSL vs ResMed: the healthcare heavyweight bout</h3></a><div class="byl mt-1.5">Tom Stelzer</div>
-            </article>
-          </div>
-        </div>
+        <!-- 80%: one giant headline-only lead (just topic + headline) -->
+        <div class="py-8 lg:py-12 flex items-center min-h-[320px]" data-home-hero></div>
       </div>
 
       <!-- Z3 EDITORS' PICKS: anchor card + three text stacks -->
@@ -537,6 +482,38 @@
     // wait for the RSS feed to fold into LW_DATA so the shelf shows real wires
     function start(){ if (window.LW_FEED_READY && window.LW_FEED_READY.then){ var done=false,g=function(){if(done)return;done=true;boot();}; window.LW_FEED_READY.then(g,g); setTimeout(g,2500);} else boot(); }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  })();
+  </script>
+
+  <script>
+  // Z2 hero — ZDNet-style 80/20: a dense "/ Today" headline list + one giant text lead
+  (function(){
+    function esc(s){ return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    function topicOf(it){ return (it.topics && it.topics[0]) || 'Markets'; }
+    function rel(iso){ var m=Math.max(1,Math.round((Date.now()-new Date(iso).getTime())/60000)); if(m<60)return m+'m ago'; var h=Math.round(m/60); if(h<24)return h+'h ago'; return Math.round(h/24)+'d ago'; }
+    function render(){
+      var hero=document.querySelector('[data-home-hero]'), today=document.querySelector('[data-home-today]');
+      if(!hero||!today) return;
+      var data=(window.LW_DATA||[]).filter(function(it){ return !it.locked && it.title; });
+      data.sort(function(a,b){ return new Date(b.pubDate)-new Date(a.pubDate); });
+      if(!data.length) return;
+      var lead=data[0], list=data.slice(1,11);
+      hero.innerHTML='<a href="'+(lead.url||'article.html')+'" class="story group block">'+
+        '<span class="kicker" style="font-size:12px">'+esc(topicOf(lead))+'</span>'+
+        '<h1 class="hl ff-d font-600 mt-3" style="font-size:clamp(2.5rem,5.4vw,4.7rem);line-height:0.97;letter-spacing:-.02em">'+esc(lead.title)+'</h1>'+
+        '<div class="byl mt-7" style="font-size:11px">'+esc(lead.author||'Livewire')+' <span class="text-lw-muted" style="text-transform:none;letter-spacing:.01em">· '+rel(lead.pubDate)+'</span></div>'+
+      '</a>';
+      today.innerHTML=list.map(function(it){
+        return '<a href="'+(it.url||'article.html')+'" class="story group block py-3.5 first:pt-0">'+
+          '<span class="kicker" style="font-size:9px">'+esc(topicOf(it))+'</span>'+
+          '<h3 class="hl ff-d text-[15px] leading-[1.2] mt-1">'+esc(it.title)+'</h3>'+
+          '<div class="byl mt-1" style="font-size:9px">'+esc(it.author||'Livewire')+'</div>'+
+        '</a>';
+      }).join('');
+    }
+    function start(){ if (window.LW_FEED_READY && window.LW_FEED_READY.then){ var d=false,g=function(){if(d)return;d=true;render();}; window.LW_FEED_READY.then(g,g); setTimeout(g,2500);} else render(); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+    document.addEventListener('lw:feed', render);
   })();
   </script>
   <script src="assets/data/funds.js"></script>
