@@ -103,8 +103,8 @@
           <div class="flex items-baseline gap-1.5 mb-3 pb-2.5 border-b-2 border-lw-ink"><span class="ff-d text-[26px] font-700 leading-none" style="color:#B88E1E">/</span><h2 class="ff-d text-[26px] font-700 leading-none">Today</h2></div>
           <div data-home-today><p class="ff-b italic text-lw-muted py-6 text-[14px]">Loading…</p></div>
         </div>
-        <!-- 80%: one giant headline-only lead (topic + headline, framed by eyebrow + meta) -->
-        <div class="lg:pl-10 pt-7 pb-9 flex" data-home-hero></div>
+        <!-- 80%: the lead — big image + topic + headline -->
+        <div class="lg:pl-10 pt-7 pb-9" data-home-hero></div>
       </div>
 
       <!-- Z3 EDITORS' PICKS: anchor card + three text stacks -->
@@ -497,17 +497,19 @@
       var data=(window.LW_DATA||[]).filter(function(it){ return !it.locked && it.title; });
       data.sort(function(a,b){ return new Date(b.pubDate)-new Date(a.pubDate); });
       if(!data.length) return;
-      var lead=data[0], list=data.slice(1,9);
-      hero.innerHTML='<a href="'+(lead.url||'article.html')+'" class="story group flex flex-col h-full no-underline">'+
-        '<div>'+
-          '<div class="flex items-center gap-2.5 mb-5">'+
-            '<span class="inline-block h-px w-9" style="background:#B88E1E"></span>'+
-            '<span class="ff-m text-[11px] font-700 tracking-[.18em] uppercase" style="color:#B88E1E">'+esc(topicOf(lead))+'</span>'+
-          '</div>'+
-          '<h1 class="hl ff-d font-600" style="font-size:clamp(2.7rem,5.6vw,5.1rem);line-height:0.94;letter-spacing:-.028em">'+esc(lead.title)+'</h1>'+
+      var lead=data.filter(function(it){ return it.image; })[0] || data[0];
+      var list=data.filter(function(it){ return it!==lead; }).slice(0,9);
+      var img=lead.image
+        ? '<div class="imgz block aspect-[16/9] mb-6"><img src="'+esc(lead.image)+'" alt="" loading="eager" onerror="var z=this.closest(\'.imgz\'); if(z) z.style.display=\'none\'"></div>'
+        : '';
+      hero.innerHTML='<a href="'+(lead.url||'article.html')+'" class="story group block no-underline">'+
+        img+
+        '<div class="flex items-center gap-2.5 mb-3">'+
+          '<span class="inline-block h-px w-9" style="background:#B88E1E"></span>'+
+          '<span class="ff-m text-[11px] font-700 tracking-[.18em] uppercase" style="color:#B88E1E">'+esc(topicOf(lead))+'</span>'+
         '</div>'+
-        '<div class="flex-1 min-h-[2.5rem]"></div>'+
-        '<div class="flex items-center gap-3 pt-4 border-t-2 border-lw-ink">'+
+        '<h1 class="hl ff-d font-600" style="font-size:clamp(2.2rem,4.3vw,3.7rem);line-height:0.99;letter-spacing:-.022em">'+esc(lead.title)+'</h1>'+
+        '<div class="flex items-center gap-3 mt-5 pt-3.5 border-t border-lw-ink">'+
           '<span class="byl">'+esc(lead.author||'Livewire')+'</span>'+
           '<span class="ts" style="text-transform:none;letter-spacing:.01em">· '+rel(lead.pubDate)+'</span>'+
           '<span class="flex-1"></span>'+
