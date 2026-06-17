@@ -566,17 +566,24 @@
       if(!data.length) return;
       var lead=data.filter(function(it){ return it.image; })[0] || data[0];
       var list=data.filter(function(it){ return it!==lead; }).slice(0,9);
+      // Lead Story Block — headline ABOVE the image, standfirst + author pfp shown
       var img=lead.image
-        ? '<div class="imgz block aspect-[16/9] mb-6"><img src="'+esc(lead.image)+'" alt="" loading="eager" onerror="var z=this.closest(\'.imgz\'); if(z) z.style.display=\'none\'"></div>'
+        ? '<div class="imgz block aspect-[16/9] mt-6"><img src="'+esc(lead.image)+'" alt="" loading="eager" onerror="var z=this.closest(\'.imgz\'); if(z) z.style.display=\'none\'"></div>'
         : '';
+      var dek=lead.dek
+        ? '<p class="ff-b text-lw-sub leading-snug mt-4 max-w-[42ch]" style="font-size:clamp(1.1rem,1.5vw,1.4rem);font-style:italic">'+esc(lead.dek)+'</p>'
+        : '';
+      var av=(window.lwAvatar ? window.lwAvatar(lead.author||'Livewire', 30) : '');
       hero.innerHTML='<a href="'+(lead.url||'article.html')+'" class="story group block no-underline">'+
-        img+
         '<div class="flex items-center gap-2.5 mb-3">'+
           '<span class="inline-block h-px w-9" style="background:#B88E1E"></span>'+
           '<span class="ff-m text-[11px] font-700 tracking-[.18em] uppercase" style="color:#B88E1E">'+esc(topicOf(lead))+'</span>'+
         '</div>'+
-        '<h1 class="hl ff-d font-600" style="font-size:clamp(2.2rem,4.3vw,3.7rem);line-height:0.99;letter-spacing:-.022em">'+esc(lead.title)+'</h1>'+
-        '<div class="flex items-center gap-3 mt-5 pt-3.5 border-t border-lw-ink">'+
+        '<h1 class="hl ff-d font-600" style="font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.0;letter-spacing:-.024em">'+esc(lead.title)+'</h1>'+
+        dek+
+        img+
+        '<div class="flex items-center gap-3 mt-5 pt-4 border-t border-lw-ink">'+
+          '<span class="flex-shrink-0">'+av+'</span>'+
           '<span class="byl">'+esc(lead.author||'Livewire')+'</span>'+
           '<span class="ts" style="text-transform:none;letter-spacing:.01em">· '+rel(lead.pubDate)+'</span>'+
           '<span class="flex-1"></span>'+
