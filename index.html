@@ -55,20 +55,9 @@
 </head>
 <body class="text-lw-ink font-body">
 
-  <!-- Utility strip -->
-  <div class="bg-lw-ink"><div class="max-w-[1240px] mx-auto px-5 h-8 flex items-center justify-between ts" style="color:rgba(251,250,246,.6)"><div class="flex items-center gap-3"><span>ASX 200 <span style="color:#7FB996">8,912 ▲ 0.4%</span></span><span class="hidden sm:inline">AUD/USD 0.661</span><span class="hidden md:inline">GOLD $4,180</span></div><div class="flex items-center gap-4"><a href="#" class="hover:text-white">Sign in</a><a href="#" style="color:#E0A82E" class="hover:text-white">Subscribe</a></div></div></div>
+  <div data-lw-masthead></div>
 
-  <!-- Masthead -->
-  <header class="bg-lw-paper border-b border-lw-ink sticky top-0 z-50">
-    <div class="max-w-[1240px] mx-auto px-5 py-4 flex items-center justify-between gap-6">
-      <a href="index.html" class="flex-shrink-0"><img src="assets/logo/wordmark.svg" alt="Livewire Markets" class="h-10 md:h-12"></a>
-      <nav class="hidden lg:flex items-center gap-6 navlink text-lw-sub"><a href="index.html" class="text-lw-gold">Home</a><a href="scans.html" class="hover:text-lw-gold">Scans</a><a href="topics.html" class="hover:text-lw-gold">Topics</a><a href="contributors.html" class="hover:text-lw-gold">Contributors</a><a href="video.html" class="hover:text-lw-gold">Video</a><a href="funds.html" class="hover:text-lw-gold">Funds</a></nav>
-      <div class="flex items-center gap-4">
-        <button aria-label="Search" class="hover:text-lw-gold"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.6" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></button>
-        <a href="#" class="hidden sm:inline-flex items-center border border-lw-ink px-4 h-9 navlink hover:bg-lw-ink hover:text-lw-paper transition-colors">Newsletter</a>
-      </div>
-    </div>
-  </header>
+
 
   <!-- Top leaderboard ad -->
   <div style="background:#F3EEE4" class="border-b border-lw-line">
@@ -234,6 +223,84 @@
           </div>
         </div>
       </div>
+
+      <!-- Market Voices — featured strategists (contributor showcase) -->
+      <section class="py-9 border-b border-lw-ink">
+        <div class="flex items-end justify-between border-b-2 border-lw-ink pb-3 mb-7 flex-wrap gap-3">
+          <div>
+            <div class="kicker mb-1.5">Market Voices</div>
+            <h2 class="ff-d text-3xl md:text-[2.5rem] font-600 leading-none" style="letter-spacing:-.01em">The strategists worth following</h2>
+          </div>
+          <a href="contributors.html" class="navlink text-lw-sub hover:text-lw-gold pb-1">All contributors →</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-9 lg:divide-x rule">
+          <article class="lg:px-7 lg:first:pl-0">
+            <div class="flex items-center gap-3 mb-3.5"><img src="assets/img/contributors/vishal-teckchandani.jpg" class="avatar w-12 h-12 rounded-full flex-shrink-0" alt=""><div class="min-w-0"><div class="ff-d font-600 text-[15.5px] leading-tight">Vishal Teckchandani</div><div class="cred" style="text-transform:none;letter-spacing:.02em">Lead Investment Writer</div></div></div>
+            <a href="author.html" class="story group block"><h3 class="hl ff-d text-[16px] leading-[1.24] mb-4" style="font-style:italic">“The rules of investing have just been rewritten — here’s what actually changes.”</h3></a>
+            <button class="follow-btn follow-pill w-full py-2" data-follow="author:Vishal Teckchandani"><span data-follow-label>Follow</span></button>
+          </article>
+          <article class="lg:px-7">
+            <div class="flex items-center gap-3 mb-3.5"><img src="assets/img/contributors/roger-montgomery.jpg" class="avatar w-12 h-12 rounded-full flex-shrink-0" alt=""><div class="min-w-0"><div class="ff-d font-600 text-[15.5px] leading-tight">Roger Montgomery</div><div class="cred" style="text-transform:none;letter-spacing:.02em">Montgomery Investment Mgmt</div></div></div>
+            <a href="author.html" class="story group block"><h3 class="hl ff-d text-[16px] leading-[1.24] mb-4" style="font-style:italic">“The great compounders are on sale again — if you know where to look.”</h3></a>
+            <button class="follow-btn follow-pill w-full py-2" data-follow="author:Roger Montgomery"><span data-follow-label>Follow</span></button>
+          </article>
+          <article class="lg:px-7">
+            <div class="flex items-center gap-3 mb-3.5"><img src="assets/img/contributors/steve-johnson.jpg" class="avatar w-12 h-12 rounded-full flex-shrink-0" alt=""><div class="min-w-0"><div class="ff-d font-600 text-[15.5px] leading-tight">Steve Johnson</div><div class="cred" style="text-transform:none;letter-spacing:.02em">Forager Funds</div></div></div>
+            <a href="author.html" class="story group block"><h3 class="hl ff-d text-[16px] leading-[1.24] mb-4" style="font-style:italic">“Where to catch the investment waves the market hasn’t priced yet.”</h3></a>
+            <button class="follow-btn follow-pill w-full py-2" data-follow="author:Steve Johnson"><span data-follow-label>Follow</span></button>
+          </article>
+          <article class="lg:px-7 lg:last:pr-0">
+            <div class="flex items-center gap-3 mb-3.5"><img src="assets/img/contributors/shane-oliver.jpg" class="avatar w-12 h-12 rounded-full flex-shrink-0" alt=""><div class="min-w-0"><div class="ff-d font-600 text-[15.5px] leading-tight">Shane Oliver</div><div class="cred" style="text-transform:none;letter-spacing:.02em">AMP · Chief Economist</div></div></div>
+            <a href="author.html" class="story group block"><h3 class="hl ff-d text-[16px] leading-[1.24] mb-4" style="font-style:italic">“2025 turned out pretty good. Here’s the case — and risks — for 2026.”</h3></a>
+            <button class="follow-btn follow-pill w-full py-2" data-follow="author:Shane Oliver"><span data-follow-label>Follow</span></button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Newsletter — inline signup strip (conforms to the grid) -->
+      <section id="newsletter" class="bg-lw-ink my-9" style="scroll-margin-top:120px">
+        <div class="px-6 md:px-10 py-9 grid lg:grid-cols-[1fr_440px] items-center gap-7">
+          <div>
+            <div class="ff-m text-[10px] tracking-[.2em] uppercase mb-2.5" style="color:#E0A82E">The 6am Wire · Free daily email</div>
+            <h2 class="ff-d text-2xl md:text-[2.1rem] font-600 leading-[1.04]" style="color:#FBFAF6">Australia’s market minds, in your inbox before the open.</h2>
+            <p class="ff-b text-[15px] leading-snug mt-2.5" style="color:rgba(251,250,246,.62)">Join 280,000+ investors. One concise email every trading day — the wires that matter, nothing else.</p>
+          </div>
+          <form class="flex flex-col sm:flex-row gap-2.5" data-newsletter>
+            <input type="email" required placeholder="you@email.com" aria-label="Email address" class="flex-1 h-12 px-4 ff-b text-[15px]" style="background:rgba(251,250,246,.08);border:1px solid rgba(251,250,246,.28);color:#FBFAF6;outline:none">
+            <button type="submit" class="ff-m font-700 h-12 px-6 whitespace-nowrap" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#E0A82E;color:#16130E">Subscribe free</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Feature lock — premium insight, truncated with an embedded signup wall -->
+      <section class="py-9 border-b border-lw-ink">
+        <div class="grid lg:grid-cols-[1fr_300px] gap-8 lg:gap-12">
+          <div>
+            <div class="kicker mb-2" style="color:#7A2E2E">▦ Members · Exclusive data</div>
+            <h3 class="ff-d text-2xl md:text-[2rem] font-600 leading-[1.08] mb-3.5" style="letter-spacing:-.01em">The 11 stocks our most-followed managers are quietly accumulating</h3>
+            <div class="relative" style="max-height:158px;overflow:hidden">
+              <p class="ff-b text-[1.05rem] leading-[1.72] text-lw-sub" style="margin-bottom:1.1rem">Across the last quarter’s portfolio updates, a clear pattern emerged: a handful of names appeared again and again in the buy columns of Australia’s best-performing managers — well before the broader market noticed.</p>
+              <p class="ff-b text-[1.05rem] leading-[1.72] text-lw-sub">We cross-referenced every disclosed trade against fund performance to isolate the highest-conviction positions. Three are small caps under sustained accumulation; two are unloved industrials with quietly improving…</p>
+              <div class="absolute inset-x-0 bottom-0 h-24" style="background:linear-gradient(to bottom,rgba(251,250,246,0),#FBFAF6)"></div>
+            </div>
+            <div class="mt-3 flex flex-wrap items-center gap-3.5">
+              <button data-act="signin" class="ff-m font-700 h-11 px-6 inline-flex items-center" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#E0A82E;color:#16130E">Unlock free →</button>
+              <span class="ts" style="text-transform:none;letter-spacing:0">Free account · no paywall, ever</span>
+            </div>
+          </div>
+          <aside class="lg:border-l rule lg:pl-8">
+            <div class="ts mb-3" style="color:#16130E">THE FULL LIST</div>
+            <div class="divide-y rule">
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">1 · CSL</span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+4.2%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">2 · <span style="filter:blur(5px);user-select:none">XXXX</span></span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+8.1%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">3 · <span style="filter:blur(5px);user-select:none">XXX</span></span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+2.6%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]" style="filter:blur(5px);user-select:none">4 · XXXXX</span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+11%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]" style="filter:blur(5px);user-select:none">5 · XXX</span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+5.4%</span></div>
+            </div>
+            <div class="ts mt-3" style="color:#7A2E2E">+ 6 more · sign in to reveal</div>
+          </aside>
+        </div>
+      </section>
 
       <!-- Z6 RECOMMENDED / ARCHIVE / AROUND THE WEB -->
       <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-10">
@@ -530,6 +597,15 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
     document.addEventListener('lw:feed', render);
   })();
+  </script>
+
+  <script>
+  // Inline newsletter signup — confirm in place, no pop-up
+  document.addEventListener('submit', function (e) {
+    var form = e.target.closest('[data-newsletter]'); if (!form) return;
+    e.preventDefault();
+    form.innerHTML = '<div class="ff-b flex items-center gap-2.5" style="color:#FBFAF6;font-size:15px"><span style="color:#7FB996;font-size:20px">✓</span> You’re in — your first Wire lands tomorrow at 6am.</div>';
+  });
   </script>
   <script src="assets/data/funds.js"></script>
   <script src="assets/funds.js"></script>

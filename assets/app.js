@@ -466,28 +466,88 @@
     bd.querySelectorAll('[data-signin-sso]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); doSignIn(); }));
   }
 
-  // ---- Auth-driven nav rendering ----
-  function rightCluster() {
-    const search = `<button data-act="search" aria-label="Search" class="w-9 h-9 grid place-items-center hover:bg-lw-mist rounded-full" style="color:#16130E"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.6" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></button>`;
-    if (!auth.signedIn) {
-      return `<div class="flex items-center gap-3">${search}<a href="#" data-act="signin" class="hidden sm:inline-flex items-center px-4 h-9 navlink" style="border:1px solid #16130E">Sign in</a></div>`;
-    }
-    const icon = (p) => `<button class="w-9 h-9 grid place-items-center hover:bg-lw-mist rounded-full" style="color:#16130E"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">${p}</svg></button>`;
-    return `<div class="flex items-center gap-2">${search}
-      <a href="#" class="hidden md:inline-flex items-center px-3.5 h-9 navlink" style="background:#B88E1E;color:#16130E">Write a Wire</a>
-      ${icon('<path stroke-width="1.6" stroke-linecap="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1"/>')}
-      ${icon('<path stroke-width="1.6" stroke-linecap="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>')}
-      <span class="lwx-avatar" data-act="avatar" title="${USER.name}">${USER.initials}</span></div>`;
+  // ---- Masthead: two-tier "terminal" header (dark utility bar + light sub-nav) ----
+  const MH_NAV = [
+    { label: 'Latest', href: 'index.html' },
+    { label: 'Shares', href: 'topic.html?t=shares' },
+    { label: 'Growth', href: 'topic.html?t=growth' },
+    { label: 'Retirement', href: 'topic.html?t=retirement' },
+    { label: 'Buy Hold Sell', href: 'buy-hold-sell.html' },
+    { label: 'Podcast', href: 'video.html' }
+  ];
+  function mhPage() { return (location.pathname.split('/').pop() || 'index').toLowerCase().replace(/\.html$/, ''); }
+  function mhActive(href) {
+    const cur = mhPage(), t = new URLSearchParams(location.search).get('t');
+    if (href === 'index.html') return cur === '' || cur === 'index';
+    if (href.indexOf('topic.html?t=') === 0) return cur === 'topic' && t === href.split('=')[1];
+    return cur === href.replace('.html', '');
   }
-  function stripCluster() {
-    if (!auth.signedIn) return `<a href="#" data-act="signin" class="hover:text-white">Sign in</a><a href="#" data-act="signin" style="color:#E0A82E" class="hover:text-white">Subscribe</a>`;
-    return `<span style="color:rgba(251,250,246,.8)">Welcome back, ${USER.first}</span><a href="#" data-act="signout" class="hover:text-white" style="color:#E0A82E">Sign out</a>`;
+  function mhNavLinks() {
+    return MH_NAV.map((n) => `<a href="${n.href}" class="lw-navlink${mhActive(n.href) ? ' is-active' : ''}">${n.label}</a>`).join('');
+  }
+  // the right-hand action cluster on the dark bar (auth-aware)
+  function mhCluster() {
+    const ico = (label, path, dot) => `<button aria-label="${label}" class="lw-ico relative w-9 h-9 grid place-items-center"><svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">${path}</svg>${dot ? '<span class="lw-dot"></span>' : ''}</button>`;
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const themeBtn = `<button data-theme-toggle aria-label="Toggle dark mode" class="lw-ico w-9 h-9 grid place-items-center">` +
+      (dark ? '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
+        : '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>') + '</button>';
+    const search = `<button data-act="search" class="lw-search-pill hidden md:flex items-center gap-2 h-9 px-3.5 rounded-full w-[210px]"><svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.7" d="M21 21l-5-5m2-4a6 6 0 11-12 0 6 6 0 0112 0z"/></svg><span>Search</span></button>` +
+      `<button data-act="search" aria-label="Search" class="lw-ico md:hidden w-9 h-9 grid place-items-center"><svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.7" d="M21 21l-5-5m2-4a6 6 0 11-12 0 6 6 0 0112 0z"/></svg></button>`;
+    const write = `<a href="article.html" class="lw-write hidden sm:inline-flex items-center h-9 px-4">Write a Wire</a>`;
+    let tail;
+    if (auth.signedIn) {
+      tail = ico('Notifications', '<path stroke-width="1.7" stroke-linecap="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1"/>', true) +
+        ico('Saved', '<path stroke-width="1.7" stroke-linecap="round" d="M6 4h12a1 1 0 011 1v15l-7-3.5L5 20V5a1 1 0 011-1z"/>', false) +
+        `<button data-act="avatar" class="flex items-center gap-1.5 pl-1" aria-label="Account"><span class="ff-m text-[12px] font-700 tracking-[.08em]" style="color:#fff">${USER.first.toUpperCase()}</span><svg class="w-4 h-4" style="color:rgba(251,250,246,.6)" fill="currentColor" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>`;
+    } else {
+      tail = `<a href="#" data-act="signin" class="ff-m text-[12px] font-700 tracking-[.06em] inline-flex items-center h-9 px-4" style="border:1px solid rgba(251,250,246,.45);color:#fff;text-transform:uppercase">Sign up</a>`;
+    }
+    return `${search}${write}${themeBtn}${tail}`;
+  }
+  function mastheadHtml() {
+    return `<style id="lw-mh-css">
+      .lw-navlink{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#16130E;white-space:nowrap;transition:color .15s;padding:14px 0;display:inline-block}
+      .lw-navlink:hover{color:#B88E1E}.lw-navlink.is-active{color:#B88E1E}
+      .lw-navdiv{width:1px;height:16px;background:#CFC8BA;flex-shrink:0}
+      .lw-search-pill{font-family:'Spline Sans Mono',monospace;font-size:12.5px;letter-spacing:.02em;background:rgba(251,250,246,.1);color:rgba(251,250,246,.7);transition:background .15s}
+      .lw-search-pill:hover{background:rgba(251,250,246,.18)}
+      .lw-ico{color:rgba(251,250,246,.82);transition:color .15s,background .15s}
+      .lw-ico:hover{color:#fff;background:rgba(251,250,246,.12)}
+      .lw-dot{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:9999px;background:#C0392B;box-shadow:0 0 0 2px #16130E}
+      .lw-write{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.02em;background:#E0A82E;color:#16130E;transition:background .15s}
+      .lw-write:hover{background:#caa12f}
+      [data-theme=dark] .lw-navlink{color:#EDE7DB}[data-theme=dark] .lw-navlink:hover,[data-theme=dark] .lw-navlink.is-active{color:#D8A93A}
+      [data-theme=dark] .lw-navdiv{background:#4A4338}
+      [data-theme=dark] .lw-subnav{background:#14120E !important;border-color:#4A4338 !important}
+    </style>` +
+      `<header class="lw-masthead sticky top-0 z-50">` +
+        `<div class="bg-lw-ink">` +
+          `<div class="max-w-[1240px] mx-auto px-5 h-[60px] flex items-center justify-between gap-4">` +
+            `<a href="index.html" class="flex-shrink-0"><img data-fixed-logo src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-8" onerror="this.style.display='none'"></a>` +
+            `<div class="flex items-center gap-2 sm:gap-2.5" data-auth-cluster>${mhCluster()}</div>` +
+          `</div>` +
+        `</div>` +
+        `<div class="lw-subnav bg-lw-paper border-b border-lw-ink">` +
+          `<div class="max-w-[1240px] mx-auto px-5 flex items-center gap-x-6 lg:gap-x-7 overflow-x-auto">` +
+            mhNavLinks() +
+            `<span class="lw-navdiv"></span>` +
+            `<a href="funds.html" class="lw-navlink${mhActive('funds.html') ? ' is-active' : ''}">Find Funds</a>` +
+            `<a href="#newsletter" class="lw-navlink">Newsletter</a>` +
+            `<button data-nav-more aria-label="More topics" class="lw-navlink ml-auto" style="padding-left:8px"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg></button>` +
+          `</div>` +
+        `</div>` +
+      `</header>`;
+  }
+  function injectMasthead() {
+    const slot = document.querySelector('[data-lw-masthead]');
+    if (slot) slot.outerHTML = mastheadHtml();
+    else document.body.insertAdjacentHTML('afterbegin', mastheadHtml());
+    try { document.dispatchEvent(new CustomEvent('lw:masthead')); } catch (e) {}
   }
   function renderAuthUI() {
-    const header = document.querySelector('header'); const hbar = header && header.querySelector(':scope > div');
-    if (hbar && hbar.lastElementChild) { const slot = hbar.lastElementChild; const n = elFrom(rightCluster()); slot.replaceWith(n); }
-    const strip = document.querySelector('.bg-lw-ink'); const sbar = strip && strip.querySelector(':scope > div');
-    if (sbar && sbar.lastElementChild) { sbar.lastElementChild.innerHTML = stripCluster(); }
+    const cluster = document.querySelector('[data-auth-cluster]');
+    if (cluster) cluster.innerHTML = mhCluster();
   }
   function initAuthActions() {
     document.addEventListener('click', (e) => {
@@ -643,9 +703,9 @@
   ];
   function initTopicsMenu() {
     const header = document.querySelector('header'); if (!header) return;
-    const link = [...header.querySelectorAll('nav a')].find((a) => /topics\.html$/.test(a.getAttribute('href') || ''));
+    const link = header.querySelector('[data-nav-more]');
     if (!link || link.__megawired) return; link.__megawired = true;
-    header.style.position = header.style.position || 'relative';
+    // header is position:sticky (a containing block already) — don't override it
     const panel = elFrom('<div class="lw-mega" style="position:absolute;left:0;right:0;top:100%;z-index:60;background:var(--lw-paper,#FBFAF6);border-bottom:1px solid #16130E;box-shadow:0 30px 50px -24px rgba(22,19,14,.4);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s,transform .16s"></div>');
     panel.classList.add('bg-lw-paper');
     panel.innerHTML = '<div class="max-w-[1240px] mx-auto px-5 py-7 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-7">' +
@@ -661,6 +721,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     injectGlobals();
+    injectMasthead();
     renderAuthUI();
     initTopicsMenu();
     initAuthActions();

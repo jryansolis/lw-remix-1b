@@ -81,6 +81,7 @@
   // masthead logo is dark-on-transparent; use the white wordmark in dark mode
   function swapLogo(t) {
     document.querySelectorAll('header img[src*="wordmark"]').forEach(function (img) {
+      if (img.hasAttribute('data-fixed-logo')) return; // dark utility bar — always the white wordmark
       img.src = img.src.replace(/wordmark(-neg)?\.svg/, t === 'dark' ? 'wordmark-neg.svg' : 'wordmark.svg');
     });
   }
