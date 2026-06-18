@@ -47,13 +47,18 @@
     // subtopic chips → scans
     var subs = document.querySelector('[data-beat-subs]');
     if (subs) subs.innerHTML = '<span class="ts mr-1" style="color:#8C8474">In ' + esc(topic.name) + ':</span>' +
-      topic.subs.map(function (s) { return '<a class="scan-chip" href="scans.html?q=' + encodeURIComponent(topic.name + ' ' + s) + '">' + esc(s) + '</a>'; }).join('');
+      topic.subs.map(function (s) { return '<span class="scan-chip" style="cursor:default;pointer-events:none">' + esc(s) + '</span>'; }).join('');
 
-    // content from the live index, filtered to this topic
-    var all = (window.LW_DATA || []).filter(function (it) { return (it.topics || []).indexOf(topic.name) !== -1 && !it.locked; });
-    all.sort(function (a, b) { return (b.live ? 1 : 0) - (a.live ? 1 : 0) || (new Date(b.pubDate) - new Date(a.pubDate)); });
+    // genuinely-live RSS wires for this topic (newest-first) + curated content
+    var curated = ((window.LW_TOPIC_CONTENT || {})[slug] || []).map(function (c) {
+      return { title: c.t, author: c.a, dek: c.d || '', image: c.img || '', url: 'article.html', topics: [topic.name], live: false };
+    });
+    var fromData = (window.LW_DATA || []).filter(function (it) { return (it.topics || []).indexOf(topic.name) !== -1 && !it.locked; });
+    fromData.sort(function (a, b) { return (b.live ? 1 : 0) - (a.live ? 1 : 0) || (new Date(b.pubDate) - new Date(a.pubDate)); });
+    var all = [], seen = {};
+    fromData.concat(curated).forEach(function (it) { var k = (it.title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 36); if (k && !seen[k]) { seen[k] = 1; all.push(it); } });
     var main = document.querySelector('[data-beat-main]');
-    if (!all.length) { main.innerHTML = '<p class="ff-b italic text-lw-muted py-10">No wires in ' + esc(topic.name) + ' yet — <a href="scans.html" class="underline" style="color:#B88E1E">run a scan</a> across every category instead.</p>'; }
+    if (!all.length) { main.innerHTML = '<p class="ff-b italic text-lw-muted py-10">More ' + esc(topic.name) + ' wires are on the way.</p>'; }
     else {
       var lead = all[0], rest = all.slice(1);
       var grid = rest.slice(0, 4), list = rest.slice(4, 12);
@@ -67,8 +72,8 @@
     if (rail) {
       var others = (window.LW_TOPICS || []).filter(function (t) { return t.slug !== topic.slug; });
       rail.innerHTML =
-        '<div class="border border-lw-ink p-5 mb-7"><div class="kicker mb-2">⌁ Scans</div><p class="ff-b text-[15px] text-lw-sub leading-snug mb-3">Cut across categories — ask by theme, ticker or idea.</p><a href="scans.html?q=' + encodeURIComponent(topic.name) + '" class="follow-btn w-full text-center py-2.5 bg-lw-ink text-lw-paper hover:bg-lw-gold hover:text-lw-ink transition-colors block">Scan ' + esc(topic.name) + ' →</a></div>' +
-        '<div class="mb-7"><div class="border-t-2 border-lw-ink pt-3 mb-3"><h2 class="secttl text-sm">More beats</h2></div><div class="flex flex-wrap gap-2">' + others.map(function (t) { return '<a href="topic.html?t=' + t.slug + '" class="scan-chip" style="text-transform:none;letter-spacing:.02em">' + esc(t.name) + '</a>'; }).join('') + '</div></div>' +
+        '<div class="border border-lw-ink p-5 mb-7"><div class="kicker mb-2">Follow ' + esc(topic.name) + '</div><p class="ff-b text-[15px] text-lw-sub leading-snug mb-3">New ' + esc(topic.name) + ' wires land in your Following feed and daily email digest.</p><button class="follow-btn follow-pill w-full text-center py-2.5" data-follow="topic:' + esc(topic.name) + '"><span data-follow-label>Follow</span></button></div>' +
+        '<div class="mb-7"><div class="border-t-2 border-lw-ink pt-3 mb-3"><h2 class="secttl text-sm">More topics</h2></div><div class="flex flex-wrap gap-2">' + others.map(function (t) { return '<a href="topic.html?t=' + t.slug + '" class="scan-chip" style="text-transform:none;letter-spacing:.02em">' + esc(t.name) + '</a>'; }).join('') + '</div></div>' +
         '<div class="ad-label ff-m text-[10px] tracking-[.2em] uppercase mb-2" style="color:#B0A794">Advertisement</div><div class="h-[250px] flex items-center justify-center" style="background:#F2EEE5;border:1px solid #E4DFD4"><span class="ff-d italic text-lw-muted text-sm">300 × 250</span></div>';
     }
     if (window.lwRewire) window.lwRewire();

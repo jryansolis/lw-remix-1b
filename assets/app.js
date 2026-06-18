@@ -713,8 +713,8 @@
     panel.classList.add('bg-lw-paper');
     panel.innerHTML = '<div class="max-w-[1240px] mx-auto px-5 py-7 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-7">' +
       TOPICS_NAV.map((t) => '<div><a href="topic.html?t=' + t.slug + '" class="ff-d font-600 text-[17px] leading-tight hover:text-lw-oxblood block mb-2">' + t.name + '</a>' +
-        '<div class="flex flex-col gap-1.5">' + t.subs.map((s) => '<a href="scans.html?q=' + encodeURIComponent(t.name + ' ' + s) + '" class="ff-b text-[13.5px] text-lw-muted hover:text-lw-ink leading-snug">' + s + '</a>').join('') + '</div></div>').join('') +
-      '</div><div class="border-t rule"><div class="max-w-[1240px] mx-auto px-5 py-3 flex items-center justify-between"><a href="topics.html" class="navlink text-[11px] hover:text-lw-gold">All topics →</a><a href="scans.html" class="navlink text-[11px] hover:text-lw-gold" style="color:#B88E1E">⌁ Run a scan</a></div></div>';
+        '<div class="flex flex-col gap-1.5">' + t.subs.map((s) => '<a href="topic.html?t=' + t.slug + '" class="ff-b text-[13.5px] text-lw-muted hover:text-lw-ink leading-snug">' + s + '</a>').join('') + '</div></div>').join('') +
+      '</div><div class="border-t rule"><div class="max-w-[1240px] mx-auto px-5 py-3 flex items-center justify-between"><a href="topics.html" class="navlink text-[11px] hover:text-lw-gold">All topics →</a><a href="funds.html" class="navlink text-[11px] hover:text-lw-gold" style="color:#B88E1E">Find Funds →</a></div></div>';
     header.appendChild(panel);
     let over = false, t;
     const show = () => { clearTimeout(t); panel.style.opacity = '1'; panel.style.visibility = 'visible'; panel.style.transform = 'translateY(0)'; };

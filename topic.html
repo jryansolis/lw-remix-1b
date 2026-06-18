@@ -32,11 +32,11 @@
     .avatar{ object-fit:cover; background:#EEE9DF; }
     .scan-chip{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid #16130E; padding:7px 12px; display:inline-block; transition:all .15s; color:#16130E; }
     .scan-chip:hover{ background:#16130E; color:#FBFAF6; }
-    /* Beat hero — Figma banner on the right, dark wash + title on the left */
-    .beat-hero{ position:relative; background:#0D0B08; overflow:hidden; min-height:300px; }
-    .beat-hero .bgimg{ position:absolute; right:0; top:0; bottom:0; width:62%; object-fit:cover; object-position:center; }
-    .beat-hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D0B08 34%, rgba(13,11,8,.65) 52%, rgba(13,11,8,0) 72%); }
-    @media (max-width:1023px){ .beat-hero .bgimg{ width:100%; opacity:.5; } .beat-hero::after{ background:linear-gradient(180deg, rgba(13,11,8,.35), #0D0B08 82%);} }
+    /* Beat hero — full-bleed banner, dark wash + title on the left */
+    .beat-hero{ position:relative; background:#0D0B08; overflow:hidden; min-height:340px; }
+    .beat-hero .bgimg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center right; }
+    .beat-hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D0B08 8%, rgba(13,11,8,.78) 42%, rgba(13,11,8,.32) 78%, rgba(13,11,8,.18) 100%); }
+    @media (max-width:1023px){ .beat-hero::after{ background:linear-gradient(180deg, rgba(13,11,8,.5), rgba(13,11,8,.88) 85%);} }
   </style>
 </head>
 <body class="text-lw-ink font-body">
@@ -55,7 +55,7 @@
         <p class="ff-b text-lg leading-relaxed mb-7" style="color:rgba(251,250,246,.8)" data-beat-blurb></p>
         <div class="flex flex-wrap items-center gap-3">
           <button class="follow-btn navlink px-6 h-11 bg-lw-gold text-lw-ink hover:bg-goldbright transition-colors" data-beat-follow data-follow="topic:—"><span data-follow-label>Follow</span></button>
-          <a href="scans.html" class="follow-btn navlink px-6 h-11 inline-flex items-center" style="border:1px solid rgba(251,250,246,.4);color:#fff">⌁ Run a scan</a>
+          <a href="contributors.html" class="follow-btn navlink px-6 h-11 inline-flex items-center" style="border:1px solid rgba(251,250,246,.4);color:#fff">Browse contributors</a>
         </div>
       </div>
     </div>
@@ -76,12 +76,13 @@
   <footer class="bg-lw-ink mt-8">
     <div class="max-w-[1240px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-9" onerror="this.style.display='none'">
-      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="scans.html" class="hover:text-white">Scans</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="video.html" class="hover:text-white">Video</a><a href="funds.html" class="hover:text-white">Funds</a></div>
+      <div class="navlink flex flex-wrap gap-5" style="color:rgba(251,250,246,.7)"><a href="index.html" class="hover:text-white">Home</a><a href="topics.html" class="hover:text-white">Topics</a><a href="contributors.html" class="hover:text-white">Contributors</a><a href="video.html" class="hover:text-white">Video</a><a href="funds.html" class="hover:text-white">Funds</a></div>
       <p class="ts" style="color:rgba(251,250,246,.45)">Concept demo. General information only.</p>
     </div>
   </footer>
 
   <script src="assets/data/topics.js"></script>
+  <script src="assets/data/topic-content.js"></script>
   <script src="assets/data/index.js"></script>
   <script src="assets/scan-engine.js"></script>
   <script src="assets/feed.js"></script>
