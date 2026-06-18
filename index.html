@@ -571,14 +571,11 @@
         ? '<div class="imgz block aspect-[16/9] mt-6"><img src="'+esc(lead.image)+'" alt="" loading="eager" onerror="var z=this.closest(\'.imgz\'); if(z) z.style.display=\'none\'"></div>'
         : '';
       var dek=lead.dek
-        ? '<p class="ff-b text-lw-sub leading-snug mt-4 max-w-[42ch]" style="font-size:clamp(1.1rem,1.5vw,1.4rem);font-style:italic">'+esc(lead.dek)+'</p>'
+        ? '<p class="ff-b text-lw-sub leading-snug mt-4" style="font-size:clamp(1.1rem,1.5vw,1.4rem);font-style:italic">'+esc(lead.dek)+'</p>'
         : '';
       var av=(window.lwAvatar ? window.lwAvatar(lead.author||'Livewire', 30) : '');
       hero.innerHTML='<a href="'+(lead.url||'article.html')+'" class="story group block no-underline">'+
-        '<div class="flex items-center gap-2.5 mb-3">'+
-          '<span class="inline-block h-px w-9" style="background:#B88E1E"></span>'+
-          '<span class="ff-m text-[11px] font-700 tracking-[.18em] uppercase" style="color:#B88E1E">'+esc(topicOf(lead))+'</span>'+
-        '</div>'+
+        '<div class="mb-3"><span class="ff-m text-[11px] font-700 tracking-[.18em] uppercase" style="color:#B88E1E">'+esc(topicOf(lead))+'</span></div>'+
         '<h1 class="hl ff-d font-600" style="font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.0;letter-spacing:-.024em">'+esc(lead.title)+'</h1>'+
         dek+
         img+
