@@ -5,7 +5,7 @@
    regex parsing is safer than pulling an XML/HTML library. Exits non-zero on
    feed failure or an empty parse so the GitHub Action never commits a broken
    file; a single body-fetch failure is tolerated (that item just has no body). */
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -88,6 +88,20 @@ let bodies = 0;
 for (const it of items) {
   const b = await fetchBody(it.url);
   if (b) { it.body = b.html; it.readMins = b.readMins; bodies++; }
+}
+
+// Guard: never overwrite a good feed.json with a body-less one. The CI runner
+// is sometimes Cloudflare-blocked on the per-wire pages (bodies come back empty);
+// keep the last good committed copy rather than wiping the article bodies.
+if (bodies === 0) {
+  try {
+    const prev = JSON.parse(readFileSync(OUT, 'utf8'));
+    const prevBodies = (prev.items || []).filter((i) => i.body && i.body.length).length;
+    if (prevBodies > 0) {
+      console.warn(`Fetched 0 bodies (blocked?) — keeping existing feed.json with ${prevBodies} bodies. No overwrite.`);
+      process.exit(0);
+    }
+  } catch { /* no previous file — write what we have */ }
 }
 
 mkdirSync(dirname(OUT), { recursive: true });

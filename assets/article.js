@@ -59,24 +59,14 @@
     return '<span class="ff-m" style="width:' + px + 'px;height:' + px + 'px;border-radius:9999px;background:linear-gradient(135deg,#374662,#19202D);color:#E0A82E;display:inline-grid;place-items:center;font-weight:700;font-size:' + Math.round(px * 0.34) + 'px">' + initials(name) + '</span>';
   }
   function set(sel, html) { var el = document.querySelector(sel); if (el) el.innerHTML = html; }
-  function firstBlocks(html, n) {
-    var tmp = document.createElement('div'); tmp.innerHTML = html;
-    return [].slice.call(tmp.children, 0, n).map(function (e) { return e.outerHTML; }).join('');
-  }
-
-  function gateHtml(o) {
-    var secondary = o.sourceUrl
-      ? '<div class="ts mt-3" style="text-transform:none;letter-spacing:0">Prefer the source? <a href="' + esc(o.sourceUrl) + '" target="_blank" rel="noopener" class="underline" style="color:#7A2E2E">Read it free on Livewire ↗</a></div>'
-      : '';
-    return '<div class="lw-gate" style="position:relative;margin-top:-1px">' +
-      '<div style="position:absolute;left:0;right:0;top:-140px;height:140px;background:linear-gradient(to bottom,rgba(251,250,246,0),#FBFAF6);pointer-events:none"></div>' +
-      '<div style="border-top:2px solid #16130E;background:#F2EEE5;padding:2.2rem 1.6rem;text-align:center">' +
-        '<div class="ff-m" style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8C8474">Keep reading — it\'s free</div>' +
-        '<h3 class="ff-d" style="font-size:1.7rem;line-height:1.12;margin:.6rem auto .4rem;max-width:24rem;color:#16130E">Create a free account to finish this article</h3>' +
-        '<p class="ff-b" style="font-size:1.02rem;color:#6B6358;max-width:26rem;margin:0 auto 1.3rem">Join 280,000+ investors reading Australia\'s best market minds. No paywall — just a free account.</p>' +
-        '<button data-art-unlock class="follow-btn" style="background:#16130E;color:#FBFAF6;padding:13px 30px;letter-spacing:.06em">Sign in / Create free account</button>' +
-        secondary +
-      '</div></div>';
+  // Full article for everyone. A slim, non-blocking free-account prompt sits
+  // BELOW the whole piece when signed out — it never truncates the body.
+  function ctaHtml(o) {
+    if (signedIn()) return '';
+    return '<div class="mt-12 border-t-2 border-lw-ink pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">' +
+      '<div><div class="ff-m" style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#B88E1E">Free account</div>' +
+      '<div class="ff-d text-lg md:text-xl font-600 leading-snug mt-1">Save wires, follow the minds you trust, and get the daily wrap.</div></div>' +
+      '<button data-art-unlock class="follow-btn" style="background:#16130E;color:#FBFAF6;padding:13px 28px;white-space:nowrap">Create free account</button></div>';
   }
   function provenanceHtml(url) {
     if (!url) return '';
@@ -117,12 +107,8 @@
   }
 
   function renderBody(o) {
-    if (!o.body) { // no full text (rare) — show standfirst + outbound
-      set('[data-art-body]', '<p>' + esc(o.standfirst || o.title) + '</p>' + provenanceHtml(o.sourceUrl));
-      return;
-    }
-    if (signedIn()) { set('[data-art-body]', o.body + provenanceHtml(o.sourceUrl)); }
-    else { set('[data-art-body]', firstBlocks(o.body, 3) + gateHtml(o)); }
+    var body = o.body ? o.body : '<p>' + esc(o.standfirst || o.title) + '</p>';
+    set('[data-art-body]', body + provenanceHtml(o.sourceUrl) + ctaHtml(o));
     bindUnlock();
   }
   function bindUnlock() {
