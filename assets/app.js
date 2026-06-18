@@ -526,18 +526,18 @@
     </style>` +
       `<header class="lw-masthead sticky top-0 z-50">` +
         `<div class="bg-lw-ink">` +
-          `<div class="max-w-[1240px] mx-auto px-5 h-[60px] flex items-center justify-between gap-4">` +
-            `<a href="index.html" class="flex-shrink-0"><img data-fixed-logo src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-8" onerror="this.style.display='none'"></a>` +
+          `<div class="max-w-[1240px] mx-auto px-5 h-[72px] flex items-center justify-between gap-4">` +
+            `<a href="index.html" class="flex-shrink-0"><img data-fixed-logo src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-12" onerror="this.style.display='none'"></a>` +
             `<div class="flex items-center gap-2 sm:gap-2.5" data-auth-cluster>${mhCluster()}</div>` +
           `</div>` +
         `</div>` +
         `<div class="lw-subnav bg-lw-paper border-b border-lw-ink">` +
-          `<div class="max-w-[1240px] mx-auto px-5 flex items-center gap-x-4 lg:gap-x-[1.15rem] overflow-x-auto">` +
+          `<div class="max-w-[1240px] mx-auto px-5 flex items-center gap-x-5 lg:gap-x-7 overflow-x-auto">` +
             mhNavLinks() +
             `<span class="lw-navdiv"></span>` +
             `<a href="funds.html" class="lw-navlink${mhActive('funds.html') ? ' is-active' : ''}">Find Funds</a>` +
             `<a href="#newsletter" class="lw-navlink">Newsletter</a>` +
-            `<button data-nav-more aria-label="More topics" class="lw-navlink inline-flex items-center gap-1">More <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg></button>` +
+            `<button data-nav-more aria-label="More topics" class="lw-navlink" style="display:inline-flex;align-items:center;gap:5px;white-space:nowrap">More <svg class="w-3.5 h-3.5" style="display:block;flex-shrink:0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg></button>` +
           `</div>` +
         `</div>` +
       `</header>`;
