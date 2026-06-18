@@ -53,7 +53,24 @@
   </section>
 
   <main class="max-w-[1240px] mx-auto px-5 py-10">
-    <div class="flex flex-wrap items-center gap-2 mb-7" data-funds-filters></div>
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8 pb-5 border-b border-lw-ink">
+      <div class="flex flex-wrap items-center gap-2" data-funds-filters></div>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <label class="relative flex items-center">
+          <svg class="w-4 h-4 absolute left-3 pointer-events-none" style="color:#9C9484" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.7" d="M21 21l-5-5m2-4a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+          <input type="search" data-funds-search placeholder="Search funds or managers…" aria-label="Search funds" class="ff-b text-[14px] h-10 pl-9 pr-3 border border-lw-line bg-lw-card w-full sm:w-[250px]" style="outline:none">
+        </label>
+        <div class="relative flex-shrink-0">
+          <select data-funds-sort aria-label="Sort funds" class="ff-m text-[11px] tracking-[.05em] uppercase h-10 pl-3 pr-9 border border-lw-line bg-lw-card appearance-none" style="outline:none;cursor:pointer">
+            <option value="featured">Sort · Featured</option>
+            <option value="name">Name A–Z</option>
+            <option value="aum">Largest AUM</option>
+            <option value="mer">Lowest fee</option>
+          </select>
+          <svg class="w-4 h-4 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-funds-grid>
       <p class="ff-b italic text-lw-muted">Loading funds…</p>
     </div>

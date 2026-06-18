@@ -471,7 +471,10 @@
     { label: 'Latest', href: 'index.html' },
     { label: 'Shares', href: 'topic.html?t=shares' },
     { label: 'Growth', href: 'topic.html?t=growth' },
+    { label: 'Income', href: 'topic.html?t=income' },
+    { label: 'ETFs', href: 'topic.html?t=etfs' },
     { label: 'Retirement', href: 'topic.html?t=retirement' },
+    { label: 'Property', href: 'topic.html?t=property' },
     { label: 'Buy Hold Sell', href: 'buy-hold-sell.html' },
     { label: 'Podcast', href: 'video.html' }
   ];
@@ -529,12 +532,12 @@
           `</div>` +
         `</div>` +
         `<div class="lw-subnav bg-lw-paper border-b border-lw-ink">` +
-          `<div class="max-w-[1240px] mx-auto px-5 flex items-center gap-x-6 lg:gap-x-7 overflow-x-auto">` +
+          `<div class="max-w-[1240px] mx-auto px-5 flex items-center gap-x-4 lg:gap-x-[1.15rem] overflow-x-auto">` +
             mhNavLinks() +
             `<span class="lw-navdiv"></span>` +
             `<a href="funds.html" class="lw-navlink${mhActive('funds.html') ? ' is-active' : ''}">Find Funds</a>` +
             `<a href="#newsletter" class="lw-navlink">Newsletter</a>` +
-            `<button data-nav-more aria-label="More topics" class="lw-navlink ml-auto" style="padding-left:8px"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg></button>` +
+            `<button data-nav-more aria-label="More topics" class="lw-navlink inline-flex items-center gap-1">More <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg></button>` +
           `</div>` +
         `</div>` +
       `</header>`;
