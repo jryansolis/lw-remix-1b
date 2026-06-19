@@ -44,6 +44,20 @@
     '[data-theme=dark] .scan-input{border-bottom-color:#4A4338 !important;color:#EDE7DB !important}',
     '[data-theme=dark] .story:hover .hl{color:#E7B96A !important}',
     '[data-theme=dark] .lwx-modal,[data-theme=dark] .lwx-search,[data-theme=dark] .lwx-row{background:#1E1B15 !important;color:#EDE7DB !important}',
+    /* account dropdown + density segmented control */
+    '[data-theme=dark] .lw-acct{background:#1E1B15 !important;border-color:#322E26 !important}',
+    '[data-theme=dark] .lw-acct-hd,[data-theme=dark] .lw-acct-sec{border-color:#322E26 !important}',
+    '[data-theme=dark] .lw-acct-name,[data-theme=dark] .lw-acct-item{color:#EDE7DB !important}',
+    '[data-theme=dark] .lw-seg{border-color:#4A4338 !important}',
+    '[data-theme=dark] .lw-seg-b+.lw-seg-b{border-left-color:#4A4338 !important}',
+    '[data-theme=dark] .lw-seg-b{color:#EDE7DB !important}',
+    '[data-theme=dark] .lw-seg-b.on{background:#EDE7DB !important;color:#14120E !important}',
+    /* personalised home (assets/home-personal.js) */
+    '[data-theme=dark] .pf-greet{border-color:#322E26 !important}',
+    '[data-theme=dark] .pf-band{background:#1A1712 !important;border-color:#322E26 !important}',
+    '[data-theme=dark] .pf-chip{border-color:#4A4338 !important;color:#EDE7DB !important}',
+    '[data-theme=dark] .pf-chip:hover{background:#EDE7DB !important;color:#14120E !important}',
+    '[data-theme=dark] .pf-tierlbl{color:#9A9080 !important}',
     /* inline-hex: flip dark text → light */
     '[data-theme=dark] [style*="color:#16130E"]{color:#EDE7DB !important}',
     '[data-theme=dark] [style*="color:#26211A"],[data-theme=dark] [style*="color:#231f18"]{color:#D6D0C4 !important}',

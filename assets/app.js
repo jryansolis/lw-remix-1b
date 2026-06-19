@@ -27,6 +27,47 @@
   // follow state only "counts" while signed in (signed-out shows everything as Follow)
   const isFollowing = (key) => auth.signedIn && following.has(key);
 
+  // ---- Reader density preference (image-rich vs text-dense) -------------
+  const DENSITY_KEY = 'lw_density';
+  const getDensity = () => { try { return localStorage.getItem(DENSITY_KEY) === 'dense' ? 'dense' : 'rich'; } catch (_) { return 'rich'; } };
+  function setDensity(v) {
+    const next = v === 'dense' ? 'dense' : 'rich';
+    try { localStorage.setItem(DENSITY_KEY, next); } catch (_) {}
+    document.documentElement.setAttribute('data-density', next);
+    try { document.dispatchEvent(new CustomEvent('lw:density', { detail: next })); } catch (_) {}
+  }
+  document.documentElement.setAttribute('data-density', getDensity());
+
+  // ---- Recently viewed (Continue reading) -------------------------------
+  const RECENT_KEY = 'lw_recent';
+  const getRecents = () => { try { return JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch (_) { return []; } };
+  function pushRecent(rec) {
+    if (!rec || !rec.url || !rec.title) return;
+    let list = getRecents().filter((r) => r.url !== rec.url);
+    list.unshift(rec); list = list.slice(0, 8);
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(list)); } catch (_) {}
+  }
+  // Record an open whenever a story link to the reader is clicked, site-wide.
+  function initRecentCapture() {
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href]'); if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (!/^article(?:-[a-z]+)?\.html/.test(href)) return; // in-site reader links only
+      const story = a.closest('.story') || a.closest('article') || a;
+      const h = story.querySelector('h1,h2,h3,h4');
+      const title = ((h ? h.textContent : a.textContent) || '').trim();
+      if (!title) return;
+      const k = story.querySelector('.kicker'); const b = story.querySelector('.byl');
+      pushRecent({ url: href, title, topic: k ? k.textContent.trim() : '', author: b ? b.textContent.replace(/·.*$/, '').trim() : '' });
+    }, true);
+    // also record a direct article-page visit once article.js has painted it
+    document.addEventListener('lw:article', () => {
+      const t = document.querySelector('[data-art-title]'); if (!t || !t.textContent.trim()) return;
+      const k = document.querySelector('[data-art-kicker]');
+      pushRecent({ url: (location.pathname.split('/').pop() || 'article.html') + location.search, title: t.textContent.trim(), topic: k ? (k.textContent.split('·')[0] || '').trim() : '', author: '' });
+    });
+  }
+
   function paintButton(btn) {
     const key = btn.dataset.follow;
     const on = isFollowing(key);
@@ -52,6 +93,7 @@
       el.textContent = following.size;
     });
     if (!had) followToast(key);
+    try { document.dispatchEvent(new CustomEvent('lw:follow', { detail: { key, following: following.has(key) } })); } catch (_) {}
     return following.has(key);
   }
 
@@ -102,6 +144,7 @@
             document.querySelectorAll(`[data-follow="${cssEscape(key)}"]`).forEach(paintButton);
             document.querySelectorAll('[data-following-count]').forEach((el) => { el.textContent = following.size; });
             followToast(key);
+            try { document.dispatchEvent(new CustomEvent('lw:follow', { detail: { key, following: true } })); } catch (_) {}
           });
           return;
         }
@@ -317,6 +360,21 @@
     .lwx-fine{font-family:'Literata',serif;font-size:.9rem;color:#6B6358;margin-top:16px}
     .lwx-fine a{color:#7A2E2E;text-decoration:underline;cursor:pointer}
     .lwx-avatar{width:34px;height:34px;border-radius:9999px;background:linear-gradient(135deg,#374662,#19202D);color:#E0A82E;display:grid;place-items:center;font-family:'Spline Sans Mono',monospace;font-weight:700;font-size:12px;cursor:pointer}
+    /* account dropdown */
+    .lw-acct{position:fixed;top:64px;right:14px;z-index:131;width:252px;background:#FBFAF6;border:1px solid #E4DFD4;box-shadow:0 30px 60px -22px rgba(13,11,8,.45);padding:14px}
+    .lw-acct[hidden]{display:none}
+    .lw-acct-hd{display:flex;gap:10px;align-items:center;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid #E4DFD4}
+    .lw-acct-name{font-family:'Besley',serif;font-weight:600;font-size:15px;color:#16130E;line-height:1.1}
+    .lw-acct-sub{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#B88E1E;margin-top:3px}
+    .lw-acct-sec{padding:2px 0 12px;border-bottom:1px solid #E4DFD4;margin-bottom:8px}
+    .lw-acct-lbl{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8C8474;margin-bottom:7px}
+    .lw-seg{display:flex;border:1px solid #16130E}
+    .lw-seg-b{flex:1;font-family:'Spline Sans Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:7px 4px;background:transparent;color:#16130E;cursor:pointer;transition:background .12s,color .12s}
+    .lw-seg-b+.lw-seg-b{border-left:1px solid #16130E}
+    .lw-seg-b.on{background:#16130E;color:#FBFAF6}
+    .lw-acct-item{display:block;width:100%;text-align:left;font-family:'Spline Sans Mono',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#16130E;padding:9px 4px;cursor:pointer;background:transparent}
+    .lw-acct-item:hover{color:#B88E1E}
+    .lw-acct-item:focus-visible,.lw-seg-b:focus-visible{outline:2px solid #B88E1E;outline-offset:2px}
     /* comments */
     .cmt-like.on{color:#7A2E2E}
     .cmt-reply-box{display:none}.cmt-reply-box.show{display:block}
@@ -349,7 +407,25 @@
         <button class="lwx-btn lwx-btn-ghost" data-signin-sso>Continue with LinkedIn</button>
         <p class="lwx-fine">Already a member? <a data-signin-sso>Sign in</a></p>
       </div></div>`));
+
+    document.body.appendChild(elFrom(`<div id="lw-acct" class="lw-acct" role="menu" aria-label="Account" hidden></div>`));
   }
+
+  // ---- Account dropdown (signed-in): greeting, density, sign out ----
+  function acctInner() {
+    const d = getDensity();
+    return `<div class="lw-acct-hd"><span class="lwx-avatar" style="cursor:default">${USER.initials}</span>` +
+      `<div><div class="lw-acct-name">${USER.name}</div><div class="lw-acct-sub">Free member · ${following.size} following</div></div></div>` +
+      `<div class="lw-acct-sec"><div class="lw-acct-lbl">Reader density</div>` +
+      `<div class="lw-seg" role="group" aria-label="Reader density">` +
+      `<button type="button" class="lw-seg-b${d === 'rich' ? ' on' : ''}" data-density-set="rich" aria-pressed="${d === 'rich'}">Image-rich</button>` +
+      `<button type="button" class="lw-seg-b${d === 'dense' ? ' on' : ''}" data-density-set="dense" aria-pressed="${d === 'dense'}">Text-dense</button>` +
+      `</div></div>` +
+      `<button type="button" class="lw-acct-item" data-act="signout">Sign out</button>`;
+  }
+  function openAcct() { const m = document.getElementById('lw-acct'); if (!m) return; m.innerHTML = acctInner(); m.hidden = false; }
+  function closeAcct() { const m = document.getElementById('lw-acct'); if (m) m.hidden = true; }
+  function acctOpen() { const m = document.getElementById('lw-acct'); return m && !m.hidden; }
 
   // logo path differs by depth? all pages are flat → 'assets/...'
   function logoBase() { return ''; }
@@ -502,7 +578,7 @@
     if (auth.signedIn) {
       tail = ico('Notifications', '<path stroke-width="1.7" stroke-linecap="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1"/>', true) +
         ico('Saved', '<path stroke-width="1.7" stroke-linecap="round" d="M6 4h12a1 1 0 011 1v15l-7-3.5L5 20V5a1 1 0 011-1z"/>', false) +
-        `<button data-act="avatar" class="flex items-center gap-1.5 pl-1" aria-label="Account"><span class="ff-m text-[12px] font-700 tracking-[.08em]" style="color:#fff">${USER.first.toUpperCase()}</span><svg class="w-4 h-4" style="color:rgba(251,250,246,.6)" fill="currentColor" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>`;
+        `<button data-act="avatar" class="flex items-center gap-1.5 pl-1" aria-label="Account" aria-haspopup="menu"><span class="ff-m text-[12px] font-700 tracking-[.08em]" style="color:#fff">${USER.first.toUpperCase()}</span><svg class="w-4 h-4" style="color:rgba(251,250,246,.6)" fill="currentColor" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>`;
     } else {
       tail = `<a href="#" data-act="signin" class="ff-m text-[12px] font-700 tracking-[.06em] inline-flex items-center h-9 px-4" style="border:1px solid rgba(251,250,246,.45);color:#fff;text-transform:uppercase">Sign up</a>`;
     }
@@ -554,13 +630,19 @@
   }
   function initAuthActions() {
     document.addEventListener('click', (e) => {
-      const a = e.target.closest('[data-act]'); if (!a) return;
+      // density toggle inside the account menu
+      const dset = e.target.closest('[data-density-set]');
+      if (dset) { e.preventDefault(); setDensity(dset.getAttribute('data-density-set')); if (acctOpen()) openAcct(); return; }
+      const a = e.target.closest('[data-act]');
+      if (!a) { if (acctOpen() && !e.target.closest('#lw-acct')) closeAcct(); return; }
       const act = a.getAttribute('data-act');
       if (act === 'search') { e.preventDefault(); openSearch(); }
       else if (act === 'signin') { e.preventDefault(); openSignin('Join 280,000+ investors reading Australia\'s best market minds — free.', null); }
-      else if (act === 'signout') { e.preventDefault(); setSignedIn(false); }
-      else if (act === 'avatar') { e.preventDefault(); setSignedIn(false); } // demo: avatar click signs out
+      else if (act === 'signout') { e.preventDefault(); closeAcct(); setSignedIn(false); }
+      else if (act === 'avatar') { e.preventDefault(); acctOpen() ? closeAcct() : openAcct(); }
     });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAcct(); });
+    document.addEventListener('lw:auth', closeAcct);
   }
 
   // ---- Pinned scans (saved questions; sign-in gated like follows) ----
@@ -681,6 +763,18 @@
         </div></div></div>`);
   }
 
+  // Stable read API for the personalised home (assets/home-personal.js)
+  window.lwState = {
+    signedIn: () => !!auth.signedIn,
+    following: () => [...following],
+    isFollowing: (k) => isFollowing(k),
+    density: getDensity,
+    setDensity,
+    recents: getRecents,
+    pins,
+    user: USER
+  };
+
   // exposed for the special-report gate (and any future member-gated surface)
   window.lwOpenSignin = function (cb) {
     if (auth.signedIn) { if (cb) cb(); return; }
@@ -737,6 +831,7 @@
     renderFollowingPanel();
     initComments();
     initPinButtons();
+    initRecentCapture();
     document.querySelectorAll('[data-following-count]').forEach((el) => { el.textContent = auth.signedIn ? following.size : 0; });
     onAuthChange(renderAuthUI);
     onAuthChange(renderFollowingPanel);
