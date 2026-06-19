@@ -225,7 +225,7 @@
     var cols = model.clusters.map(function (c) {
       var rows = c.rows.map(function (it) { return standardRowHtml(it, { thumb: th }); }).join('');
       return '<div class="lg:px-5 first:lg:pl-0 last:lg:pr-0">' +
-        featuredCardHtml(c.featured, 'Featured · ' + c.topic) +
+        featuredCardHtml(c.featured, 'Featured') +
         (rows ? '<div class="divide-y rule border-t rule">' + rows + '</div>' : '') +
       '</div>';
     }).join('');
