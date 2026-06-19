@@ -51,6 +51,11 @@
     .scan-input::placeholder{ color:#B7AE9E; }
     .report-card{ border:1px solid #7A2E2E; background:#F2EEE5; }
     .lockg{ display:inline-block; vertical-align:-1px; }
+    /* Members gate: reveal teasers when signed in (class set pre-paint by theme.js) */
+    [data-member="in"]{ display:none; }
+    .lw-signed-in [data-member="in"]{ display:revert; }
+    .lw-signed-in [data-member="out"]{ display:none; }
+    .lw-signed-in [data-member-blur]{ filter:none !important; user-select:auto !important; }
   </style>
 </head>
 <body class="text-lw-ink font-body">
@@ -82,6 +87,9 @@
     <!-- ============================ TOP NEWS (curated home) ============================ -->
     <section data-feed-panel="top">
 
+      <!-- Personalised greeting (signed-in only; populated by assets/home-personal.js) -->
+      <div data-pf-greet></div>
+
       <!-- Z1: Markets Live band (rendered by assets/markets-live.js) -->
       <div data-markets-live class="border-b border-lw-ink"></div>
 
@@ -89,15 +97,18 @@
       <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,288px)_1fr] gap-0 lg:gap-0 border-b-2 border-lw-ink">
         <!-- 20%: "/ Today" — headline-only, no images -->
         <div class="lg:border-r border-lw-ink lg:pr-7 pt-6 pb-2 lg:pb-7">
-          <div class="flex items-baseline gap-1.5 mb-3 pb-2.5 border-b-2 border-lw-ink"><span class="ff-d text-[26px] font-700 leading-none" style="color:#B88E1E">/</span><h2 class="ff-d text-[26px] font-700 leading-none">Today</h2></div>
+          <div class="flex items-baseline gap-1.5 mb-3 pb-2.5 border-b-2 border-lw-ink"><span class="ff-d text-[26px] font-700 leading-none" style="color:#B88E1E">/</span><h2 class="ff-d text-[26px] font-700 leading-none" data-pf-leftlabel>Today</h2></div>
           <div data-home-today><p class="ff-b italic text-lw-muted py-6 text-[14px]">Loading…</p></div>
         </div>
         <!-- 80%: the lead — big image + topic + headline -->
         <div class="lg:pl-10 pt-7 pb-9" data-home-hero></div>
       </div>
 
+      <!-- Your Livewire band (signed-in only; populated by assets/home-personal.js) -->
+      <div data-pf-band></div>
+
       <!-- Z3 EDITORS' PICKS: anchor card + three text stacks -->
-      <div class="border-b rule">
+      <div class="border-b rule" data-pf-picks>
         <div class="pt-3 pb-1 flex items-center gap-2"><span class="w-2 h-2 bg-lw-gold"></span><h2 class="secttl text-sm">Editors&rsquo; Picks</h2></div>
         <div class="grid grid-cols-1 lg:grid-cols-4 lg:divide-x rule">
           <article class="story group py-4 lg:pr-5">
@@ -167,7 +178,7 @@
       </div>
 
       <!-- Z4 THE BRIEFING: 4×4 all-text, mixed sources -->
-      <div class="border-b border-lw-ink pb-2">
+      <div class="border-b border-lw-ink pb-2" data-pf-briefing>
         <div class="pt-3 pb-1 flex items-center justify-between"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-lw-gold"></span><h2 class="secttl text-sm">The Briefing</h2></div><span class="ts hidden sm:inline">Livewire · Market Index · around the web</span></div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x rule">
           <div class="divide-y rule lg:pr-5">
@@ -196,6 +207,9 @@
           </div>
         </div>
       </div>
+
+      <!-- Demote divider: marks curated/discovery content as secondary when signed in -->
+      <div data-pf-demote></div>
 
       <!-- Z5 SCAN SHELF: the one tinted band -->
       <div class="my-9 -mx-5 px-5" style="background:#F2EEE5;border-top:1px solid #E4DFD4;border-bottom:1px solid #E4DFD4">
@@ -284,20 +298,32 @@
               <div class="absolute inset-x-0 bottom-0 h-24" style="background:linear-gradient(to bottom,rgba(251,250,246,0),#FBFAF6)"></div>
             </div>
             <div class="mt-3 flex flex-wrap items-center gap-3.5">
-              <button data-act="signin" class="ff-m font-700 h-11 px-6 inline-flex items-center" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#E0A82E;color:#16130E">Unlock free →</button>
-              <span class="ts" style="text-transform:none;letter-spacing:0">Free account · no paywall, ever</span>
+              <button data-member="out" data-act="signin" class="ff-m font-700 h-11 px-6 inline-flex items-center" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#E0A82E;color:#16130E">Unlock free →</button>
+              <a data-member="in" href="article-report.html" class="ff-m font-700 h-11 px-6 inline-flex items-center" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#16130E;color:#FBFAF6">Read the full analysis →</a>
+              <span data-member="out" class="ts" style="text-transform:none;letter-spacing:0">Free account · no paywall, ever</span>
+              <span data-member="in" class="ts" style="text-transform:none;letter-spacing:0;color:#B88E1E">✓ Unlocked · members access</span>
             </div>
           </div>
           <aside class="lg:border-l rule lg:pl-8">
             <div class="ts mb-3" style="color:#16130E">THE FULL LIST</div>
-            <div class="divide-y rule">
-              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">1 · CSL</span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+4.2%</span></div>
-              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">2 · <span style="filter:blur(5px);user-select:none">XXXX</span></span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+8.1%</span></div>
-              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">3 · <span style="filter:blur(5px);user-select:none">XXX</span></span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+2.6%</span></div>
-              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]" style="filter:blur(5px);user-select:none">4 · XXXXX</span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+11%</span></div>
-              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]" style="filter:blur(5px);user-select:none">5 · XXX</span><span class="ff-m text-[12px] text-lw-muted" style="filter:blur(5px);user-select:none">+5.4%</span></div>
+            <!-- signed-out: blurred teaser -->
+            <div data-member="out" class="divide-y rule">
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">1 · CSL</span><span class="ff-m text-[12px] text-lw-muted" data-member-blur style="filter:blur(5px);user-select:none">+4.2%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">2 · <span data-member-blur style="filter:blur(5px);user-select:none">XXXX</span></span><span class="ff-m text-[12px] text-lw-muted" data-member-blur style="filter:blur(5px);user-select:none">+8.1%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">3 · <span data-member-blur style="filter:blur(5px);user-select:none">XXX</span></span><span class="ff-m text-[12px] text-lw-muted" data-member-blur style="filter:blur(5px);user-select:none">+2.6%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]" data-member-blur style="filter:blur(5px);user-select:none">4 · XXXXX</span><span class="ff-m text-[12px] text-lw-muted" data-member-blur style="filter:blur(5px);user-select:none">+11%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]" data-member-blur style="filter:blur(5px);user-select:none">5 · XXX</span><span class="ff-m text-[12px] text-lw-muted" data-member-blur style="filter:blur(5px);user-select:none">+5.4%</span></div>
             </div>
-            <div class="ts mt-3" style="color:#7A2E2E">+ 6 more · sign in to reveal</div>
+            <!-- signed-in: the real list -->
+            <div data-member="in" class="divide-y rule">
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">1 · CSL</span><span class="ff-m text-[12px]" style="color:#7FB996">+4.2%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">2 · Pro Medicus</span><span class="ff-m text-[12px]" style="color:#7FB996">+8.1%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">3 · Reece</span><span class="ff-m text-[12px]" style="color:#7FB996">+2.6%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">4 · TechnologyOne</span><span class="ff-m text-[12px]" style="color:#7FB996">+11%</span></div>
+              <div class="flex items-center justify-between py-2.5"><span class="ff-d text-[15px]">5 · Aristocrat</span><span class="ff-m text-[12px]" style="color:#7FB996">+5.4%</span></div>
+            </div>
+            <div data-member="out" class="ts mt-3" style="color:#7A2E2E">+ 6 more · sign in to reveal</div>
+            <div data-member="in" class="ts mt-3" style="color:#B88E1E">+ 6 more in the full members report →</div>
           </aside>
         </div>
       </section>
@@ -559,6 +585,8 @@
     function topicOf(it){ return (it.topics && it.topics[0]) || 'Markets'; }
     function rel(iso){ var m=Math.max(1,Math.round((Date.now()-new Date(iso).getTime())/60000)); if(m<60)return m+'m ago'; var h=Math.round(m/60); if(h<24)return h+'h ago'; return Math.round(h/24)+'d ago'; }
     function render(){
+      // signed-in: assets/home-personal.js owns the hero (personalised lead + For You)
+      if (window.lwState && window.lwState.signedIn()) return;
       var hero=document.querySelector('[data-home-hero]'), today=document.querySelector('[data-home-today]');
       if(!hero||!today) return;
       var data=(window.LW_DATA||[]).filter(function(it){ return !it.locked && it.title; });
@@ -600,6 +628,8 @@
     function start(){ if (window.LW_FEED_READY && window.LW_FEED_READY.then){ var d=false,g=function(){if(d)return;d=true;render();}; window.LW_FEED_READY.then(g,g); setTimeout(g,2500);} else render(); }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
     document.addEventListener('lw:feed', render);
+    document.addEventListener('lw:auth', render);
+    document.addEventListener('lw:home-restore', render);
   })();
   </script>
 
@@ -614,5 +644,6 @@
   <script src="assets/data/funds.js"></script>
   <script src="assets/funds.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/home-personal.js"></script>
 </body>
 </html>

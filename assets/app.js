@@ -22,7 +22,7 @@
   let pendingAction = null;
   const authListeners = [];
   const onAuthChange = (fn) => authListeners.push(fn);
-  function setSignedIn(v) { auth.signedIn = v; saveAuth(); authListeners.forEach((f) => { try { f(); } catch (_) {} }); try { document.dispatchEvent(new CustomEvent('lw:auth', { detail: { signedIn: v } })); } catch (_) {} }
+  function setSignedIn(v) { auth.signedIn = v; saveAuth(); try { document.documentElement.classList.toggle('lw-signed-in', !!v); } catch (_) {} authListeners.forEach((f) => { try { f(); } catch (_) {} }); try { document.dispatchEvent(new CustomEvent('lw:auth', { detail: { signedIn: v } })); } catch (_) {} }
 
   // follow state only "counts" while signed in (signed-out shows everything as Follow)
   const isFollowing = (key) => auth.signedIn && following.has(key);
