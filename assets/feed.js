@@ -131,13 +131,21 @@
     return Math.round(h / 24) + 'D AGO';
   }
 
+  function showOf(title, topic) {
+    var hay = (title || '') + ' ' + (topic || '');
+    var matchers = window.LW_SHOW_TITLE_MATCH || [];
+    for (var i = 0; i < matchers.length; i++) { if (matchers[i].re.test(hay)) return matchers[i].name; }
+    return null;
+  }
+
   function normalize(raw) {
     return raw.map(function (it, i) {
       var topic = TOPIC_MAP[it.topic] || 'Shares';
+      var show = showOf(it.title, it.topic);
       return {
         id: 'rss-' + i, title: it.title, dek: it.dek || '', url: it.url,
         type: (it.topic === 'Buy Hold Sell' || /buy hold sell|rules of investing|expert insights/i.test(it.title)) ? 'video' : 'article',
-        source: 'livewire', live: true,
+        source: 'livewire', live: true, show: show,
         author: it.author || 'Livewire', topics: [topic],
         themes: (it.categories || []).map(function (c) { return c.toLowerCase(); }),
         tickers: it.tickers || [], sectors: [], body: it.body || '',
