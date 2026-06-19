@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shows | Livewire Markets</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Besley','Georgia','serif'], body:['Literata','Georgia','serif'], mono:['"Spline Sans Mono"','ui-monospace','monospace'] },
+      colors: { lw: { paper:'#FBFAF6', card:'#FFFFFF', ink:'#16130E', sub:'#3A352C', muted:'#6B6358', line:'#E4DFD4', gold:'#B88E1E', goldbright:'#E0A82E', oxblood:'#7A2E2E' } },
+    } } }
+  </script>
+  <script src="assets/theme.js"></script>
+  <style>
+    body{ -webkit-font-smoothing:antialiased; background:#FBFAF6; }
+    .ff-d{ font-family:'Besley',serif; } .ff-b{ font-family:'Literata',serif; } .ff-m{ font-family:'Spline Sans Mono',monospace; }
+    h1,h2{ font-family:'Besley',serif; font-weight:600; } h3,h4{ font-family:'Besley',serif; font-weight:500; }
+    .kicker{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:#B88E1E; display:inline-block; }
+    .byl{ font-family:'Spline Sans Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.07em; text-transform:uppercase; color:#16130E; }
+    .ts{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.04em; color:#6B6358; }
+    .navlink{ font-family:'Spline Sans Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .secttl{ font-family:'Besley',serif; font-size:1.05rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+    .hl{ transition:color .15s ease; } .story:hover .hl{ color:#7A2E2E; }
+    .imgz{ overflow:hidden; background:#EEE9DF; } .imgz img{ transition:transform .6s; display:block; width:100%; height:100%; object-fit:cover; } .story:hover .imgz img{ transform:scale(1.04); }
+    .rule{ border-color:#E4DFD4; }
+    .play span{ width:48px; height:48px; border-radius:9999px; background:rgba(22,19,14,.78); display:grid; place-items:center; transition:transform .2s, background .2s; }
+    .story:hover .play span{ transform:scale(1.08); background:#7A2E2E; }
+    .verdict{ font-family:'Spline Sans Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.1em; padding:2px 7px; border:1px solid; display:inline-block; }
+    .v-buy{ color:#2F7D52; border-color:#2F7D52; } .v-hold{ color:#B88E1E; border-color:#B88E1E; } .v-sell{ color:#A23B33; border-color:#A23B33; }
+    .follow-btn{ font-family:'Spline Sans Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; transition:all .15s ease; }
+    .follow-pill{ border:1px solid #16130E; color:#16130E; background:transparent; } .follow-pill:hover{ background:#16130E; color:#FBFAF6; } .follow-pill.is-following{ background:#16130E!important; color:#FBFAF6!important; }
+    /* show masthead (brand accent injected via --acc) */
+    .series-hero{ position:relative; background:#0D0B08; overflow:hidden; }
+    .series-hero .bgimg{ position:absolute; right:0; top:0; bottom:0; width:55%; object-fit:cover; opacity:.5; }
+    .series-hero::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0D0B08 38%, rgba(13,11,8,.55) 60%, rgba(13,11,8,.2)); }
+    @media (max-width:1023px){ .series-hero .bgimg{ width:100%; opacity:.25; } .series-hero::after{ background:linear-gradient(180deg, rgba(13,11,8,.5), #0D0B08 78%);} }
+    .sub-link{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(251,250,246,.32); color:#fff; padding:0 14px; height:38px; transition:all .15s; }
+    .sub-link:hover{ border-color:var(--acc,#E0A82E); color:var(--acc,#E0A82E); }
+    .host-link{ display:inline-flex; align-items:center; gap:8px; }
+    /* format primer card */
+    .primer{ border:1px solid #16130E; background:#fff; }
+    .primer-hd{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 22px; cursor:pointer; background:transparent; text-align:left; }
+    .primer-body{ padding:0 22px 22px; }
+    .primer[data-open="false"] .primer-body{ display:none; }
+    .primer-chev{ transition:transform .2s; }
+    .primer[data-open="false"] .primer-chev{ transform:rotate(-90deg); }
+    .primer-hd:focus-visible{ outline:2px solid #B88E1E; outline-offset:-2px; }
+    /* tier labels */
+    .tierlbl{ font-family:'Spline Sans Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#9C9484; }
+    .xlink{ font-family:'Spline Sans Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; border:1px solid #E4DFD4; color:#3A352C; padding:6px 11px; display:inline-block; transition:all .15s; }
+    .xlink:hover{ border-color:#16130E; color:#16130E; }
+    /* dense (text-dense) episode rows */
+    [data-density=dense] [data-ep-thumb]{ width:84px; }
+    /* dark theme (theme.js handles base palette; these cover show-only components) */
+    [data-theme=dark] .primer{ background:#1E1B15; }
+    [data-theme=dark] .xlink{ border-color:#4A4338; color:#C7BFB0; }
+    [data-theme=dark] .xlink:hover{ border-color:#EDE7DB; color:#EDE7DB; }
+    [data-theme=dark] .tierlbl{ color:#9A9080; }
+  </style>
+</head>
+<body class="text-lw-ink font-body">
+
+  <div data-lw-masthead></div>
+
+  <main data-show-root>
+    <div class="max-w-[1240px] mx-auto px-5 py-24 text-center">
+      <p class="ff-b italic text-lw-muted">Loading show…</p>
+    </div>
+  </main>
+
+  <footer class="bg-lw-ink text-lw-paper mt-12">
+    <div class="max-w-[1240px] mx-auto px-5 py-12">
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+        <div class="max-w-xs"><img src="assets/logo/wordmark-neg.svg" alt="Livewire Markets" class="h-10 mb-4" onerror="this.style.display='none'"><p class="ff-b text-[15px]" style="color:rgba(251,250,246,.45)">Investment insights from Australia's best fund managers.</p></div>
+        <div class="grid grid-cols-3 gap-10 navlink" style="color:rgba(251,250,246,.6)">
+          <div><div class="text-lw-gold mb-3">Shows</div><div class="space-y-2.5"><a href="show.html?show=buy-hold-sell" class="block hover:text-white">Buy Hold Sell</a><a href="show.html?show=the-rules-of-investing" class="block hover:text-white">Rules of Investing</a><a href="video.html" class="block hover:text-white">All shows</a></div></div>
+          <div><div class="text-lw-gold mb-3">Content</div><div class="space-y-2.5"><a href="topics.html" class="block hover:text-white">Topics</a><a href="contributors.html" class="block hover:text-white">Contributors</a><a href="funds.html" class="block hover:text-white">Find Funds</a></div></div>
+          <div><div class="text-lw-gold mb-3">Company</div><div class="space-y-2.5"><a href="#" class="block hover:text-white">About</a><a href="#" class="block hover:text-white">Contact</a></div></div>
+        </div>
+      </div>
+      <div class="border-t mt-10 pt-6 ts" style="border-color:rgba(251,250,246,.12); color:rgba(251,250,246,.35)">© 2026 LIVEWIRE MARKETS PTY LTD · CONCEPT DEMO · GENERAL INFORMATION ONLY, NOT FINANCIAL ADVICE</div>
+    </div>
+  </footer>
+
+  <script src="assets/data/index.js"></script>
+  <script src="assets/data/shows.js"></script>
+  <script src="assets/scan-engine.js"></script>
+  <script src="assets/feed.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/show.js"></script>
+</body>
+</html>
