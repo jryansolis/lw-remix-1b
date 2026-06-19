@@ -10,7 +10,7 @@
   // Seed a demo "following" state on first visit so the Following feed is populated.
   let following = getFollowing();
   if (!localStorage.getItem(LS_KEY)) {
-    following = new Set(['author:Vishal Teckchandani', 'author:Steve Johnson', 'topic:ETFs', 'topic:Retirement']);
+    following = new Set(['author:Vishal Teckchandani', 'author:Steve Johnson', 'topic:ETFs', 'topic:Retirement', 'show:Buy Hold Sell']);
     saveFollowing(following);
   }
 
@@ -100,13 +100,23 @@
   // Feedback when you follow: what happened + what to expect.
   function followToast(key) {
     const isTopic = key.indexOf('topic:') === 0;
-    const name = key.replace(/^(topic|author):/, '');
-    const msg = isTopic
-      ? '<strong>Following ' + name + '</strong><br>New ' + name + ' wires will land in your <b>Following</b> feed and daily email digest.'
-      : '<strong>Following ' + name + '</strong><br>You’ll see ' + name + '’s latest wires in your <b>Following</b> feed and daily digest.';
-    showToast(msg, isTopic ? ('topic.html?t=' + topicSlug(name)) : 'index.html');
+    const isShow = key.indexOf('show:') === 0;
+    const name = key.replace(/^(topic|author|show):/, '');
+    let msg, href;
+    if (isShow) {
+      msg = '<strong>Following ' + name + '</strong><br>New episodes will land in your <b>Following</b> feed. For audio, subscribe on your podcast app.';
+      href = 'show.html?show=' + showSlug(name);
+    } else if (isTopic) {
+      msg = '<strong>Following ' + name + '</strong><br>New ' + name + ' wires will land in your <b>Following</b> feed and daily email digest.';
+      href = 'topic.html?t=' + topicSlug(name);
+    } else {
+      msg = '<strong>Following ' + name + '</strong><br>You’ll see ' + name + '’s latest wires in your <b>Following</b> feed and daily digest.';
+      href = 'index.html';
+    }
+    showToast(msg, href);
   }
   function topicSlug(name) { return String(name).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, ''); }
+  function showSlug(name) { return (window.LW_SHOW_NAME_TO_SLUG && window.LW_SHOW_NAME_TO_SLUG[name]) || topicSlug(name); }
   let toastTimer = null;
   function showToast(html, href) {
     let t = document.getElementById('lw-toast');
@@ -472,7 +482,11 @@
       x: ((it.themes || []).join(' ') + ' ' + (it.tickers || []).join(' ') + ' ' + (it.author || ''))
     }));
     const navItems = SEARCH_INDEX.filter((x) => x.g === 'Topics' || x.g === 'Contributors' || x.g === 'Series');
-    return content.concat(navItems);
+    const showItems = (window.LW_SHOWS || []).map((s) => ({
+      t: s.name, k: s.kind === 'podcast' ? 'Podcast' : 'Show', u: 'show.html?show=' + s.slug, g: 'Shows',
+      x: (s.hosts || []).map((h) => h.name).join(' ') + ' ' + (s.topics || []).join(' ')
+    }));
+    return content.concat(showItems).concat(navItems);
   }
   function renderSearch(q) {
     const box = document.getElementById('lw-search-results'); if (!box) return;
@@ -551,7 +565,7 @@
     { label: 'ETFs', href: 'topic.html?t=etfs' },
     { label: 'Retirement', href: 'topic.html?t=retirement' },
     { label: 'Property', href: 'topic.html?t=property' },
-    { label: 'Buy Hold Sell', href: 'buy-hold-sell.html' },
+    { label: 'Buy Hold Sell', href: 'show.html?show=buy-hold-sell' },
     { label: 'Podcast', href: 'video.html' }
   ];
   function mhPage() { return (location.pathname.split('/').pop() || 'index').toLowerCase().replace(/\.html$/, ''); }
@@ -559,6 +573,7 @@
     const cur = mhPage(), t = new URLSearchParams(location.search).get('t');
     if (href === 'index.html') return cur === '' || cur === 'index';
     if (href.indexOf('topic.html?t=') === 0) return cur === 'topic' && t === href.split('=')[1];
+    if (href.indexOf('show.html?show=') === 0) return cur === 'show' && new URLSearchParams(location.search).get('show') === href.split('=')[1];
     return cur === href.replace('.html', '');
   }
   function mhNavLinks() {

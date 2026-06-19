@@ -60,6 +60,8 @@
   // ---- follow-set helpers ----
   function followedAuthors() { return following().filter(function (k) { return k.indexOf('author:') === 0; }).map(function (k) { return k.slice(7); }); }
   function followedTopics() { return following().filter(function (k) { return k.indexOf('topic:') === 0; }).map(function (k) { return k.slice(6); }); }
+  function followedShows() { return following().filter(function (k) { return k.indexOf('show:') === 0; }).map(function (k) { return k.slice(5); }); }
+  function showSlug(name) { return (window.LW_SHOW_NAME_TO_SLUG && window.LW_SHOW_NAME_TO_SLUG[name]) || topicSlug(name); }
 
   // ---- content pool ----
   function pool() {
@@ -75,12 +77,14 @@
     return out;
   }
   function isFollowed(it) {
-    var fa = followedAuthors(), ft = followedTopics();
+    var fa = followedAuthors(), ft = followedTopics(), fs = followedShows();
+    if (it.show && fs.indexOf(it.show) !== -1) return true;
     if (fa.indexOf(it.author) !== -1) return true;
     return (it.topics || []).some(function (t) { return ft.indexOf(t) !== -1; });
   }
   function score(it) {
-    var s = 0, fa = followedAuthors(), ft = followedTopics();
+    var s = 0, fa = followedAuthors(), ft = followedTopics(), fs = followedShows();
+    if (it.show && fs.indexOf(it.show) !== -1) s += 45;
     if (fa.indexOf(it.author) !== -1) s += 50;
     if ((it.topics || []).some(function (t) { return ft.indexOf(t) !== -1; })) s += 35;
     var days = (Date.now() - new Date(it.pubDate).getTime()) / 864e5;
@@ -105,7 +109,9 @@
       ? '<p class="ff-b text-lw-sub leading-snug mt-4" style="font-size:clamp(1.1rem,1.5vw,1.4rem);font-style:italic">' + esc(it.dek) + '</p>'
       : '';
     var why = isFollowed(it)
-      ? (followedAuthors().indexOf(it.author) !== -1 ? 'Because you follow ' + esc(it.author) : 'From ' + esc(topicOf(it)) + ', a topic you follow')
+      ? (it.show && followedShows().indexOf(it.show) !== -1 ? 'New episode of ' + esc(it.show) + ', which you follow'
+        : followedAuthors().indexOf(it.author) !== -1 ? 'Because you follow ' + esc(it.author)
+        : 'From ' + esc(topicOf(it)) + ', a topic you follow')
       : 'Top story for you today';
     return '<a href="' + esc(it.url) + '" class="story group block no-underline">' +
       '<div class="mb-3 flex items-center gap-2 flex-wrap">' +
@@ -262,10 +268,14 @@
     var newCount = model.followed.filter(function (it) {
       var days = (Date.now() - new Date(it.pubDate).getTime()) / 864e5; return days <= 1.05;
     }).length;
-    var fa = followedAuthors().length, ft = followedTopics().length;
-    var meta = (fa + ft) === 0
+    var fa = followedAuthors().length, ft = followedTopics().length, fsh = followedShows().length;
+    var parts = [];
+    if (ft) parts.push(ft + ' topic' + (ft === 1 ? '' : 's'));
+    if (fa) parts.push(fa + ' contributor' + (fa === 1 ? '' : 's'));
+    if (fsh) parts.push(fsh + ' show' + (fsh === 1 ? '' : 's'));
+    var meta = (fa + ft + fsh) === 0
       ? 'You\u2019re not following anyone yet \u2014 follow a few to personalise this page.'
-      : ft + ' topic' + (ft === 1 ? '' : 's') + ' \u00b7 ' + fa + ' contributor' + (fa === 1 ? '' : 's') + ' followed' +
+      : parts.join(' \u00b7 ') + ' followed' +
         (newCount ? ' \u00b7 <span style="color:#B88E1E">' + newCount + ' new in your feed today</span>' : '');
     var dn = density();
     mount.innerHTML =
@@ -289,12 +299,13 @@
   function chip(href, label) { return '<a class="pf-chip" href="' + esc(href) + '">' + esc(label) + '</a>'; }
   function renderBand(model) {
     var mount = document.querySelector('[data-pf-band]'); if (!mount) return;
-    var ft = followedTopics(), fa = followedAuthors(), p = pins();
-    var hasFollows = (ft.length + fa.length) > 0;
+    var ft = followedTopics(), fa = followedAuthors(), fs = followedShows(), p = pins();
+    var hasFollows = (ft.length + fa.length + fs.length) > 0;
 
     var chips = '';
     if (hasFollows) {
       chips = ft.map(function (t) { return chip('topic.html?t=' + topicSlug(t), t); }).join('') +
+        fs.map(function (s) { return chip('show.html?show=' + showSlug(s), '\u25B6 ' + s); }).join('') +
         fa.map(function (a) { return chip('author.html', '@ ' + a); }).join('');
     } else {
       var suggest = ['ETFs', 'Retirement', 'Income', 'Growth', 'Property', 'Small Caps'];
